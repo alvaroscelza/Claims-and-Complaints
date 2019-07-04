@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @permit.name %>
+</p>
+
+<p>
+  <strong>Needed reputation:</strong>
+  <%= @permit.needed_reputation %>
+</p>
+
+<%= link_to 'Edit', edit_permit_path(@permit) %> |
+<%= link_to 'Back', permits_path %>
