@@ -4,7 +4,7 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :reputation
       t.string :image
-      t.Business :business
+      t.references :business, foreign_key: true
       t.string :description
 
       t.timestamps
