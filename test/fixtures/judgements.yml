@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opinion: MyString
+  vote: false
+  user: 
+  company: 
+
+two:
+  opinion: MyString
+  vote: false
+  user: 
+  company: 

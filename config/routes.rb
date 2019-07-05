@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :judgements
   resources :users
   resources :companies
   resources :businesses
