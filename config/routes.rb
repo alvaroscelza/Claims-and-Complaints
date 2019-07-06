@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/static_pages/index'
 
   resources :judgements
-  resources :users
   resources :companies
   resources :businesses
   resources :permits
