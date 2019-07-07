@@ -15,7 +15,7 @@ module ClaimsAndComplaints
         address: 'smtp.gmail.com',
         port: 587,
         domain: 'gmail.com',
-        user_name: 'distribuidorasaturno@gmail.com',
+        user_name: Rails.application.secrets.gmail_account,
         password: Rails.application.secrets.gmail_account_password,
         authentication: 'plain',
         enable_starttls_auto: true

@@ -10,6 +10,7 @@ end
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'figaro'
 
 # DEFAULT RAIL NEW GEMS
 
