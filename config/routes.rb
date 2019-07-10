@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/static_pages/index'
 
   devise_for :users
-  get '/users', to: 'users#index', as: :users
+  resources :users
   resources :judgements
   resources :companies
   resources :businesses
