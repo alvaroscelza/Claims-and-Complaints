@@ -8,6 +8,4 @@ class User < ApplicationRecord
          :trackable,
          :validatable,
          :confirmable
-  belongs_to :role,
-             required: true
 end

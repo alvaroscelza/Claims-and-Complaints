@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <span style="color: white", class="navbar-text">Hello <strong><%= current_user.email %></strong>!</span>
-          <% if is_admin? %>
+          <% if current_user.is_admin %>
             <li><%= link_to "Manage Users", users_path %></li>
           <% end %>
           <li class="dropdown">
