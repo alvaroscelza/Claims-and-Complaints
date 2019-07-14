@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#index'
-  get '/static_pages/index'
+  root 'companies#index'
 
   devise_for :users
   get '/users', to: 'users#index', as: :users
