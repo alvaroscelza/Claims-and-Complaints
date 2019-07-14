@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get '/users', to: 'users#index', as: :users
-  # get '/users/:id', to: 'users#show', as: :user
-  # get '/users/new', to: 'users#new', as: :new_user
-  # get '/users/edit', to: 'users#edit', as: :edit_user
-  # post '/users', to: 'users#create', as: :create_user
+  patch '/users/update_administrators', to: 'users#update_administrators', as: :update_administrators
   resources :judgements
   resources :companies
   resources :businesses
