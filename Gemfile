@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'figaro'
+gem "responders"
 
 # DEFAULT RAIL NEW GEMS
 
