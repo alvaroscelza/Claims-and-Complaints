@@ -1,32 +1,31 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
-  
   def index
     @users = User.all
   end
 
-  def edit
-  end
-  
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+  def update_administrators
+    begin
+      new_admins_emails = user_params
+      User.find_each do |user|
+        if new_admins_emails.include?(user.email)
+          user.update(is_admin: true)
+        else
+          user.update(is_admin: false)
+        end
       end
+      respond_to do |format|
+        format.html { redirect_to users_path, notice: 'Users were successfully updated.' }
+        format.json { render users_path, status: :ok }
+      end
+    rescue Exception => ex
+      format.html { redirect_to users_path, notice: ex.message }
+      format.json { render json: ex.message, status: :unprocessable_entity }
     end
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
-    params.require(:user).User(:name, :needed_reputation)
+    params.require(:admins)
   end
 end

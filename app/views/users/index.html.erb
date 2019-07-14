@@ -1,7 +1,4 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Users</h1>
-
 
 <%= form_tag(update_administrators_path, method: :patch) do %>
   <table>
@@ -17,7 +14,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.email %></td>
-            <td><%= check_box_tag :is_admin, user.email, user.is_admin %></td>
+            <td><%= check_box_tag 'admins[]', user.email, user.is_admin %></td>
           </tr>
       <% end %>
     </tbody>
