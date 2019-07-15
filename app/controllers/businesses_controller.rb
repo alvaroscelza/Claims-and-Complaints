@@ -22,7 +22,6 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    # flash[:success] = "Task was successfully created." if @business.save
     @business.save
     respond_with(@business)
   end
