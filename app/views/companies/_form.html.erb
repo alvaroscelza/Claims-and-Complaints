@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :business %>
-    <%= form.select :business_id, options_for_select(Business.all.map{|b|[b.name, b.id]}) %>
+    <%= form.select :business_id, options_for_select(Business.all.map{|b|[b.name, b.id]}, @company.business_id) %>
   </div>
 
   <div class="field">
