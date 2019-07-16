@@ -12,6 +12,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'figaro'
 gem "responders"
+gem 'carrierwave'
 
 # DEFAULT RAIL NEW GEMS
 

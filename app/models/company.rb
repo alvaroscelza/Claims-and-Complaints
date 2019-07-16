@@ -5,4 +5,5 @@ class Company < ApplicationRecord
   validates :reputation,
             presence: true
   belongs_to :business
+  mount_uploader :image, ImageUploader
 end
