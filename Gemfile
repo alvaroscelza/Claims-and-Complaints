@@ -13,6 +13,7 @@ gem 'devise'
 gem 'figaro'
 gem "responders"
 gem 'carrierwave'
+gem 'mini_magick' #This requires Imagemagick program installed on the OS
 
 # DEFAULT RAIL NEW GEMS
 
