@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   resources :judgements
   resources :companies
   resources :businesses
-  resources :permits
 end
