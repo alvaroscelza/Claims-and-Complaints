@@ -1,8 +1,6 @@
 class JudgementsController < ApplicationController
   before_action :set_judgement, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
-
   def index
     @judgements = Judgement.all
     respond_with(@judgements)

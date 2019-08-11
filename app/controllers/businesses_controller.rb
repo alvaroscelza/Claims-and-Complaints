@@ -1,8 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
-
   def index
     @businesses = Business.all
     respond_with(@businesses)
