@@ -5,4 +5,6 @@ class Judgement < ApplicationRecord
             presence: true
   validates :company,
             presence: true
+  belongs_to :company
+  belongs_to :user
 end

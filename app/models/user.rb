@@ -8,5 +8,6 @@ class User < ApplicationRecord
          :trackable,
          :validatable,
          :confirmable
+  has_many :judgements
   mount_uploader :profile_picture, ImageUploader
 end
