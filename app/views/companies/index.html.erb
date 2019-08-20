@@ -12,6 +12,8 @@
       <th>Description</th>
       <% if current_user.try(:is_admin?) %>
         <th colspan="3"></th>
+      <% else %>
+        <th colspan="1"></th>
       <% end %>
     </tr>
   </thead>
@@ -24,8 +26,8 @@
         <td><%= company.reputation %></td>
         <td><%= company.business.name %></td>
         <td><%= company.description %></td>
+        <td><%= link_to 'Show', company %></td>
         <% if current_user.try(:is_admin?) %>
-          <td><%= link_to 'Show', company %></td>
           <td><%= link_to 'Edit', edit_company_path(company) %></td>
           <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
