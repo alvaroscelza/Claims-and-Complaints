@@ -25,5 +25,14 @@
   <%= @company.description %>
 </p>
 
+<%= link_to 'Judge', new_company_judgement_path(@company) %>
+<br>
+<br>
+
+<% unless @company.judgements.empty? %>
+  <h3>Judgements</h3>
+  <%= render 'judgements/index', judgements: @company.judgements %>
+<% end %>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
