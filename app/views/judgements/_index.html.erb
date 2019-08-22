@@ -21,7 +21,7 @@
         <td><%= judgement.user %></td>
         <td><%= judgement.company %></td>
         <td><%= link_to 'Show', judgement %></td>
-        <td><%= link_to 'Edit', edit_judgement_path(judgement) %></td>
+        <td><%= link_to 'Edit', edit_company_judgement_path(judgement) %></td>
         <td><%= link_to 'Destroy', judgement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Judgement', new_judgement_path %>
+<%= link_to 'New Judgement', new_company_judgement_path %>
