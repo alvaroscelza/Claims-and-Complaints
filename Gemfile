@@ -7,13 +7,13 @@ end
 
 # MANUALLY ADDED GEMS
 
-gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'carrierwave'
 gem 'devise'
 gem 'figaro'
-gem "responders"
-gem 'carrierwave'
+gem 'jquery-rails'
 gem 'mini_magick' #This requires Imagemagick program installed on the OS
+gem "responders"
 
 # DEFAULT RAIL NEW GEMS
 
