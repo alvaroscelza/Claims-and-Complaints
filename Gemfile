@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -13,7 +13,7 @@ gem 'devise'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'mini_magick' #This requires Imagemagick program installed on the OS
-gem "responders"
+gem 'responders'
 
 # DEFAULT RAIL NEW GEMS
 
