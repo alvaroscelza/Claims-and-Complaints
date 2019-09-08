@@ -27,3 +27,5 @@
 
 # Ruby mine configurations
 /.idea
+/.generators
+/.rakeTasks
