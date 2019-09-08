@@ -9,10 +9,10 @@ end
 
 gem 'bootstrap-sass'
 gem 'carrierwave'
-gem 'devise'
+gem 'devise', '4.7.1'
 gem 'figaro'
 gem 'jquery-rails'
-gem 'mini_magick' #This requires Imagemagick program installed on the OS
+gem 'mini_magick' # This requires Imagemagick program installed on the OS
 gem 'responders'
 
 # DEFAULT RAIL NEW GEMS
