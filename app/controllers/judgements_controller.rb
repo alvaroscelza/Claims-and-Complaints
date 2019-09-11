@@ -1,5 +1,5 @@
 class JudgementsController < ApplicationController
-  before_action :set_judgement, only: [:show, :edit, :update, :destroy]
+  before_action :set_judgement, only: %i[show edit update destroy]
 
   def index
     @judgements = Judgement.all
@@ -35,11 +35,12 @@ class JudgementsController < ApplicationController
   end
 
   private
-    def set_judgement
-      @judgement = Judgement.find(params[:id])
-    end
 
-    def judgement_params
-      params.require(:judgement).permit(:opinion, :vote, :user, :company)
-    end
+  def set_judgement
+    @judgement = Judgement.find(params[:id])
+  end
+
+  def judgement_params
+    params.require(:judgement).permit(:opinion, :vote, :user, :company)
+  end
 end
