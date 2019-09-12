@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Judgements</h1>
-
 <table>
   <thead>
     <tr>
@@ -14,15 +12,14 @@
   </thead>
 
   <tbody>
-    <% @judgements.each do |judgement| %>
+    <% company.judgements.each do |judgement| %>
       <tr>
         <td><%= judgement.opinion %></td>
         <td><%= judgement.vote %></td>
         <td><%= judgement.user %></td>
-        <td><%= judgement.company %></td>
-        <td><%= link_to 'Show', judgement %></td>
-        <td><%= link_to 'Edit', edit_company_judgement_path(judgement) %></td>
-        <td><%= link_to 'Destroy', judgement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= company %></td>
+        <td><%= link_to 'Edit', edit_company_judgement_path(company, judgement) %></td>
+        <td><%= link_to 'Destroy', [company, judgement], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Judgement', new_company_judgement_path %>
+<%= link_to 'New Judgement', new_company_judgement_path(company) %>

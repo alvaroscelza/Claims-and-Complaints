@@ -23,6 +23,7 @@ if Rails.env.development?
                   reputation: 0,
                   business_id: 1)
   Judgement.create!(opinion: 'Opinion de prueba',
+                    vote: true,
                     user_id: 2,
                     company_id: 1)
 end

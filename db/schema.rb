@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20190716011359) do
 
   create_table "judgements", force: :cascade do |t|
     t.string "opinion", null: false
-    t.boolean "vote"
+    t.boolean "vote", null: false
     t.integer "user_id", null: false
     t.integer "company_id", null: false
     t.datetime "created_at", null: false

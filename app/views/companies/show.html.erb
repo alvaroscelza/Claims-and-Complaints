@@ -31,7 +31,7 @@
 
 <% unless @company.judgements.empty? %>
   <h3>Judgements</h3>
-  <%= render 'judgements/index', judgements: @company.judgements %>
+  <%= render 'judgements/index', company: @company %>
 <% end %>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
