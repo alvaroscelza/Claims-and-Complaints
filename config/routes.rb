@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :judgements
-  resources :users
-  resources :companies
+  root 'companies#index'
+
+  devise_for :users
+  get '/users', to: 'users#index', as: :users
+  patch '/users/update_administrators', to: 'users#update_administrators', as: :update_administrators
+  resources :companies do
+    resources :judgements
+  end
   resources :businesses
-  resources :permits
-  resources :roles
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -4,7 +4,7 @@ class Company < ApplicationRecord
             uniqueness: true
   validates :reputation,
             presence: true
-  validates :image
-  validates :business
-  validates :description
+  belongs_to :business
+  has_many :judgements
+  mount_uploader :image, ImageUploader
 end

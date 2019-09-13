@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opinion</th>
+      <th>Vote</th>
+      <th>User</th>
+      <th>Company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% company.judgements.each do |judgement| %>
+      <tr>
+        <td><%= judgement.opinion %></td>
+        <td><%= judgement.vote %></td>
+        <td><%= judgement.user.email %></td>
+        <td><%= company.name %></td>
+<!--  TODO      <td><%#= link_to 'Edit', edit_company_judgement_path(company, judgement) %></td>-->
+<!--  TODO      <td><%#= link_to 'Destroy', [company, judgement], method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

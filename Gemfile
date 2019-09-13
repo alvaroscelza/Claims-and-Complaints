@@ -1,10 +1,21 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
+# MANUALLY ADDED GEMS
+
+gem 'bootstrap-sass'
+gem 'carrierwave'
+gem 'devise', '4.7.1'
+gem 'figaro'
+gem 'jquery-rails'
+gem 'mini_magick' # This requires Imagemagick program installed on the OS
+gem 'responders'
+
+# DEFAULT RAIL NEW GEMS
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6', '>= 5.1.6.1'

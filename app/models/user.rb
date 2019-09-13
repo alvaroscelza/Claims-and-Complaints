@@ -1,17 +1,13 @@
 class User < ApplicationRecord
-  validates :name,
-            presence: true,
-            uniqueness: true
-  validates :reputation,
-            presence: true
-  validates :password,
-            presence: true
-  validates :email,
-            presence: true,
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            uniqueness: true
-  validates :image
-  validates :role,
-            presence: true
-  validates :permits
+  # Include default devise modules. Others available are:
+  # :timeoutable and :omniauthable
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :confirmable
+  has_many :judgements
+  mount_uploader :profile_picture, ImageUploader
 end

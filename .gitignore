@@ -21,3 +21,11 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml
+
+# Ruby mine configurations
+/.idea
+/.generators
+/.rakeTasks

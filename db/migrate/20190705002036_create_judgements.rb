@@ -3,8 +3,8 @@ class CreateJudgements < ActiveRecord::Migration[5.1]
     create_table :judgements do |t|
       t.string :opinion
       t.boolean :vote
-      t.reference :user
-      t.reference :company
+      t.references :user
+      t.references :company
 
       t.timestamps
     end

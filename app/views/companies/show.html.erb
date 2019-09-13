@@ -12,12 +12,12 @@
 
 <p>
   <strong>Image:</strong>
-  <%= @company.image %>
+  <%= image_tag @company.image %>
 </p>
 
 <p>
   <strong>Business:</strong>
-  <%= @company.business %>
+  <%= @company.business.name %>
 </p>
 
 <p>
@@ -25,5 +25,16 @@
   <%= @company.description %>
 </p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
+<%#= link_to 'Judge', new_company_judgement_path(@company) todo %>
+<br>
+<br>
+
+<% unless @company.judgements.empty? %>
+  <h3>Judgements</h3>
+  <%= render 'judgements/index', company: @company %>
+<% end %>
+
+<% if current_user and current_user.is_admin %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+<% end %>
 <%= link_to 'Back', companies_path %>

@@ -23,17 +23,17 @@
 
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_field :image, id: :company_image %>
+    <%= form.file_field :image, id: :company_image %>
   </div>
 
   <div class="field">
     <%= form.label :business %>
-    <%= form.text_field :business, id: :company_business %>
+    <%= form.select :business_id, options_for_select(Business.all.map{|b|[b.name, b.id]}, @company.business_id) %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description, id: :company_description %>
+    <%= form.text_area :description, id: :company_description %>
   </div>
 
   <div class="actions">
