@@ -2,3 +2,9 @@
     CALL gem install bundler
     bundle install --retry=3 --jobs=4
   displayName: 'bundle install'
+- script: |
+  rails db:migrate
+displayName: 'rails db:migrate'
+- script: |
+  rails db:seed
+displayName: 'rails db:seed'
