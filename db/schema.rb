@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20190716011359) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "businesses", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20190716011359) do
     t.string "name", null: false
     t.integer "reputation", null: false
     t.string "image"
-    t.integer "business_id", null: false
+    t.bigint "business_id", null: false
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 20190716011359) do
   create_table "judgements", force: :cascade do |t|
     t.string "opinion", null: false
     t.boolean "vote", null: false
-    t.integer "user_id", null: false
-    t.integer "company_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_judgements_on_company_id"
@@ -67,11 +70,11 @@ ActiveRecord::Schema.define(version: 20190716011359) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin"
     t.string "profile_picture"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "companies", "businesses"
 end
