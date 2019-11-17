@@ -30,3 +30,4 @@
 /.generators
 /.rakeTasks
 .vscode/launch.json
+/.vs
