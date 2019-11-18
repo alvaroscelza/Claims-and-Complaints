@@ -25,9 +25,10 @@
 # Ignore application configuration
 /config/application.yml
 
-# Ruby mine configurations
 /.idea
 /.generators
 /.rakeTasks
 .vscode/launch.json
 /.vs
+/.vendor
+vendor/

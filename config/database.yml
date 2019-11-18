@@ -3,6 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  username: quejasya
+  password: <%= ENV['QUEJASYA_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -18,5 +20,3 @@ test:
 production:
   <<: *default
   database: quejasya_production
-  username: quejasya
-  password: <%= ENV['QUEJASYA_DATABASE_PASSWORD'] %>
