@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   rescue Exception => ex
     format.html { redirect_to users_path, notice: ex.message }
     format.json { render json: ex.message, status: :unprocessable_entity }
-
   end
 
   private

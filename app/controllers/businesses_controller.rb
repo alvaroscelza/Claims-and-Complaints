@@ -16,8 +16,7 @@ class BusinessesController < ApplicationController
     respond_with(@business)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @business = Business.new(business_params)
@@ -36,11 +35,12 @@ class BusinessesController < ApplicationController
   end
 
   private
-    def set_business
-      @business = Business.find(params[:id])
-    end
 
-    def business_params
-      params.require(:business).permit(:name)
-    end
+  def set_business
+    @business = Business.find(params[:id])
+  end
+
+  def business_params
+    params.require(:business).permit(:name)
+  end
 end

@@ -4,16 +4,16 @@
       <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
 
       <ul>
-      <% business.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% business.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :business_name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="actions">

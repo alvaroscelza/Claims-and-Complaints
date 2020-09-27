@@ -7,9 +7,6 @@ User.create!(id: 1,
              is_admin: true,
              confirmed_at: '2019-07-08 00:00:00.000')
 
-if Rails.env.production?
-end
-
 if Rails.env.development?
   User.create!(id: 2,
                email: 'user@gmail.com',

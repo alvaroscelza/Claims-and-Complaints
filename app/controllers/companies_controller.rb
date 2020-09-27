@@ -16,8 +16,7 @@ class CompaniesController < ApplicationController
     respond_with(@company)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @company = Company.new(company_params)
@@ -36,11 +35,12 @@ class CompaniesController < ApplicationController
   end
 
   private
-    def set_company
-      @company = Company.find(params[:id])
-    end
 
-    def company_params
-      params.require(:company).permit(:name, :reputation, :image, :business_id, :description)
-    end
+  def set_company
+    @company = Company.find(params[:id])
+  end
+
+  def company_params
+    params.require(:company).permit(:name, :reputation, :image, :business_id, :description)
+  end
 end

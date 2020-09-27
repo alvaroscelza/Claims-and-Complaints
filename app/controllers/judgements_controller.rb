@@ -1,5 +1,5 @@
 class JudgementsController < ApplicationController
-  before_action :set_judgement, only: %i[edit update destroy]
+  before_action :set_judgement, only: [:edit, :update, :destroy]
 
   def new
     @judgement = Judgement.new
@@ -31,6 +31,6 @@ class JudgementsController < ApplicationController
   end
 
   def judgement_params
-    params.require(:judgement).permit(:opinion, :vote, :user, :company)
+    params.require(:judgement).permit(:opinion, :vote, :user_id, :company_id)
   end
 end

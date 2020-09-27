@@ -1,15 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
   reputation: 1
   image: MyString
-  business: 
+  business: one
   description: MyString
 
 two:
   name: MyString
   reputation: 1
   image: MyString
-  business: 
+  business: two
   description: MyString

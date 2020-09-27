@@ -17,7 +17,7 @@ class JudgementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create judgement" do
     assert_difference('Judgement.count') do
-      post judgements_url, params: { judgement: { company: @judgement.company, opinion: @judgement.opinion, user: @judgement.user, vote: @judgement.vote } }
+      post judgements_url, params: { judgement: { company_id: @judgement.company_id, opinion: @judgement.opinion, user_id: @judgement.user_id, vote: @judgement.vote } }
     end
 
     assert_redirected_to judgement_url(Judgement.last)
@@ -34,7 +34,7 @@ class JudgementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update judgement" do
-    patch judgement_url(@judgement), params: { judgement: { company: @judgement.company, opinion: @judgement.opinion, user: @judgement.user, vote: @judgement.vote } }
+    patch judgement_url(@judgement), params: { judgement: { company_id: @judgement.company_id, opinion: @judgement.opinion, user_id: @judgement.user_id, vote: @judgement.vote } }
     assert_redirected_to judgement_url(@judgement)
   end
 

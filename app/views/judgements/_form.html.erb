@@ -4,31 +4,31 @@
       <h2><%= pluralize(judgement.errors.count, "error") %> prohibited this judgement from being saved:</h2>
 
       <ul>
-      <% judgement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% judgement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= form.label :opinion %>
-    <%= form.text_field :opinion, id: :judgement_opinion %>
+    <%= form.text_field :opinion %>
   </div>
 
   <div class="field">
     <%= form.label :vote %>
-    <%= form.check_box :vote, id: :judgement_vote %>
+    <%= form.check_box :vote %>
   </div>
 
   <div class="field">
-    <%= form.label :user %>
-    <%= form.text_field :user, id: :judgement_user %>
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :company %>
-    <%= form.text_field :company, id: :judgement_company %>
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id %>
   </div>
 
   <div class="actions">
