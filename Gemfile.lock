@@ -83,9 +83,6 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    debase (0.2.4.1)
-      debase-ruby_core_source (>= 0.10.2)
-    debase-ruby_core_source (0.10.10)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -176,10 +173,8 @@ GEM
       rubocop-ast (>= 0.3.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.5.1)
+    rubocop-ast (0.6.0)
       parser (>= 2.7.1.5)
-    ruby-debug-ide (0.7.2)
-      rake (>= 0.8.1)
     ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
@@ -246,7 +241,6 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.0)
-  debase
   devise (= 4.7.1)
   figaro
   jbuilder (~> 2.7)
@@ -254,7 +248,6 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.3)
   responders
   rubocop (~> 0.89.0)
-  ruby-debug-ide
   sass-rails (>= 6)
   selenium-webdriver
   sqlite3 (~> 1.4)
