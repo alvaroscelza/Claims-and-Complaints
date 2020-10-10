@@ -42,3 +42,7 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+
+# Manually added
+.idea/*
+.vs/*
