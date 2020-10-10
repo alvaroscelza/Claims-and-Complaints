@@ -13,7 +13,7 @@ gem 'figaro'
 gem 'responders'
 # Rubocop from terminal, to use run: rubocop, from the terminal. Your IDE might have rubocop integrated too (which would
 # show offenses directly in code)
-gem 'rubocop', '~> 0.89.0', require: false
+gem 'rubocop', '~> 0.89.0', require: false, group: :development
 # For image uploading and storage. It includes a minimal module of both MiniMagick and RMagick, so you don't have to
 # install any of them to use them, it suffices with uncommenting the corresponding line in your uploader.
 gem 'carrierwave', '~> 2.0'
