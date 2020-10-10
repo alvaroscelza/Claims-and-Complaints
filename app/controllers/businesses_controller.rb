@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user
+  before_action :user_is_admin
 
   def index
     @businesses = Business.all
