@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :admin_user
+  before_action :user_is_admin
 
   def index
     @users = User.all
@@ -8,11 +8,8 @@ class UsersController < ApplicationController
   def update_administrators
     new_admins_emails = user_params
     User.find_each do |user|
-      if new_admins_emails.include?(user.email)
-        user.update(is_admin: true)
-      else
-        user.update(is_admin: false)
-      end
+      user_to_to_admin = new_admins_emails.include?(user.email)
+      user_to_to_admin ? user.update(is_administrator: true) : user.update(is_administrator: false)
     end
     respond_to do |format|
       format.html { redirect_to users_path, notice: 'Users were successfully updated.' }
