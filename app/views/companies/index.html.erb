@@ -19,7 +19,9 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-        <td><%= image_tag company.image %></td>
+        <% if company.image_url %>
+            <%= image_tag company.image_url %>
+        <% end %>
         <td><%= company.name %></td>
         <td><%= company.reputation %></td>
         <td><%= company.business.name %></td>

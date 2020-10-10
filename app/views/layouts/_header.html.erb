@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <span style="color: white", class="navbar-text">Hello <strong><%= current_user.email %></strong>!</span>
-          <% if current_user.is_admin %>
+          <% if current_user.is_administrator %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Manage <b class="caret"></b></a>
               <ul class="dropdown-menu">
