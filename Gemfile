@@ -19,6 +19,10 @@ gem 'rubocop', '~> 0.89.0', require: false, group: :development
 gem 'carrierwave', '~> 2.0'
 # Solargraph provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation, and type checking.
 gem 'solargraph', group: :development
+# The 'ruby-debug-ide' gem provides the protocol to establish communication between the debugger engine (such as debase or ruby-debug-base) and IDEs (for example, RubyMine, Visual Studio Code, or Eclipse).
+gem 'ruby-debug-ide', group: :development
+# Debase is a fast implementation of the standard Ruby debugger debug.rb for Ruby 2.0. It is implemented by utilizing a new Ruby TracePoint class. The core component provides support that front-ends can build on. It provides breakpoint handling, bindings for stack frames among other things.
+gem 'debase', group: :development
 
 # DEFAULT RAIL-NEW COMMAND GEMS
 
