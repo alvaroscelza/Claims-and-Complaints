@@ -6,7 +6,7 @@ ruby '2.6.6'
 # MANUALLY ADDED GEMS
 
 # For authentication and authorization
-gem 'devise', '4.7.1'
+gem 'devise', '4.7.3'
 # For secrets
 gem 'figaro'
 # To improve code quality on controller responses
@@ -17,6 +17,8 @@ gem 'rubocop', '~> 0.89.0', require: false, group: :development
 # For image uploading and storage. It includes a minimal module of both MiniMagick and RMagick, so you don't have to
 # install any of them to use them, it suffices with uncommenting the corresponding line in your uploader.
 gem 'carrierwave', '~> 2.0'
+# Solargraph provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation, and type checking.
+gem 'solargraph', group: :development
 
 # DEFAULT RAIL-NEW COMMAND GEMS
 
