@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :users
   resources :judgements
   resources :companies
   resources :businesses
-  root 'companies#index'
   devise_for :users
+  root 'companies#index'
 end
