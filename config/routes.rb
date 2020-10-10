@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  get '/users', to: 'users#index'
+  patch '/users', to: 'users#update_administrators'
   resources :judgements
   resources :companies
   resources :businesses
