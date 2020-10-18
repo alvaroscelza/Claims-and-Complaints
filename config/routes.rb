@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  root 'companies#index'
+
+  devise_for :users
   get '/users', to: 'users#index'
   patch '/users', to: 'users#update_administrators'
-  resources :judgements
-  resources :companies
+
+  resources :companies do
+    resources :judgements
+  end
   resources :businesses
-  devise_for :users
-  root 'companies#index'
 end
