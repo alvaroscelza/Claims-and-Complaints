@@ -16,12 +16,12 @@ class JudgementsController < ApplicationController
 
   def update
     @judgement.update(judgement_params)
-    respond_with(@judgement)
+    respond_with(@judgement.company)
   end
 
   def destroy
     @judgement.destroy
-    respond_with(@judgement)
+    respond_with(@judgement.company)
   end
 
   private
