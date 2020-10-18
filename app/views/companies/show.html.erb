@@ -23,7 +23,11 @@
   <%= @company.description %>
 </p>
 
-<%#= link_to 'Judge', new_company_judgement_path(@company) todo %>
+<% if current_user and current_user.is_administrator %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+<% end %>
+<%= link_to 'Back', companies_path %>
+
 <br>
 <br>
 
@@ -31,8 +35,3 @@
   <h3>Judgements</h3>
   <%= render 'judgements/index', company: @company %>
 <% end %>
-
-<% if current_user and current_user.is_administrator %>
-  <%= link_to 'Edit', edit_company_path(@company) %> |
-<% end %>
-<%= link_to 'Back', companies_path %>
