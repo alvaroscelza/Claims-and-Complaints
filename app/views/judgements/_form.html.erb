@@ -1,4 +1,4 @@
-<%= form_with(model: judgement, url: company_judgement_path, local: true) do |form| %>
+<%= form_with(model: [@judgement.company, @judgement], local: true) do |form| %>
   <% if judgement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(judgement.errors.count, "error") %> prohibited this judgement from being saved:</h2>

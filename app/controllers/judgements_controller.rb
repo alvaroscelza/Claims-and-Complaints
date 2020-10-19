@@ -2,7 +2,9 @@ class JudgementsController < ApplicationController
   before_action :set_judgement, only: [:edit, :update, :destroy]
 
   def new
+    @company = Company.find(params[:company_id])
     @judgement = Judgement.new
+    @judgement.company = @company
     respond_with(@judgement)
   end
 
@@ -11,7 +13,7 @@ class JudgementsController < ApplicationController
   def create
     @judgement = Judgement.new(judgement_params)
     @judgement.save
-    respond_with(@judgement)
+    respond_with(@judgement.company)
   end
 
   def update

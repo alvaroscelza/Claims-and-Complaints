@@ -25,7 +25,7 @@
         <td><%= company.business.name %></td>
         <td><%= company.description %></td>
         <td><%= link_to 'Show', company %></td>
-        <% if current_user.try(:is_administrator?) %>
+        <% if current_user.try(:is_administrator) %>
           <td><%= link_to 'Edit', edit_company_path(company) %></td>
           <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -36,6 +36,6 @@
 
 <br>
 
-<% if current_user.try(:is_administrator?) %>
+<% if current_user.try(:is_administrator) %>
   <%= link_to 'New Company', new_company_path %>
 <% end %>

@@ -5,7 +5,7 @@
       <th>Vote</th>
       <th>User</th>
       <th>Company</th>
-      <% if current_user.is_administrator %>
+      <% if current_user.try(:is_administrator) %>
         <th colspan="2"></th>
       <% end %>
     </tr>
@@ -18,7 +18,7 @@
         <td><%= judgement.vote %></td>
         <td><%= judgement.user.email %></td>
         <td><%= company.name %></td>
-        <% if current_user.is_administrator %>
+        <% if current_user.try(:is_administrator) %>
           <td><%= link_to 'Edit', edit_company_judgement_path(company, judgement) %></td>
           <td><%= link_to 'Destroy', [company, judgement], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -26,10 +26,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if user_signed_in? %>
-  pepe
-  <%#= link_to 'New Judgement', new_company_judgement_path(@company) %>
-<% end %>

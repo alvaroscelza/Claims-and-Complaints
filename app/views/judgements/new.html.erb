@@ -1,5 +1,5 @@
 <h1>New Judgement</h1>
 
-<%= render 'form', judgement: @judgement %>
+<%= render 'form', {judgement: @judgement} %>
 
-<%= link_to 'Back', company_judgements_path %>
+<%= link_to 'Back', company_path(@judgement.company) %>
