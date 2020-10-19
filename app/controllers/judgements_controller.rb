@@ -3,7 +3,7 @@ class JudgementsController < ApplicationController
 
   def new
     @company = Company.find(params[:company_id])
-    @judgement = Judgement.new(company: @company, user: current_user)
+    @judgement = Judgement.new(company: @company)
     respond_with(@judgement)
   end
 
