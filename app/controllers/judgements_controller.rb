@@ -3,8 +3,7 @@ class JudgementsController < ApplicationController
 
   def new
     @company = Company.find(params[:company_id])
-    @judgement = Judgement.new
-    @judgement.company = @company
+    @judgement = Judgement.new(company: @company, user: current_user)
     respond_with(@judgement)
   end
 
@@ -12,8 +11,15 @@ class JudgementsController < ApplicationController
 
   def create
     @judgement = Judgement.new(judgement_params)
+    @judgement.company_id = params[:company_id]
+    @judgement.user = current_user
     @judgement.save
-    respond_with(@judgement.company)
+
+    if @judgement.errors.any?
+      respond_with(@judgement)
+    else
+      respond_with(@judgement.company)
+    end
   end
 
   def update
@@ -33,6 +39,6 @@ class JudgementsController < ApplicationController
   end
 
   def judgement_params
-    params.require(:judgement).permit(:opinion, :vote, :user_id, :company_id)
+    params.require(:judgement).permit(:opinion, :vote)
   end
 end
