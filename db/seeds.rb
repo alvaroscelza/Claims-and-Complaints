@@ -4,14 +4,14 @@
 User.create!(id: 1,
              email: 'alvaroscelza@gmail.com',
              password: '123456',
-             is_admin: true,
+             is_administrator: true,
              confirmed_at: '2019-07-08 00:00:00.000')
 
 if Rails.env.development?
   User.create!(id: 2,
                email: 'user@gmail.com',
                password: '123456',
-               is_admin: false,
+               is_administrator: false,
                confirmed_at: '2019-07-08 00:00:00.000')
   Business.create!(id: 1,
                    name: 'Restaurante')
