@@ -1,5 +1,7 @@
 class JudgementsController < ApplicationController
   before_action :set_judgement, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
+  before_action :user_is_admin, only: [:edit, :update, :destroy]
 
   def new
     @company = Company.find(params[:company_id])
