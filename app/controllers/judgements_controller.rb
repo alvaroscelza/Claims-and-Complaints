@@ -41,7 +41,7 @@ class JudgementsController < ApplicationController
   end
 
   def check_permissions
-    return if current_user.try(:is_administrator?) or @judgement.user == current_user
+    return if current_user.try(:is_administrator?) || @judgement.user == current_user
 
     flash[:danger] = "You don't have enough privileges for this action."
     redirect_to company_path(@judgement.company), status: :see_other

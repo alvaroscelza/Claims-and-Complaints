@@ -18,7 +18,7 @@
         <td><%= judgement.vote %></td>
         <td><%= judgement.user.email %></td>
         <td><%= company.name %></td>
-        <% if current_user.try(:is_administrator) or judgement.user == current_user %>
+        <% if current_user.try(:is_administrator) || judgement.user == current_user %>
           <td><%= link_to 'Edit', edit_company_judgement_path(company, judgement) %></td>
           <td><%= link_to 'Destroy', [company, judgement], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
