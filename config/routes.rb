@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :judgements
   end
   resources :businesses
+  resources :suggestions
 end
