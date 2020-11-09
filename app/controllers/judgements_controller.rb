@@ -1,12 +1,12 @@
 class JudgementsController < ApplicationController
   before_action :set_judgement, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
-  before_action :user_is_admin, only: [:edit, :update, :destroy]
+  before_action :check_permissions, only: [:edit, :update, :destroy]
 
   def new
     @company = Company.find(params[:company_id])
     @judgement = Judgement.new(company: @company)
-    respond_with(@judgement)
+    respond_with(@judgement.company)
   end
 
   def edit; end
@@ -38,6 +38,13 @@ class JudgementsController < ApplicationController
 
   def set_judgement
     @judgement = Judgement.find(params[:id])
+  end
+
+  def check_permissions
+    return if current_user.try(:is_administrator?) or @judgement.user == current_user
+
+    flash[:danger] = "You don't have enough privileges for this action."
+    redirect_to company_path(@judgement.company), status: :see_other
   end
 
   def judgement_params
