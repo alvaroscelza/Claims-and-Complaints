@@ -5,13 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Rails server",
-      "type": "Ruby",
+      "type": "node",
       "request": "launch",
-      "program": "${workspaceRoot}/bin/rails",
-      "args": [
-        "server"
-      ]
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}\\bin\\www"
     }
   ]
 }

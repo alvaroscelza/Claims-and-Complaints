@@ -1,17 +1,16 @@
 {
-  "name": "claims_and_complaints",
+  "name": "claims-and-complaints",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.3.0",
-    "bootstrap-sass": "^3.4.1",
-    "jquery": "^3.5.1",
-    "turbolinks": "^5.2.0"
+  "scripts": {
+    "start": "node ./bin/www"
   },
-  "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "^3.0.0"
   }
 }
