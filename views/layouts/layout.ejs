@@ -80,22 +80,24 @@
       </div>
     </header>
 
-    <!-- Alert if email has not been confirmed -->
-    <% if(me&&me.emailChangeCandidate) { %>
-    <div class="container-fluid">
-      <div class="alert alert-secondary mt-2" role="alert">
-        Your updated email address needs verification. Until you click the link sent to <strong><%= me.emailChangeCandidate %></strong>, you'll still need to sign in as <strong><%= me.emailAddress %></strong>.
+    <div class="container">
+      <!-- Alert if email has not been confirmed -->
+      <% if(me&&me.emailChangeCandidate) { %>
+      <div class="container-fluid">
+        <div class="alert alert-secondary mt-2" role="alert">
+          Your updated email address needs verification. Until you click the link sent to <strong><%= me.emailChangeCandidate %></strong>, you'll still need to sign in as <strong><%= me.emailAddress %></strong>.
+        </div>
       </div>
-    </div>
-    <% } else if(me&&me.emailStatus === 'unconfirmed') { %>
-    <div class="container-fluid">
-      <div class="alert alert-secondary mt-2" role="alert">
-        Your email address still needs verification. Your account access may be limited until you click the link sent to <strong><%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
+      <% } else if(me&&me.emailStatus === 'unconfirmed') { %>
+      <div class="container-fluid">
+        <div class="alert alert-secondary mt-2" role="alert">
+          Your email address still needs verification. Your account access may be limited until you click the link sent to <strong><%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
+        </div>
       </div>
-    </div>
-    <% } %>
+      <% } %>
 
-    <%- body %>
+      <%- body %>
+    </div>
 
     <footer class="navbar navbar-light justify-content-between flex-row-reverse" purpose="page-footer">
       <div class="nav" purpose="footer-nav">
