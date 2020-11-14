@@ -1,13 +1,11 @@
 <% if(typeof me === 'undefined') {
-  // In case we're displaying the 404 or 500 page and relevant code in the "custom" hook was not able to run,
-  // we make sure `me` exists.  This ensures we don't have to do `typeof` checks below.
   var me = undefined;
 } %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Claims and Complaints</title>
+  <title><%= sails.helpers.pageTitle(page_name); %></title>
 
   <% /* Viewport tag for sensible mobile support */ %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
