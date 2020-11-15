@@ -16,71 +16,69 @@
   <link rel="stylesheet" href="/styles/importer.css">
 </head>
 <body>
-  <div purpose="page-wrap">
-    <header class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between" purpose="page-header">
-      <a style="cursor: pointer;" class="navbar-brand" href="/">
-        <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Claims and Complaints logo" />
-        Claims and Complaints
-      </a>
-      <div class="navbar-nav flex-row">
-        <!-- LOGGED-IN NAVIGATION -->
-        <% if(me) { %>
-        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
-        <!-- Only in desktop nav -->
-        <div class="nav-item dropdown d-none d-sm-block">
-          <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-          <div style="left: auto; right: 0;" class="dropdown-menu" aria-labelledby="header-account-menu-link">
-            <a class="dropdown-item" href="/account">Settings</a>
-            <a class="dropdown-item" href="/logout">Sign out</a>
-          </div>
-        </div>
-        <!-- Only in mobile nav -->
-        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
-        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
-        <% } else { %>
-        <!-- LOGGED-OUT NAVIGATION -->
-        <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
-        <!-- Only in desktop nav -->
-        <div class="form-inline d-none ml-2 d-md-block">
-          <a class="btn btn-outline-info" href="/signup">Sign up</a>
-        </div>
-        <!-- Only in mobile nav -->
-        <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a>
-        <% } %>
-      </div>
-    </header>
-
-    <div class="container">
-      <!-- Alert if email has not been confirmed -->
-      <% if(me&&me.emailChangeCandidate) { %>
-      <div class="container-fluid">
-        <div class="alert alert-secondary mt-2" role="alert">
-          Your updated email address needs verification. Until you click the link sent to <strong><%= me.emailChangeCandidate %></strong>, you'll still need to sign in as <strong><%= me.emailAddress %></strong>.
+  <header class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between" purpose="page-header">
+    <a style="cursor: pointer;" class="navbar-brand" href="/">
+      <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Claims and Complaints logo" />
+      Claims and Complaints
+    </a>
+    <div class="navbar-nav flex-row">
+      <!-- LOGGED-IN NAVIGATION -->
+      <% if(me) { %>
+      <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
+      <!-- Only in desktop nav -->
+      <div class="nav-item dropdown d-none d-sm-block">
+        <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+        <div style="left: auto; right: 0;" class="dropdown-menu" aria-labelledby="header-account-menu-link">
+          <a class="dropdown-item" href="/account">Settings</a>
+          <a class="dropdown-item" href="/logout">Sign out</a>
         </div>
       </div>
-      <% } else if(me&&me.emailStatus === 'unconfirmed') { %>
-      <div class="container-fluid">
-        <div class="alert alert-secondary mt-2" role="alert">
-          Your email address still needs verification. Your account access may be limited until you click the link sent to <strong><%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
-        </div>
+      <!-- Only in mobile nav -->
+      <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
+      <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
+      <% } else { %>
+      <!-- LOGGED-OUT NAVIGATION -->
+      <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
+      <!-- Only in desktop nav -->
+      <div class="form-inline d-none ml-2 d-md-block">
+        <a class="btn btn-outline-info" href="/signup">Sign up</a>
       </div>
+      <!-- Only in mobile nav -->
+      <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a>
       <% } %>
-
-      <%- body %>
     </div>
+  </header>
 
-    <footer class="navbar navbar-light justify-content-between flex-row-reverse" purpose="page-footer">
-      <div class="nav" purpose="footer-nav">
-        <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
-        <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of use</span></a></small>
-        <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/legal/privacy">Privacy<span class="d-none d-sm-inline"> policy</span></a></small>
-        <% if(me) { %>
-        <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/logout">Sign out</a></small>
-        <% } %>
+  <div class="container">
+    <!-- Alert if email has not been confirmed -->
+    <% if(me&&me.emailChangeCandidate) { %>
+    <div class="container-fluid">
+      <div class="alert alert-secondary mt-2" role="alert">
+        Your updated email address needs verification. Until you click the link sent to <strong><%= me.emailChangeCandidate %></strong>, you'll still need to sign in as <strong><%= me.emailAddress %></strong>.
       </div>
-      <small purpose="footer-copy">Copyright &copy; <%= sails.config.custom.platformCopyrightYear %> <a target="_blank" href="https://github.com/Loaderon">SkollARS Software Development</a>. <br class="d-block d-sm-none" />All rights reserved.</small>
-    </footer>
+    </div>
+    <% } else if(me&&me.emailStatus === 'unconfirmed') { %>
+    <div class="container-fluid">
+      <div class="alert alert-secondary mt-2" role="alert">
+        Your email address still needs verification. Your account access may be limited until you click the link sent to <strong><%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
+      </div>
+    </div>
+    <% } %>
+
+    <%- body %>
   </div>
+
+  <footer class="navbar navbar-light justify-content-between flex-row-reverse" purpose="page-footer">
+    <div class="nav" purpose="footer-nav">
+      <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
+      <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of use</span></a></small>
+      <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/legal/privacy">Privacy<span class="d-none d-sm-inline"> policy</span></a></small>
+      <% if(me) { %>
+      <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/logout">Sign out</a></small>
+      <% } %>
+    </div>
+    <small purpose="footer-copy">Copyright &copy; <%= sails.config.custom.platformCopyrightYear %> <a target="_blank" href="https://github.com/Loaderon">SkollARS Software Development</a>. <br class="d-block d-sm-none" />All rights reserved.</small>
+  </footer>
   
   <%- partial('../partials/js_bundler.ejs') %>
   <%- partial('../partials/browser_compatibility_checker.ejs') %>
