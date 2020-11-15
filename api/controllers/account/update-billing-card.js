@@ -1,14 +1,8 @@
 module.exports = {
-
-
   friendlyName: 'Update billing card',
-
-
   description: 'Update the credit card for the logged-in user.',
 
-
   inputs: {
-
     stripeToken: {
       type: 'string',
       example: 'tok_199k3qEXw14QdSnRwmsK99MH',
@@ -18,40 +12,33 @@ module.exports = {
         description: 'This Stripe.js token is provided to the front-end (client-side) code after completing a Stripe Checkout or Stripe Elements flow.'
       }
     },
-
     billingCardLast4: {
       type: 'string',
       example: '4242',
       description: 'Omit if removing card info.',
       whereToGet: { description: 'Credit card info is provided by Stripe after completing the checkout flow.' }
     },
-
     billingCardBrand: {
       type: 'string',
       example: 'visa',
       description: 'Omit if removing card info.',
       whereToGet: { description: 'Credit card info is provided by Stripe after completing the checkout flow.' }
     },
-
     billingCardExpMonth: {
       type: 'string',
       example: '08',
       description: 'Omit if removing card info.',
       whereToGet: { description: 'Credit card info is provided by Stripe after completing the checkout flow.' }
     },
-
     billingCardExpYear: {
       type: 'string',
       example: '2023',
       description: 'Omit if removing card info.',
       whereToGet: { description: 'Credit card info is provided by Stripe after completing the checkout flow.' }
     },
-
   },
 
-
   fn: async function ({stripeToken, billingCardLast4, billingCardBrand, billingCardExpMonth, billingCardExpYear}) {
-
     // Add, update, or remove the default payment source for the logged-in user's
     // customer entry in Stripe.
     var stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
@@ -72,8 +59,5 @@ module.exports = {
       billingCardExpMonth: stripeToken ? billingCardExpMonth : '',
       billingCardExpYear: stripeToken ? billingCardExpYear : ''
     });
-
   }
-
-
 };

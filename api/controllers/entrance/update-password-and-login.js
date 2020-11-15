@@ -1,15 +1,9 @@
 module.exports = {
-
-
   friendlyName: 'Update password and login',
-
-
-  description: 'Finish the password recovery flow by setting the new password and '+
-  'logging in the requesting user, based on the authenticity of their token.',
-
+  description: `Finish the password recovery flow by setting the new password and logging in the requesting user, 
+  based on the authenticity of their token.`,
 
   inputs: {
-
     password: {
       description: 'The new, unencrypted password.',
       example: 'abc123v2',
@@ -21,26 +15,19 @@ module.exports = {
       example: 'gwa8gs8hgw9h2g9hg29hgwh9asdgh9q34$$$$$asdgasdggds',
       required: true
     }
-
   },
 
-
   exits: {
-
     success: {
       description: 'Password successfully updated, and requesting user agent is now logged in.'
     },
-
     invalidToken: {
       description: 'The provided password token is invalid, expired, or has already been used.',
       responseType: 'expired'
     }
-
   },
 
-
   fn: async function ({password, token}) {
-
     if(!token) {
       throw 'invalidToken';
     }
@@ -67,8 +54,5 @@ module.exports = {
     // Log the user in.
     // (This will be persisted when the response is sent.)
     this.req.session.userId = userRecord.id;
-
   }
-
-
 };

@@ -1,37 +1,24 @@
 module.exports = {
-
-
   friendlyName: 'Update profile',
-
-
   description: 'Update the profile for the logged-in user.',
 
-
   inputs: {
-
     fullName: {
       type: 'string'
     },
-
     emailAddress: {
       type: 'string'
     },
-
   },
 
-
   exits: {
-
     emailAlreadyInUse: {
       statusCode: 409,
       description: 'The provided email address is already in use.',
     },
-
   },
 
-
   fn: async function ({fullName, emailAddress}) {
-
     var newEmailAddress = emailAddress;
     if (newEmailAddress !== undefined) {
       newEmailAddress = newEmailAddress.toLowerCase();
@@ -57,7 +44,6 @@ module.exports = {
       desiredEmailEffect = 'begin-change';
     }
 
-
     // If the email address is changing, make sure it is not already being used.
     if (_.contains(['begin-change', 'change-immediately', 'modify-pending-change'], desiredEmailEffect)) {
       let conflictingUser = await User.findOne({
@@ -70,7 +56,6 @@ module.exports = {
         throw 'emailAlreadyInUse';
       }
     }
-
 
     // Start building the values to set in the db.
     // (We always set the fullName if provided.)
@@ -153,8 +138,5 @@ module.exports = {
         }
       });
     }
-
   }
-
-
 };
