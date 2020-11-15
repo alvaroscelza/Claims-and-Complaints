@@ -1,4 +1,7 @@
-<footer class="navbar navbar-light justify-content-between flex-row-reverse" purpose="page-footer">
+<footer class="navbar navbar-light footer">
+  <small>
+    Copyright &copy; <%= new Date().getFullYear(); %> <a target="_blank" href="https://github.com/Loaderon">SkollARS Software Development</a>. <br class="d-block d-sm-none" />All rights reserved.
+  </small>
   <div class="nav" purpose="footer-nav">
     <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
     <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of use</span></a></small>
@@ -7,5 +10,4 @@
     <small class="nav-item d-inline-block"><a class="nav-link text-info px-1 px-sm-3" href="/logout">Sign out</a></small>
     <% } %>
   </div>
-  <small purpose="footer-copy">Copyright &copy; <%= sails.config.custom.platformCopyrightYear %> <a target="_blank" href="https://github.com/Loaderon">SkollARS Software Development</a>. <br class="d-block d-sm-none" />All rights reserved.</small>
 </footer>
