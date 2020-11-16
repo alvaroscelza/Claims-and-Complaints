@@ -79,7 +79,7 @@ module.exports = {
       // sure no one else managed to grab this email in the mean time since we
       // last checked its availability. (This is a relatively rare edge case--
       // see exit description.)
-      if (await User.count({ emailAddress: user.emailChangeCandidate }) > 0) {
+      if (await User.count({ email: user.emailChangeCandidate }) > 0) {
         throw 'emailAddressNoLongerAvailable';
       }
 
@@ -94,7 +94,7 @@ module.exports = {
         let didNotAlreadyHaveCustomerId = (! user.stripeCustomerId);
         let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
           stripeCustomerId: user.stripeCustomerId,
-          emailAddress: user.emailChangeCandidate
+          email: user.emailChangeCandidate
         }).timeout(5000).retry();
         if (didNotAlreadyHaveCustomerId){
           await User.updateOne({ id: user.id }).set({
@@ -111,7 +111,7 @@ module.exports = {
         emailStatus: 'confirmed',
         emailProofToken: '',
         emailProofTokenExpiresAt: 0,
-        emailAddress: user.emailChangeCandidate,
+        email: user.emailChangeCandidate,
         emailChangeCandidate: '',
       });
       this.req.session.userId = user.id;

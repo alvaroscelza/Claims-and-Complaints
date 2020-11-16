@@ -15,7 +15,7 @@ parasails.registerPage('contact', {
 
     // Form rules
     formRules: {
-      emailAddress: {isEmail: true, required: true},
+      email: {isEmail: true, required: true},
       fullName: {required: true},
       topic: {required: true},
       message: {required: true},

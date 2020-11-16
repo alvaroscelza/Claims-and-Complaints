@@ -3,7 +3,7 @@ module.exports = {
   description: 'Deliver a contact form message to the appropriate internal channel(s).',
 
   inputs: {
-    emailAddress: {
+    email: {
       required: true,
       type: 'string',
       description: 'A return email address where we can respond.',
@@ -34,7 +34,7 @@ module.exports = {
     }
   },
 
-  fn: async function({emailAddress, topic, fullName, message}) {
+  fn: async function({email, topic, fullName, message}) {
     if (!sails.config.custom.internalEmailAddress) {
       throw new Error(`Cannot deliver incoming message from contact form because there is no internal 
       email address (\`sails.config.custom.internalEmailAddress\`) configured for this 
@@ -50,7 +50,7 @@ module.exports = {
       layout: false,
       templateData: {
         contactName: fullName,
-        contactEmail: emailAddress,
+        contactEmail: email,
         topic,
         message,
       }

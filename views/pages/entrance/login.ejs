@@ -5,8 +5,8 @@
       <hr/>
       <ajax-form action="login" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
         <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email address" :class="[formErrors.emailAddress ? 'is-invalid' : '']" v-model.trim="formData.emailAddress" autocomplete="email" focus-first>
-          <div class="invalid-feedback" v-if="formErrors.emailAddress">Please provide a valid email address.</div>
+          <input type="email" class="form-control" placeholder="Email address" :class="[formErrors.email ? 'is-invalid' : '']" v-model.trim="formData.email" autocomplete="email" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.email">Please provide a valid email address.</div>
         </div>
         <div class="form-group">
           <input type="password" class="form-control" placeholder="Password" :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" autocomplete="current-password">

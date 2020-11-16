@@ -1396,7 +1396,7 @@ return new(b[["Active"].concat("Object").join("X")])("Microsoft.XMLHTTP")}catch(
       'socket.request( options, [fnToCallWhenComplete] )\n\n'+
       'options.url :: e.g. "/foo/bar"'+'\n'+
       'options.method :: e.g. "get", "post", "put", or "delete", etc.'+'\n'+
-      'options.params :: e.g. { emailAddress: "mike@example.com" }'+'\n'+
+      'options.params :: e.g. { email: "mike@example.com" }'+'\n'+
       'options.headers :: e.g. { "x-my-custom-header": "some string" }';
       // Old usage:
       // var usage = 'Usage:\n socket.'+(options.method||'request')+'('+

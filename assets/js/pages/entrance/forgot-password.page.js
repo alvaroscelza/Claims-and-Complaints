@@ -15,7 +15,7 @@ parasails.registerPage('forgot-password', {
 
     // Form rules
     formRules: {
-      emailAddress: {required: true, isEmail: true},
+      email: {required: true, isEmail: true},
     },
 
     // Server error state for the form

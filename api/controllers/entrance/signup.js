@@ -9,7 +9,7 @@ module.exports = {
   using a legitimate email address (by clicking the link in the account verification message.)`,
 
   inputs: {
-    emailAddress: {
+    email: {
       required: true,
       type: 'string',
       isEmail: true,
@@ -47,14 +47,14 @@ module.exports = {
     },
   },
 
-  fn: async function ({emailAddress, password, fullName}) {
-    var newEmailAddress = emailAddress.toLowerCase();
+  fn: async function ({email, password, fullName}) {
+    var newEmail = email.toLowerCase();
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     var newUserRecord = await User.create(_.extend({
       fullName,
-      emailAddress: newEmailAddress,
+      email: newEmail,
       password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip
     }, sails.config.custom.verifyEmailAddresses? {
@@ -70,7 +70,7 @@ module.exports = {
     // Then persist the Stripe customer id in the database.
     if (sails.config.custom.enableBillingFeatures) {
       let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
-        emailAddress: newEmailAddress
+        email: newEmail
       }).timeout(5000).retry();
       await User.updateOne({id: newUserRecord.id})
       .set({
@@ -84,7 +84,7 @@ module.exports = {
     if (sails.config.custom.verifyEmailAddresses) {
       // Send "confirm account" email
       await sails.helpers.sendTemplateEmail.with({
-        to: newEmailAddress,
+        to: newEmail,
         subject: 'Please confirm your account',
         template: 'email-verify-account',
         templateData: {

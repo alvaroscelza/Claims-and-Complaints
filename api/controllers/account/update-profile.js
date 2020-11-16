@@ -6,7 +6,7 @@ module.exports = {
     fullName: {
       type: 'string'
     },
-    emailAddress: {
+    email: {
       type: 'string'
     },
   },
@@ -18,10 +18,10 @@ module.exports = {
     },
   },
 
-  fn: async function ({fullName, emailAddress}) {
-    var newEmailAddress = emailAddress;
-    if (newEmailAddress !== undefined) {
-      newEmailAddress = newEmailAddress.toLowerCase();
+  fn: async function ({fullName, email}) {
+    var newEmail = email;
+    if (newEmail !== undefined) {
+      newEmail = newEmail.toLowerCase();
     }
 
     // Determine if this request wants to change the current user's email address,
@@ -29,14 +29,14 @@ module.exports = {
     // change, or if the email address won't be affected at all.
     var desiredEmailEffect;// ('change-immediately', 'begin-change', 'cancel-pending-change', 'modify-pending-change', or '')
     if (
-      newEmailAddress === undefined ||
-      (this.req.me.emailStatus !== 'change-requested' && newEmailAddress === this.req.me.emailAddress) ||
-      (this.req.me.emailStatus === 'change-requested' && newEmailAddress === this.req.me.emailChangeCandidate)
+      newEmail === undefined ||
+      (this.req.me.emailStatus !== 'change-requested' && newEmail === this.req.me.email) ||
+      (this.req.me.emailStatus === 'change-requested' && newEmail === this.req.me.emailChangeCandidate)
     ) {
       desiredEmailEffect = '';
-    } else if (this.req.me.emailStatus === 'change-requested' && newEmailAddress === this.req.me.emailAddress) {
+    } else if (this.req.me.emailStatus === 'change-requested' && newEmail === this.req.me.email) {
       desiredEmailEffect = 'cancel-pending-change';
-    } else if (this.req.me.emailStatus === 'change-requested' && newEmailAddress !== this.req.me.emailAddress) {
+    } else if (this.req.me.emailStatus === 'change-requested' && newEmail !== this.req.me.email) {
       desiredEmailEffect = 'modify-pending-change';
     } else if (!sails.config.custom.verifyEmailAddresses || this.req.me.emailStatus === 'unconfirmed') {
       desiredEmailEffect = 'change-immediately';
@@ -48,8 +48,8 @@ module.exports = {
     if (_.contains(['begin-change', 'change-immediately', 'modify-pending-change'], desiredEmailEffect)) {
       let conflictingUser = await User.findOne({
         or: [
-          { emailAddress: newEmailAddress },
-          { emailChangeCandidate: newEmailAddress }
+          { email: newEmail },
+          { emailChangeCandidate: newEmail }
         ]
       });
       if (conflictingUser) {
@@ -68,7 +68,7 @@ module.exports = {
       // Change now
       case 'change-immediately':
         _.extend(valuesToSet, {
-          emailAddress: newEmailAddress,
+          email: newEmail,
           emailChangeCandidate: '',
           emailProofToken: '',
           emailProofTokenExpiresAt: 0,
@@ -80,7 +80,7 @@ module.exports = {
       case 'begin-change':
       case 'modify-pending-change':
         _.extend(valuesToSet, {
-          emailChangeCandidate: newEmailAddress,
+          emailChangeCandidate: newEmail,
           emailProofToken: await sails.helpers.strings.random('url-friendly'),
           emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
           emailStatus: 'change-requested'
@@ -115,7 +115,7 @@ module.exports = {
       let didNotAlreadyHaveCustomerId = (! this.req.me.stripeCustomerId);
       let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
         stripeCustomerId: this.req.me.stripeCustomerId,
-        emailAddress: newEmailAddress
+        email: newEmail
       }).timeout(5000).retry();
       if (didNotAlreadyHaveCustomerId){
         await User.updateOne({ id: this.req.me.id })
@@ -129,7 +129,7 @@ module.exports = {
     // send the "confirm account" email.
     if (desiredEmailEffect === 'begin-change' || desiredEmailEffect === 'modify-pending-change') {
       await sails.helpers.sendTemplateEmail.with({
-        to: newEmailAddress,
+        to: newEmail,
         subject: 'Your account has been updated',
         template: 'email-verify-new-email',
         templateData: {

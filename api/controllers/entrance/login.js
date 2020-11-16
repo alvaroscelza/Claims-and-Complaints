@@ -6,7 +6,7 @@ module.exports = {
   password from the database with the provided password attempt.`,
 
   inputs: {
-    emailAddress: {
+    email: {
       description: 'The email to try in this attempt, e.g. "irl@example.com".',
       type: 'string',
       required: true
@@ -46,12 +46,12 @@ module.exports = {
     }
   },
 
-  fn: async function ({emailAddress, password, rememberMe}) {
+  fn: async function ({email, password, rememberMe}) {
     // Look up by the email address.
     // (note that we lowercase it to ensure the lookup is always case-insensitive,
     // regardless of which database we're using)
     var userRecord = await User.findOne({
-      emailAddress: emailAddress.toLowerCase(),
+      email: email.toLowerCase(),
     });
 
     // If there was no matching user, respond thru the "badCombo" exit.
