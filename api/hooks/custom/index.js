@@ -2,11 +2,8 @@
  * @description :: The conventional "custom" hook.  Extends this app with custom server-start-time and request-time logic.
  * @docs        :: https://sailsjs.com/docs/concepts/extending-sails/hooks
  */
-
 module.exports = function defineCustomHook(sails) {
-
   return {
-
     /**
      * Runs when a Sails app loads/lifts.
      */
@@ -14,15 +11,10 @@ module.exports = function defineCustomHook(sails) {
 
       sails.log.info('Initializing project hook... (`api/hooks/custom/`)');
 
-      // Check Stripe/Sendgrid configuration (for billing and emails).
-      var IMPORTANT_STRIPE_CONFIG = ['stripeSecret', 'stripePublishableKey'];
       var IMPORTANT_SENDGRID_CONFIG = ['sendgridSecret', 'internalEmailAddress'];
-      var isMissingStripeConfig = _.difference(IMPORTANT_STRIPE_CONFIG, Object.keys(sails.config.custom)).length > 0;
       var isMissingSendgridConfig = _.difference(IMPORTANT_SENDGRID_CONFIG, Object.keys(sails.config.custom)).length > 0;
 
-      if (isMissingStripeConfig || isMissingSendgridConfig) {
-
-        let missingFeatureText = isMissingStripeConfig && isMissingSendgridConfig ? 'billing and email' : isMissingStripeConfig ? 'billing' : 'email';
+      if (isMissingSendgridConfig) {
         let suffix = '';
         if (_.contains(['silly'], sails.config.log.level)) {
           suffix =
@@ -41,12 +33,6 @@ module.exports = function defineCustomHook(sails) {
         }
 
         let problems = [];
-        if (sails.config.custom.stripeSecret === undefined) {
-          problems.push('No `sails.config.custom.stripeSecret` was configured.');
-        }
-        if (sails.config.custom.stripePublishableKey === undefined) {
-          problems.push('No `sails.config.custom.stripePublishableKey` was configured.');
-        }
         if (sails.config.custom.sendgridSecret === undefined) {
           problems.push('No `sails.config.custom.sendgridSecret` was configured.');
         }
@@ -59,24 +45,16 @@ module.exports = function defineCustomHook(sails) {
 ---------------------------------------------------------------------
 ${problems.join('\n')}
 
-Until this is addressed, this app's ${missingFeatureText} features
+Until this is addressed, this app's ${isMissingSendgridConfig} features
 will be disabled and/or hidden in the UI.
 
  [?] If you're unsure or need advice, come by https://sailsjs.com/support
 ---------------------------------------------------------------------${suffix}`);
       }//ﬁ
 
-      // Set an additional config keys based on whether Stripe config is available.
-      // This will determine whether or not to enable various billing features.
-      sails.config.custom.enableBillingFeatures = !isMissingStripeConfig;
-
-      // After "sails-hook-organics" finishes initializing, configure Stripe
+      // After "sails-hook-organics" finishes initializing, configure 
       // and Sendgrid packs with any available credentials.
       sails.after('hook:organics:loaded', ()=>{
-
-        sails.helpers.stripe.configure({
-          secret: sails.config.custom.stripeSecret
-        });
 
         sails.helpers.sendgrid.configure({
           secret: sails.config.custom.sendgridSecret,

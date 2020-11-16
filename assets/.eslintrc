@@ -42,12 +42,9 @@
     "_": true,
     "bowser": true,
     "StripeCheckout": true,
-    "Stripe": true,
     "Vue": true,
     "VueRouter": true,
     "moment": true,
-    // "google": true,
-    // ...etc.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Make sure backend globals aren't indadvertently tolerated in our client-side JS:

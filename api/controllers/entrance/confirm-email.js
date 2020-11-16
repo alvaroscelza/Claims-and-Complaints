@@ -83,26 +83,6 @@ module.exports = {
         throw 'emailAddressNoLongerAvailable';
       }
 
-      // If billing features are enabled, also update the billing email for this
-      // user's linked customer entry in the Stripe API to make sure they receive
-      // email receipts.
-      // > Note: If there was not already a Stripe customer entry for this user,
-      // > then one will be set up implicitly, so we'll need to persist it to our
-      // > database.  (This could happen if Stripe credentials were not configured
-      // > at the time this user was originally created.)
-      if(sails.config.custom.enableBillingFeatures) {
-        let didNotAlreadyHaveCustomerId = (! user.stripeCustomerId);
-        let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
-          stripeCustomerId: user.stripeCustomerId,
-          email: user.emailChangeCandidate
-        }).timeout(5000).retry();
-        if (didNotAlreadyHaveCustomerId){
-          await User.updateOne({ id: user.id }).set({
-            stripeCustomerId
-          });
-        }
-      }
-
       // Finally update the user in the database, store their id in the session
       // (just in case they aren't logged in already), then redirect them to
       // their "my account" page so they can see their updated email address.

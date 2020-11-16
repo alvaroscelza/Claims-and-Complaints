@@ -1,36 +1,5 @@
-/**
- * Production environment settings
- * (sails.config.*)
- *
- * What you see below is a quick outline of the built-in settings you need
- * to configure your Sails app for production.  The configuration in this file
- * is only used in your production environment, i.e. when you lift your app using:
- *
- * ```
- * NODE_ENV=production node app
- * ```
- *
- * > If you're using git as a version control solution for your Sails app,
- * > this file WILL BE COMMITTED to your repository by default, unless you add
- * > it to your .gitignore file.  If your repository will be publicly viewable,
- * > don't add private/sensitive data (like API secrets / db passwords) to this file!
- *
- * For more best practices and tips, see:
- * https://sailsjs.com/docs/concepts/deployment
- */
-
 module.exports = {
-
-
-  /**************************************************************************
-  *                                                                         *
-  * Tell Sails what database(s) it should use in production.                *
-  *                                                                         *
-  * (https://sailsjs.com/config/datastores)                                 *
-  *                                                                         *
-  **************************************************************************/
   datastores: {
-
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -71,41 +40,12 @@ module.exports = {
       *                                                                           *
       ****************************************************************************/
       // ssl: true,
-
     },
-
   },
-
-
 
   models: {
-
-    /***************************************************************************
-    *                                                                          *
-    * To help avoid accidents, Sails automatically sets the automigration      *
-    * strategy to "safe" when your app lifts in production mode.               *
-    * (This is just here as a reminder.)                                       *
-    *                                                                          *
-    * More info:                                                               *
-    * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
-    *                                                                          *
-    ***************************************************************************/
     migrate: 'safe',
-
-    /***************************************************************************
-    *                                                                          *
-    * If, in production, this app has access to physical-layer CASCADE         *
-    * constraints (e.g. PostgreSQL or MySQL), then set those up in the         *
-    * database and uncomment this to disable Waterline's `cascadeOnDestroy`    *
-    * polyfill.  (Otherwise, if you are using a databse like Mongo, you might  *
-    * choose to keep this enabled.)                                            *
-    *                                                                          *
-    ***************************************************************************/
-    // cascadeOnDestroy: false,
-
   },
-
-
 
   /**************************************************************************
   *                                                                         *
@@ -120,8 +60,6 @@ module.exports = {
   blueprints: {
     shortcuts: false,
   },
-
-
 
   /***************************************************************************
   *                                                                          *
@@ -152,10 +90,7 @@ module.exports = {
       //   'https://example.com',
       // ]
     },
-
   },
-
-
 
   /***************************************************************************
   *                                                                          *
@@ -168,7 +103,6 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   session: {
-
     /***************************************************************************
     *                                                                          *
     * Production session store configuration.                                  *
@@ -197,8 +131,6 @@ module.exports = {
     //
     //--------------------------------------------------------------------------
 
-
-
     /***************************************************************************
     *                                                                          *
     * Production configuration for the session ID cookie.                      *
@@ -224,10 +156,7 @@ module.exports = {
       // secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
-
   },
-
-
 
   /**************************************************************************
   *                                                                          *
@@ -240,7 +169,6 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   sockets: {
-
     /***************************************************************************
     *                                                                          *
     * Uncomment the `onlyAllowOrigins` whitelist below to configure which      *
@@ -279,26 +207,13 @@ module.exports = {
     // sails_sockets__url=redis://admin:myc00lpAssw2D@bigsquid.redistogo.com:9562/0
     // ```
     //--------------------------------------------------------------------------
-
   },
 
-
-
-  /**************************************************************************
-  *                                                                         *
-  * Set the production log level.                                           *
-  *                                                                         *
-  * (https://sailsjs.com/config/log)                                        *
-  *                                                                         *
-  ***************************************************************************/
   log: {
     level: 'debug'
   },
 
-
-
   http: {
-
     /***************************************************************************
     *                                                                          *
     * The number of milliseconds to cache static assets in production.         *
@@ -326,23 +241,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     // trustProxy: true,
-
   },
-
-
-
-  /**************************************************************************
-  *                                                                         *
-  * Lift the server on port 80.                                             *
-  * (if deploying behind a proxy, or to a PaaS like Heroku or Deis, you     *
-  * probably don't need to set a port here, because it is oftentimes        *
-  * handled for you automatically.  If you are not sure if you need to set  *
-  * this, just try deploying without setting it and see if it works.)       *
-  *                                                                         *
-  ***************************************************************************/
-  // port: 80,
-
-
 
   /**************************************************************************
   *                                                                         *
@@ -363,12 +262,9 @@ module.exports = {
   **************************************************************************/
   // ssl: undefined,
 
-
-
   /**************************************************************************
   *                                                                         *
   * Production overrides for any custom settings specific to your app.      *
-  * (for example, production credentials for 3rd party APIs like Stripe)    *
   *                                                                         *
   * > See config/custom.js for more info on how to configure these options. *
   *                                                                         *
@@ -378,7 +274,6 @@ module.exports = {
     internalEmailAddress: 'support@example.com',
 
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
-    // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
     //--------------------------------------------------------------------------
     // /\   OR, to avoid checking them in to version control, you might opt to
     // ||   set sensitive credentials like these using environment variables.
@@ -386,12 +281,7 @@ module.exports = {
     // For example:
     // ```
     // sendgridSecret=SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU
-    // sails_custom__stripeSecret=sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm
     // ```
     //--------------------------------------------------------------------------
-
   },
-
-
-
 };
