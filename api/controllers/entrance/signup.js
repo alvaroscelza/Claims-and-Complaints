@@ -55,11 +55,11 @@ module.exports = {
 
   createUser: function (email, password, fullName) {
     email = email.toLowerCase();
-    emailConfirmationToken = await sails.helpers.strings.random('url-friendly');
+    emailConfirmationToken = sails.helpers.strings.random('url-friendly');
     emailConfirmationTokenExpiration = Date.now() + sails.config.custom.emailProofTokenTTL;
-    password = await sails.helpers.passwords.hashPassword(password);
+    password = sails.helpers.passwords.hashPassword(password);
 
-    return await User.create({ email: email, emailConfirmationToken: emailConfirmationToken,
+    return User.create({ email: email, emailConfirmationToken: emailConfirmationToken,
       emailConfirmationTokenExpiration: emailConfirmationTokenExpiration,
       password: password, fullName: fullName, tosAcceptedByIp: this.req.ip})
     .intercept('E_UNIQUE', 'emailAlreadyInUse')
@@ -68,7 +68,7 @@ module.exports = {
   },
 
   sendEmailForAccountConfirmation: function(newUser){
-    await sails.helpers.sendTemplateEmail.with({
+    sails.helpers.sendTemplateEmail.with({
       to: newUser.email,
       subject: 'Please confirm your account',
       template: 'email-verify-account',
