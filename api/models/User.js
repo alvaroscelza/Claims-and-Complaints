@@ -1,7 +1,7 @@
 module.exports = {
   attributes: {
     profilePicture: { type: 'string', },
-    isAdministrator: { type: 'boolean', },
+    isAdministrator: { type: 'boolean', defaultsTo: false, },
     email: {
       type: 'string',
       required: true,
@@ -10,9 +10,9 @@ module.exports = {
       maxLength: 200,
       example: 'mary.sue@example.com'
     },
-    emailProofToken: { type: 'string', },
-    emailProofTokenExpiresAt: { type: 'number', example: 1502844074211 },
-    emailConfirmedAt: { type: 'number', example: 1502844074211 },
+    emailConfirmationToken: { type: 'string', },
+    emailConfirmationTokenExpiration: { type: 'number', example: 1502844074211 },
+    emailConfirmedAt: { type: 'number', example: 1502844074211, defaultsTo: false, },
     password: {
       type: 'string',
       required: true,

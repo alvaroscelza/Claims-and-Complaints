@@ -38,10 +38,10 @@ module.exports = {
     }
 
     // Get the user with the matching email token.
-    var user = await User.findOne({ emailProofToken: token });
+    var user = await User.findOne({ emailConfirmationToken: token });
 
     // If no such user exists, or their token is expired, bail.
-    if (!user || user.emailProofTokenExpiresAt <= Date.now()) {
+    if (!user || user.emailConfirmationTokenExpiration <= Date.now()) {
       throw 'invalidOrExpiredToken';
     }
 
@@ -55,8 +55,8 @@ module.exports = {
       // in already), and then redirect them to the "email confirmed" page.
       await User.updateOne({ id: user.id }).set({
         emailStatus: 'confirmed',
-        emailProofToken: '',
-        emailProofTokenExpiresAt: 0
+        emailConfirmationToken: '',
+        emailConfirmationTokenExpiration: 0
       });
       this.req.session.userId = user.id;
 
@@ -109,8 +109,8 @@ module.exports = {
       await User.updateOne({ id: user.id })
       .set({
         emailStatus: 'confirmed',
-        emailProofToken: '',
-        emailProofTokenExpiresAt: 0,
+        emailConfirmationToken: '',
+        emailConfirmationTokenExpiration: 0,
         email: user.emailChangeCandidate,
         emailChangeCandidate: '',
       });

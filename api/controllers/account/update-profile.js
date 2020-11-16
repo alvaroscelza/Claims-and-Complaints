@@ -70,8 +70,8 @@ module.exports = {
         _.extend(valuesToSet, {
           email: newEmail,
           emailChangeCandidate: '',
-          emailProofToken: '',
-          emailProofTokenExpiresAt: 0,
+          emailConfirmationToken: '',
+          emailConfirmationTokenExpiration: 0,
           emailStatus: this.req.me.emailStatus === 'unconfirmed' ? 'unconfirmed' : 'confirmed'
         });
         break;
@@ -81,8 +81,8 @@ module.exports = {
       case 'modify-pending-change':
         _.extend(valuesToSet, {
           emailChangeCandidate: newEmail,
-          emailProofToken: await sails.helpers.strings.random('url-friendly'),
-          emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
+          emailConfirmationToken: await sails.helpers.strings.random('url-friendly'),
+          emailConfirmationTokenExpiration: Date.now() + sails.config.custom.emailProofTokenTTL,
           emailStatus: 'change-requested'
         });
         break;
@@ -91,8 +91,8 @@ module.exports = {
       case 'cancel-pending-change':
         _.extend(valuesToSet, {
           emailChangeCandidate: '',
-          emailProofToken: '',
-          emailProofTokenExpiresAt: 0,
+          emailConfirmationToken: '',
+          emailConfirmationTokenExpiration: 0,
           emailStatus: 'confirmed'
         });
         break;
@@ -134,7 +134,7 @@ module.exports = {
         template: 'email-verify-new-email',
         templateData: {
           fullName: fullName||this.req.me.fullName,
-          token: valuesToSet.emailProofToken
+          token: valuesToSet.emailConfirmationToken
         }
       });
     }
