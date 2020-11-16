@@ -49,24 +49,8 @@ module.exports = {
 
   fn: async function ({email, password, fullName}) {
     var newUser = createUser(email, password, fullName);
-
-    // Store the user's new id in their session.
-    this.req.session.userId = newUserRecord.id;
-
-    if (sails.config.custom.verifyEmailAddresses) {
-      // Send "confirm account" email
-      await sails.helpers.sendTemplateEmail.with({
-        to: newUser.email,
-        subject: 'Please confirm your account',
-        template: 'email-verify-account',
-        templateData: {
-          fullName,
-          token: newUserRecord.emailConfirmationToken
-        }
-      });
-    } else {
-      sails.log.info('Skipping new account email verification... (since `verifyEmailAddresses` is disabled)');
-    }
+    this.req.session.userId = newUser.id;
+    sendEmailForAccountConfirmation(newUser);
   },
 
   createUser: function (email, password, fullName) {
@@ -75,11 +59,23 @@ module.exports = {
     emailConfirmationTokenExpiration = Date.now() + sails.config.custom.emailProofTokenTTL;
     password = await sails.helpers.passwords.hashPassword(password);
 
-    var newUserRecord = await User.create({ email: email, emailConfirmationToken: emailConfirmationToken,
+    return await User.create({ email: email, emailConfirmationToken: emailConfirmationToken,
       emailConfirmationTokenExpiration: emailConfirmationTokenExpiration,
       password: password, fullName: fullName, tosAcceptedByIp: this.req.ip})
     .intercept('E_UNIQUE', 'emailAlreadyInUse')
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
-  }
+  },
+
+  sendEmailForAccountConfirmation: function(newUser){
+    await sails.helpers.sendTemplateEmail.with({
+      to: newUser.email,
+      subject: 'Please confirm your account',
+      template: 'email-verify-account',
+      templateData: {
+        fullName: newUser.fullName,
+        token: newUser.emailConfirmationToken
+      }
+    });
+  },
 };
