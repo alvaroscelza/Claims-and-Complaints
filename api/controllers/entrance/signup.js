@@ -13,21 +13,15 @@ module.exports = {
       required: true,
       type: 'string',
       isEmail: true,
-      description: 'The email address for the new account, e.g. m@example.com.',
-      extendedDescription: 'Must be a valid email address.',
     },
     password: {
       required: true,
       type: 'string',
       maxLength: 200,
-      example: 'passwordlol',
-      description: 'The unencrypted password to use for the new account.'
     },
     fullName:  {
       required: true,
       type: 'string',
-      example: 'Frida Kahlo de Rivera',
-      description: 'The user\'s full name.',
     }
   },
 
