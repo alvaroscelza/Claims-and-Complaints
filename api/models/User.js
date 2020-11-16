@@ -12,7 +12,7 @@ module.exports = {
     },
     emailConfirmationToken: { type: 'string', },
     emailConfirmationTokenExpiration: { type: 'number', example: 1502844074211 },
-    emailConfirmedAt: { type: 'number', example: 1502844074211, defaultsTo: false, },
+    emailConfirmedAt: { type: 'number', example: 1502844074211, defaultsTo: 0, },
     password: {
       type: 'string',
       required: true,
