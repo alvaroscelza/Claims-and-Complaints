@@ -21,3 +21,4 @@ lib-cov
 /bin
 /.vs/claims-and-complaints/v15
 /claims-and-complaints.sln
+config/local.js
