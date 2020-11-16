@@ -1,24 +1,30 @@
 module.exports = {
-
-
   friendlyName: 'Send template email',
-
-
   description: 'Send an email using a template.',
-
-
-  extendedDescription: 'To ease testing and development, if the provided "to" email address ends in "@example.com", '+
-    'then the email message will be written to the terminal instead of actually being sent.'+
-    '(Thanks [@simonratner](https://github.com/simonratner)!)',
-
+  extendedDescription: `To ease testing and development, if the provided "to" email address ends in "@example.com", 
+  then the email message will be written to the terminal instead of actually being sent. 
+  (Thanks [@simonratner](https://github.com/simonratner)!)`,
 
   inputs: {
+    to: {
+      description: 'The email address of the primary recipient.',
+      extendedDescription: 'If this is any address ending in "@example.com", then don\'t actually deliver the message. '+
+        'Instead, just log it to the console.',
+      example: 'nola.thacker@example.com',
+      required: true,
+      isEmail: true,
+    },
 
+    subject: {
+      description: 'The subject of the email.',
+      example: 'Hello there.',
+      defaultsTo: ''
+    },
 
     template: {
       description: 'The relative path to an EJS template within our `views/emails/` folder -- WITHOUT the file extension.',
-      extendedDescription: 'Use strings like "foo" or "foo/bar", but NEVER "foo/bar.ejs" or "/foo/bar".  For example, '+
-        '"internal/email-contact-form" would send an email using the "views/emails/internal/email-contact-form.ejs" template.',
+      extendedDescription: `Use strings like "foo" or "foo/bar", but NEVER "foo/bar.ejs" or "/foo/bar".  For example, 
+      "internal/email-contact-form" would send an email using the "views/emails/internal/email-contact-form.ejs" template.`,
       example: 'email-reset-password',
       type: 'string',
       required: true
@@ -41,24 +47,9 @@ module.exports = {
       defaultsTo: {}
     },
 
-    to: {
-      description: 'The email address of the primary recipient.',
-      extendedDescription: 'If this is any address ending in "@example.com", then don\'t actually deliver the message. '+
-        'Instead, just log it to the console.',
-      example: 'nola.thacker@example.com',
-      required: true,
-      isEmail: true,
-    },
-
     toName: {
       description: 'Name of the primary recipient as displayed in their inbox.',
       example: 'Nola Thacker',
-    },
-
-    subject: {
-      description: 'The subject of the email.',
-      example: 'Hello there.',
-      defaultsTo: ''
     },
 
     from: {
@@ -105,12 +96,9 @@ module.exports = {
       ],
       defaultsTo: [],
     },
-
   },
 
-
   exits: {
-
     success: {
       outputFriendlyName: 'Email delivery report',
       outputDescription: 'A dictionary of information about what went down.',
@@ -118,16 +106,12 @@ module.exports = {
         loggedInsteadOfSending: 'boolean'
       }
     }
-
   },
 
-
   fn: async function({template, templateData, to, toName, subject, from, fromName, layout, ensureAck, bcc, attachments}) {
-
     var path = require('path');
     var url = require('url');
     var util = require('util');
-
 
     if (!_.startsWith(path.basename(template), 'email-')) {
       sails.log.warn(
@@ -209,7 +193,6 @@ module.exports = {
     } else {
       // Otherwise, we'll check that all required Mailgun credentials are set up
       // and, if so, continue to actually send the email.
-
       if (!sails.config.custom.sendgridSecret) {
         throw new Error(
           'Cannot deliver email to "'+to+'" because:\n'+
@@ -268,15 +251,13 @@ module.exports = {
               util.inspect({to, toName, subject, from, fromName, bcc},{depth:null})
             );
           }
-        });//_∏_
-      }//ﬁ
-    }//ﬁ
+        });
+      }
+    }
 
     // All done!
     return {
       loggedInsteadOfSending: dontActuallySend,
     };
-
   }
-
 };
