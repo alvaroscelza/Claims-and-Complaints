@@ -1,8 +1,8 @@
-<div id="signup" v-cloak>
-  <div class="container-fluid pt-5 pb-5" v-if="!cloudSuccess">
-    <h1 class="text-center">Create an account</h1>
+<div id="signup">
+  <div class="pt-5 pb-5" v-if="!cloudSuccess">
+    <h1>Create an account</h1>
     <div style="max-width: 450px;" class="mx-auto" >
-      <p class="text-center">Let's get started! Becoming a member is free and only takes a few minutes.</p>
+      <p>Let's get started! Becoming a member is free and only takes a few minutes.</p>
       <hr/>
       <ajax-form action="signup" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-errors.sync="formErrors" :form-data="formData" :form-rules="formRules" @submitted="submittedForm()">
         <div class="form-group">
@@ -35,11 +35,11 @@
           <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Create account</ajax-button>
         </div>
       </ajax-form>
-      <p class="text-center">Have an account? <a href="/login">Sign in</a></p>
+      <p>Have an account? <a href="/login">Sign in</a></p>
     </div>
   </div>
   <div class="container-fluid pt-5 pb-5" v-if="cloudSuccess">
-    <h1 class="text-center">Check your email!</h1>
+    <h1>Check your email!</h1>
     <div class="text-center">
       <hr/>
       <p>Your account is nearly ready. All you have to do is click the link we sent to <strong>{{formData.email}}</strong>.</p>
