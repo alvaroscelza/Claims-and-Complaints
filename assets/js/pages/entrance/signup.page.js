@@ -11,18 +11,9 @@ parasails.registerPage('signup', {
     },
     syncing: false,
     cloudError: '',
-    cloudSuccess: false,
   },
   
   methods: {
-    submittedForm: async function() {
-      if(this.isEmailVerificationRequired) {
-        this.cloudSuccess = true;
-      }
-      else {
-        this.syncing = true;
-        window.location = '/';
-      }
-    },
+    submittedForm: async function() {},
   }
 });
