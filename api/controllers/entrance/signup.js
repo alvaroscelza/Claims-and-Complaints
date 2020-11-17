@@ -35,7 +35,7 @@ module.exports = {
   fn: async function ({email, password, fullName}) {
     var newUser = await module.exports.createUser(email, password, fullName, this.req.ip);
     this.req.session.userId = newUser.id;
-    module.exports.sendEmailForAccountConfirmation(newUser);
+    await module.exports.sendEmailForAccountConfirmation(newUser);
   },
 
   createUser: async function (email, password, fullName, clientIp) {
@@ -52,7 +52,7 @@ module.exports = {
     .fetch();
   },
 
-  sendEmailForAccountConfirmation: function(newUser){
+  sendEmailForAccountConfirmation: async function(newUser){
     await sails.helpers.sendTemplateEmail.with({
       to: newUser.email,
       subject: 'Please confirm your account',
