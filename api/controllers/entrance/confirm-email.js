@@ -1,9 +1,4 @@
 module.exports = {
-  friendlyName: 'Confirm email',
-  description: `Confirm a new user's email address, or an existing user's request for an email address change, 
-  then redirect to either a special landing page (for newly-signed up users), or the account page 
-  (for existing users who just changed their email address).`,
-
   inputs: {
     token: {
       description: 'The confirmation token from the email.',
@@ -45,16 +40,9 @@ module.exports = {
       throw 'invalidOrExpiredToken';
     }
 
-    if (user.emailStatus === 'unconfirmed') {
-      //  ┌─┐┌─┐┌┐┌┌─┐┬┬─┐┌┬┐┬┌┐┌┌─┐  ╔═╗╦╦═╗╔═╗╔╦╗ ╔╦╗╦╔╦╗╔═╗  ╦ ╦╔═╗╔═╗╦═╗  ┌─┐┌┬┐┌─┐┬┬
-      //  │  │ ││││├┤ │├┬┘││││││││ ┬  ╠╣ ║╠╦╝╚═╗ ║───║ ║║║║║╣   ║ ║╚═╗║╣ ╠╦╝  ├┤ │││├─┤││
-      //  └─┘└─┘┘└┘└  ┴┴└─┴ ┴┴┘└┘└─┘  ╚  ╩╩╚═╚═╝ ╩   ╩ ╩╩ ╩╚═╝  ╚═╝╚═╝╚═╝╩╚═  └─┘┴ ┴┴ ┴┴┴─┘
-      // If this is a new user confirming their email for the first time,
-      // then just update the state of their user record in the database,
-      // store their user id in the session (just in case they aren't logged
-      // in already), and then redirect them to the "email confirmed" page.
+    if (user.emailConfirmedAt === 0) {
       await User.updateOne({ id: user.id }).set({
-        emailStatus: 'confirmed',
+        emailConfirmedAt: Date.now(),
         emailConfirmationToken: '',
         emailConfirmationTokenExpiration: 0
       });
@@ -65,44 +53,6 @@ module.exports = {
       } else {
         throw { redirect: '/email/confirmed' };
       }
-
-    } else if (user.emailStatus === 'change-requested') {
-      //  ┌─┐┌─┐┌┐┌┌─┐┬┬─┐┌┬┐┬┌┐┌┌─┐  ╔═╗╦ ╦╔═╗╔╗╔╔═╗╔═╗╔╦╗  ┌─┐┌┬┐┌─┐┬┬
-      //  │  │ ││││├┤ │├┬┘││││││││ ┬  ║  ╠═╣╠═╣║║║║ ╦║╣  ║║  ├┤ │││├─┤││
-      //  └─┘└─┘┘└┘└  ┴┴└─┴ ┴┴┘└┘└─┘  ╚═╝╩ ╩╩ ╩╝╚╝╚═╝╚═╝═╩╝  └─┘┴ ┴┴ ┴┴┴─┘
-      if (!user.emailChangeCandidate){
-        throw new Error(`Consistency violation: Could not update Stripe customer because this user record's emailChangeCandidate ("${user.emailChangeCandidate}") is missing.  (This should never happen.)`);
-      }
-
-      // Last line of defense: since email change candidates are not protected
-      // by a uniqueness constraint in the database, it's important that we make
-      // sure no one else managed to grab this email in the mean time since we
-      // last checked its availability. (This is a relatively rare edge case--
-      // see exit description.)
-      if (await User.count({ email: user.emailChangeCandidate }) > 0) {
-        throw 'emailAddressNoLongerAvailable';
-      }
-
-      // Finally update the user in the database, store their id in the session
-      // (just in case they aren't logged in already), then redirect them to
-      // their "my account" page so they can see their updated email address.
-      await User.updateOne({ id: user.id })
-      .set({
-        emailStatus: 'confirmed',
-        emailConfirmationToken: '',
-        emailConfirmationTokenExpiration: 0,
-        email: user.emailChangeCandidate,
-        emailChangeCandidate: '',
-      });
-      this.req.session.userId = user.id;
-      if (this.req.wantsJSON) {
-        return;
-      } else {
-        throw { redirect: '/account' };
-      }
-
-    } else {
-      throw new Error(`Consistency violation: User ${user.id} has an email proof token, but somehow also has an emailStatus of "${user.emailStatus}"!  (This should never happen.)`);
     }
   }
 };
