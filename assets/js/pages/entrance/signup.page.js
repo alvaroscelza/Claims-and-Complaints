@@ -11,9 +11,12 @@ parasails.registerPage('signup', {
     },
     syncing: false,
     cloudError: '',
+    cloudSuccess: false,
   },
   
   methods: {
-    submittedForm: async function() {},
+    submittedForm: async function() {
+      this.cloudSuccess = true;
+    },
   }
 });

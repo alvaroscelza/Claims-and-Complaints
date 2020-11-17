@@ -34,7 +34,6 @@ module.exports = {
 
   fn: async function ({email, password, fullName}) {
     var newUser = await module.exports.createUser(email, password, fullName, this.req.ip);
-    this.req.session.userId = newUser.id;
     await module.exports.sendEmailForAccountConfirmation(newUser);
   },
 
