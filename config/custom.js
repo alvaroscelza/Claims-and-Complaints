@@ -30,5 +30,4 @@ module.exports.custom = {
   // > as the contact email of your "data protection officer" for the purpose
   // > of compliance with regulations such as GDPR.
   internalEmailAddress: 'support+development@example.com',
-  verifyEmailAddresses: true,
 };
