@@ -10,7 +10,7 @@ module.exports = {
   },
 
   fn: function ({ page_name }) {
-    base_title = 'Claims and Complaints'
+    base_title = sails.config.custom.appName
     return Boolean(page_name) ? `${page_name} | ${base_title}` : base_title
   }
 };
