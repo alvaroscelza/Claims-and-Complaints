@@ -193,7 +193,11 @@ will be disabled and/or hidden in the UI.
 
               // Exclude any fields corresponding with attributes that have `protect: true`.
               var sanitizedUser = _.extend({}, loggedInUser);
-              sails.helpers.redactUser(sanitizedUser);
+              for (let [attrName, attrDef] of Object.entries(sanitizedUser.attributes)) {
+                if (attrDef.protect) {
+                  delete sanitizedUser[attrName];
+                }
+              }
 
               // If there is still a "password" in sanitized user data, then delete it just to be safe.
               // (But also log a warning so this isn't hopelessly confusing.)
@@ -203,13 +207,7 @@ will be disabled and/or hidden in the UI.
               }//ﬁ
 
               res.locals.me = sanitizedUser;
-
-              // Include information on the locals as to whether billing features
-              // are enabled for this app, and whether email verification is required.
-              res.locals.isBillingEnabled = sails.config.custom.enableBillingFeatures;
-              res.locals.isEmailVerificationRequired = sails.config.custom.verifyEmailAddresses;
-
-            }//ﬁ
+            }
 
             // Prevent the browser from caching logged-in users' pages.
             // (including w/ the Chrome back button)
