@@ -4,4 +4,7 @@ module.exports.custom = {
   passwordResetTokenTTL: 24*60*60*1000,// 24 hours
   emailProofTokenTTL:    24*60*60*1000,// 24 hours
   rememberMeCookieMaxAge: 30*24*60*60*1000, // 30 days
+  emailHost: 'smtp.gmail.com',
+  emailPort: 587,
+  emailUser: 'skollars.software.development@gmail.com',
 };

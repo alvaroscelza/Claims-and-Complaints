@@ -52,15 +52,10 @@ module.exports = {
   },
 
   sendEmailForAccountConfirmation: async function(newUser){
-    await sails.helpers.mailer(newUser.email, 'Please confirm your account', 'Hello <b>World</b>');
-    // {
-    //   to: newUser.email,
-    //   subject: 'Please confirm your account',
-    //   template: 'email-verify-account',
-    //   templateData: {
-    //     fullName: newUser.fullName,
-    //     token: newUser.emailConfirmationToken
-    //   }
-    // };
+    let url = require('url');
+    let emailTemplatePath = 'emails/email-verify-account'
+    let emailTemplateData = { fullName: newUser.fullName, token: newUser.emailConfirmationToken, url: url }
+    let htmlEmailContents = await sails.renderView(emailTemplatePath, emailTemplateData);
+    await sails.helpers.sendMail(newUser.email, 'Please confirm your account', htmlEmailContents);
   },
 };
