@@ -3,11 +3,11 @@ module.exports.routes = {
 
   'GET    /signup':          { action: 'entrance/view-signup' },
   'POST   /signup':          { action: 'entrance/signup' },
+  'GET    /email/confirm':   { action: 'entrance/confirm-email' },
 
 
 
 
-  'GET /email/confirm':      { action: 'entrance/confirm-email' },
   'GET /email/confirmed':    { action: 'entrance/view-confirmed-email' },
   'GET /login':              { action: 'entrance/view-login' },
   'GET /password/forgot':    { action: 'entrance/view-forgot-password' },
