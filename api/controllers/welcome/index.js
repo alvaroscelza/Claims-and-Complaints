@@ -1,15 +1,9 @@
 module.exports = {
   exits: {
-    success: {
-      statusCode: 200,
-      description: 'Requesting user is a guest, so show the public landing page.',
-      viewTemplatePath: 'welcome/index'
-    },
+    success: { viewTemplatePath: 'welcome/index' },
   },
 
-  fn: async function () {
-    return {
-      page_name: 'Welcome'
-    };
+  fn: async function (inputs, exits) {
+    return exits.success({ page_name: 'Welcome' });
   }
 };
