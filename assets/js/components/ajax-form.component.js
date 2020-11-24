@@ -1,67 +1,22 @@
-/**
- * <ajax-form>
- * -----------------------------------------------------------------------------
- * A form that talks to the backend using AJAX.
- * > For example usage, take a look at one of the forms generated in a new
- * > Sails app when using the "Web app" template.
- *
- * @type {Component}
- *
- * @slot default                     [form contents]
- *
- * @event update:cloudError          [:cloud-error.sync="…"]
- * @event update:syncing             [:syncing.sync="…"]
- * @event update:formErrors          [:form-errors.sync="…"]
- * @event submitted                  [emitted after the server responds with a 2xx status code]
- * @event rejected                   [emitted after the server responds with a non-2xx status code]
- * -----------------------------------------------------------------------------
- */
-
 parasails.registerComponent('ajaxForm', {
-  //  ╔═╗╦═╗╔═╗╔═╗╔═╗
-  //  ╠═╝╠╦╝║ ║╠═╝╚═╗
-  //  ╩  ╩╚═╚═╝╩  ╚═╝
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Note:
-  // Some of these props rely on the `.sync` modifier re-introduced in Vue 2.3.x.
-  // For more info, see: https://vuejs.org/v2/guide/components.html#sync-Modifier
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   props: [
-    'syncing',// « 2-way bound (:syncing.sync="…")
-    'cloudError',// « 2-way bound (:cloud-error.sync="…")
+    'syncing',
+    'cloudError',
     'action',
-    'formErrors',// « 2-way bound (:form-errors.sync="…")
+    'formErrors',
     'formData',
     'formRules',
-
-    'handleSubmitting',// « alternative for `action`
-    'handleParsing',// « alternative for `formRules`+`formData`+`formErrors`
+    'handleSubmitting',
+    'handleParsing',
   ],
+  data: function (){ return {}; },
 
-  //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
-  //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
-  //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data: function (){
-    return {
-      //…
-    };
-  },
-
-  //  ╦ ╦╔╦╗╔╦╗╦
-  //  ╠═╣ ║ ║║║║
-  //  ╩ ╩ ╩ ╩ ╩╩═╝
   template: `
   <form class="ajax-form" @submit.prevent="submit()" @keydown.meta.enter="keydownMetaEnter()">
     <slot name="default"></slot>
   </form>
   `,
 
-  //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
-  //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
-  //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
-    //…
-  },
   mounted: async function (){
     if (this.action === undefined && this.handleSubmitting === undefined) {
       throw new Error('Neither `:action` nor `:handle-submitting` was passed in to <ajax-form>, but one or the other must be provided.');
@@ -99,12 +54,6 @@ parasails.registerComponent('ajaxForm', {
       for (let fieldName in this.formRules) {
         for (let ruleName in this.formRules[fieldName]) {
           if (_.contains(SUPPORTED_RULES, ruleName)) {
-            // OK.  Good enough.
-            // - - - - - - - - - - - - - - - - - - - - -
-            // FUTURE: move rule rhs checks out here
-            // (so error messages from bad usage are
-            // logged sooner)
-            // - - - - - - - - - - - - - - - - - - - - -
           } else {
             let kebabRules = _.map(_.clone(SUPPORTED_RULES), (ruleName)=>_.kebabCase(ruleName));
             let lowerCaseRules = _.map(_.clone(SUPPORTED_RULES), (ruleName)=>ruleName.toLowerCase());
@@ -121,8 +70,8 @@ parasails.registerComponent('ajaxForm', {
               throw new Error('<ajax-form> does not support that client-side validation rule (`'+ruleName+'`).\n [?] If you\'re unsure, visit https://sailsjs.com/support');
             }
           }
-        }//∞
-      }//∞
+        }
+      }
     }
 
     // Focus our "focus-first" field, if relevant.
@@ -131,19 +80,14 @@ parasails.registerComponent('ajaxForm', {
       this.$focus('[focus-first]');
     }
   },
-  beforeDestroy: function() {
-    //…
-  },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
     keydownMetaEnter: async function() {
       await this._submit();
     },
-
     submit: async function () {
       await this._submit();
     },
@@ -152,11 +96,10 @@ parasails.registerComponent('ajaxForm', {
     //  ╠═╝╠╦╝║╚╗╔╝╠═╣ ║ ║╣   ║║║║╣  ║ ╠═╣║ ║ ║║╚═╗
     //  ╩  ╩╚═╩ ╚╝ ╩ ╩ ╩ ╚═╝  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝═╩╝╚═╝
     _submit: async function () {
-
       // Prevent double-posting.
       if (this.syncing) {
         return;
-      }//•
+      }
 
       // Clear the userland "cloudError" prop.
       this.$emit('update:cloudError', '');
@@ -315,10 +258,8 @@ parasails.registerComponent('ajaxForm', {
         }//•
       }//ﬁ  (determining argins)
 
-
       // Set syncing state to `true` on userland "syncing" prop.
       this.$emit('update:syncing', true);
-
 
       // Submit the form
       var failedWithCloudExit;
@@ -356,7 +297,6 @@ parasails.registerComponent('ajaxForm', {
         });
       }
 
-
       // When a cloud error occurs, tolerate it, but set the userland "cloudError"
       // prop accordingly.
       if (failedWithCloudExit) {
@@ -372,8 +312,6 @@ parasails.registerComponent('ajaxForm', {
       } else {
         this.$emit('rejected', rawErrorFromCloudSDK);
       }
-
     },
-
   }
 });
