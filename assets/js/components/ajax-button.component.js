@@ -1,34 +1,9 @@
-/**
- * <ajax-button>
- * -----------------------------------------------------------------------------
- * A button with a built-in loading spinner.
- *
- * @type {Component}
- *
- * @event click   [emitted when clicked]
- * -----------------------------------------------------------------------------
- */
-
 parasails.registerComponent('ajaxButton', {
-  //  ╔═╗╦═╗╔═╗╔═╗╔═╗
-  //  ╠═╝╠╦╝║ ║╠═╝╚═╗
-  //  ╩  ╩╚═╚═╝╩  ╚═╝
-  props: [
-    'syncing'
-  ],
-
-  //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
-  //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
-  //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
+  props: ['syncing'],
   data: function (){
-    return {
-      //…
-    };
+    return {};
   },
 
-  //  ╦ ╦╔╦╗╔╦╗╦
-  //  ╠═╣ ║ ║║║║
-  //  ╩ ╩ ╩ ╩ ╩╩═╝
   template: `
   <button @click="click()" type="submit" class="btn ajax-button" :class="[syncing ? 'syncing' : '']">
     <span class="button-text" v-if="!syncing"><slot name="default">Submit</slot></span>
@@ -43,27 +18,9 @@ parasails.registerComponent('ajaxButton', {
   </button>
   `,
 
-  //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
-  //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
-  //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
-    //…
-  },
-  mounted: async function(){
-    //…
-  },
-  beforeDestroy: function() {
-    //…
-  },
-
-  //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-  //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
-  //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
     click: async function(){
       this.$emit('click');
     },
-
   }
 });
