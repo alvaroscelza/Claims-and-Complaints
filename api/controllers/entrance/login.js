@@ -20,12 +20,13 @@ module.exports = {
     emailOrPasswordIncorrect: { viewTemplatePath: 'pages/entrance/login' },
   },
 
-  fn: async function ({email, password, rememberMe}) {
-    let user = await module.exports.getUserByEmail(email.toLowerCase());
+  fn: async function (inputs, exits) {
+    let user = await module.exports.getUserByEmail(inputs.email.toLowerCase());
     await module.exports.checkUser(user, exits);
-    await sails.helpers.passwords.checkPassword(password, user.password).intercept('incorrect', 'emailOrPasswordIncorrect');
-    await module.exports.handleRememberMe(rememberMe, this.req.session.cookie.maxAge);
+    await module.exports.checkPassword(inputs, user, exits);
+    await module.exports.handleRememberMe(inputs.rememberMe, this.req.session.cookie.maxAge);
     await sails.helpers.logUserIn(user, this.req.session);
+    return exits.success({ page_name: 'Login' });
   },
 
   getUserByEmail: async function (email) {
@@ -34,6 +35,15 @@ module.exports = {
 
   checkUser: async function (user, exits) {
     if(!user) return exits.emailOrPasswordIncorrect({ page_name: 'Email or password incorrect' });
+  },
+
+  checkPassword: async function (inputs, user, exits) {
+    try {
+      await sails.helpers.passwords.checkPassword(inputs.password, user.password);
+    }
+    catch(err) {
+      return exits.emailOrPasswordIncorrect({ page_name: 'Email or password incorrect' });
+    }
   },
 
   handleRememberMe: async function (rememberMe, maxAgeCookie) {
