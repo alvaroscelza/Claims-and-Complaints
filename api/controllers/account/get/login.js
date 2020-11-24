@@ -1,11 +1,6 @@
 module.exports = {
-  exits: {
-    success: { viewTemplatePath: 'pages/account/login', },
-    redirect: { responseType: 'redirect' }
-  },
-
   fn: async function () {
-    if (this.req.me) throw {redirect: '/'};
-    return { page_name: 'Login' };
+    if (this.req.me) return this.res.redirect('/');
+    return this.res.view('pages/account/login', { page_name: 'Login' });
   }
 };
