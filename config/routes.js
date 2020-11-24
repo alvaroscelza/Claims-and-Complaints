@@ -5,11 +5,11 @@ module.exports.routes = {
   'POST   /signup':          { action: 'entrance/signup' },
   'GET    /email/confirm':   { action: 'entrance/confirm-email' },
   'GET    /login':           { action: 'entrance/view-login' },
+  'POST   /login':           { action: 'entrance/login' },
 
 
   'GET /password/forgot':    { action: 'entrance/view-forgot-password' },
   'GET /password/new':       { action: 'entrance/view-new-password' },
-  'PUT   /login':                        { action: 'entrance/login' },
   'POST  /send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
   'POST  /update-password-and-login':    { action: 'entrance/update-password-and-login' },
 
