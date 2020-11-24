@@ -1,7 +1,4 @@
 module.exports = {
-  friendlyName: 'View signup',
-  description: 'Display "Signup" page.',
-
   exits: {
     success: {
       viewTemplatePath: 'pages/entrance/signup',
