@@ -2,7 +2,7 @@ module.exports = {
   inputs: { token: { type: 'string', required: true, }, },
 
   exits: {
-    success: { viewTemplatePath: 'pages/entrance/confirmed-email' },
+    success: { viewTemplatePath: 'pages/account/confirmed-email' },
     invalidOrExpiredToken: { viewTemplatePath: 'errors/498' },
   },
 

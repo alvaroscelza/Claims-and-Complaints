@@ -1,6 +1,6 @@
 module.exports = {
   exits: {
-    success: { viewTemplatePath: 'welcome/index' },
+    success: { viewTemplatePath: 'pages/welcome/index' },
   },
 
   fn: async function (inputs, exits) {

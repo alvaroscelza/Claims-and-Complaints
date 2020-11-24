@@ -21,7 +21,7 @@ module.exports = {
   exits: { success: {} },
 
   fn: async function({email, topic, fullName, message}) {
-    let emailTemplatePath = 'emails/email-contact-form'
+    let emailTemplatePath = 'emails/contact-form'
     let emailTemplateData = { contactName: fullName, contactEmail: email, topic, message, }
     let htmlEmailContents = await sails.renderView(emailTemplatePath, emailTemplateData);
     await sails.helpers.sendMail(sails.config.custom.emailUser, 'New contact form message', htmlEmailContents);

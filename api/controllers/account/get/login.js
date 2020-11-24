@@ -1,6 +1,6 @@
 module.exports = {
   exits: {
-    success: { viewTemplatePath: 'pages/entrance/login', },
+    success: { viewTemplatePath: 'pages/account/login', },
     redirect: { responseType: 'redirect' }
   },
 

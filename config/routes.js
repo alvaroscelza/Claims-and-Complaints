@@ -6,7 +6,7 @@ module.exports.routes = {
   'GET    /new-password':                 { action: 'account/get/new-password' },
   'GET    /profile':                      { action: 'account/get/profile' },
   'GET    /signup':                       { action: 'account/get/signup' },
-  'POST   /confirm_email':                { action: 'account/confirm-email' },
+  'GET    /confirm_email':                { action: 'account/confirm-email' },
   'POST   /login':                        { action: 'account/login' },
   'POST   /logout':                       { action: 'account/logout' },
   'POST   /send-password-recovery-email': { action: 'account/send-password-recovery-email' },
