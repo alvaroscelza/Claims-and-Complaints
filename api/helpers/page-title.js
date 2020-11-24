@@ -1,13 +1,7 @@
 module.exports = {
-  sync: true,
+  inputs: { page_name: { type: 'string' } },
 
-  inputs: {
-    page_name: {
-      type: 'string'
-    }
-  },
-
-  fn: function ({ page_name }) {
+  fn: async function ({ page_name }) {
     base_title = sails.config.custom.appName
     return Boolean(page_name) ? `${page_name} | ${base_title}` : base_title
   }

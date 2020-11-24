@@ -1,29 +1,11 @@
 module.exports = {
-  friendlyName: 'Send password recovery email',
-  description: 'Send a password recovery notification to the user with the specified email address.',
+  inputs: { email: { type: 'string', required: true } },
 
-  inputs: {
-    email: {
-      description: 'The email address of the alleged user who wants to recover their password.',
-      example: 'rydahl@example.com',
-      type: 'string',
-      required: true
-    }
-  },
-
-  exits: {
-    success: {
-      description: 'The email address might have matched a user in the database.  (If so, a recovery email was sent.)'
-    },
-  },
+  exits: { success: {}, },
 
   fn: async function ({email}) {
-    // Find the record for this user.
-    // (Even if no such user exists, pretend it worked to discourage sniffing.)
     var userRecord = await User.findOne({ email });
-    if (!userRecord) {
-      return;
-    }//•
+    if (!userRecord) { return; }
 
     // Come up with a pseudorandom, probabilistically-unique token for use
     // in our password recovery email.
