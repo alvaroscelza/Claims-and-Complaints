@@ -11,7 +11,7 @@ module.exports = {
 
   exits: {
     success: {
-      viewTemplatePath: 'pages/entrance/new-password'
+      viewTemplatePath: 'pages/account/new-password'
     },
     invalidOrExpiredToken: {
       responseType: 'expired',

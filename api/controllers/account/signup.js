@@ -1,19 +1,8 @@
 module.exports = {
   inputs: {
-    email: {
-      required: true,
-      type: 'string',
-      isEmail: true,
-    },
-    password: {
-      required: true,
-      type: 'string',
-      maxLength: 200,
-    },
-    fullName:  {
-      required: true,
-      type: 'string',
-    }
+    email: { required: true, type: 'string', isEmail: true, },
+    password: { required: true, type: 'string', maxLength: 200, },
+    fullName:  { required: true, type: 'string', }
   },
 
   exits: {
@@ -42,9 +31,12 @@ module.exports = {
   },
 
   sendEmailForAccountConfirmation: async function(newUser){
+    let token = newUser.emailConfirmationToken;
     let url = require('url');
-    let emailTemplatePath = 'emails/email-verify-account'
-    let emailTemplateData = { fullName: newUser.fullName, token: newUser.emailConfirmationToken, url: url }
+    let endpoint_url = url.resolve(sails.config.custom.baseUrl, '/confirm_email');
+    let verificationURL = endpoint_url + '?token=' + encodeURIComponent(token);
+    let emailTemplateData = { fullName: newUser.fullName, verificationURL: verificationURL, url: url };
+    let emailTemplatePath = 'emails/verify-account';
     let htmlEmailContents = await sails.renderView(emailTemplatePath, emailTemplateData);
     await sails.helpers.sendMail(newUser.email, 'Please confirm your account', htmlEmailContents);
   },

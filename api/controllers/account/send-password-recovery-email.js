@@ -23,7 +23,7 @@ module.exports = {
     await sails.helpers.sendTemplateEmail.with({
       to: email,
       subject: 'Password reset instructions',
-      template: 'email-reset-password',
+      template: 'reset-password',
       templateData: {
         fullName: userRecord.fullName,
         token: token

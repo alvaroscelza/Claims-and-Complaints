@@ -1,23 +1,13 @@
 module.exports = {
   inputs: {
-    email: {
-      required: true,
-      type: 'string',
-      isEmail: true,
-    },
-    password: {
-      required: true,
-      type: 'string',
-      maxLength: 200,
-    },
-    rememberMe: {
-      type: 'boolean'
-    }
+    email: { required: true, type: 'string', isEmail: true, },
+    password: { required: true, type: 'string', maxLength: 200, },
+    rememberMe: { type: 'boolean' }
   },
 
   exits: {
     success: {},
-    emailOrPasswordIncorrect: { viewTemplatePath: 'pages/entrance/login' },
+    emailOrPasswordIncorrect: { viewTemplatePath: 'pages/account/login' },
   },
 
   fn: async function (inputs, exits) {
