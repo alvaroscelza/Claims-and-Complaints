@@ -1,31 +1,7 @@
-/**
- * <js-timestamp>
- * -----------------------------------------------------------------------------
- * A human-readable, self-updating "timeago" timestamp, with some special rules:
- *
- * • Within 24 hours, displays in "timeago" format.
- * • Within a month, displays month, day, and time of day.
- * • Within a year, displays just the month and day.
- * • Older/newer than that, displays the month and day with the full year.
- *
- * @type {Component}
- * -----------------------------------------------------------------------------
- */
 
 parasails.registerComponent('jsTimestamp', {
+  props: ['at', 'short', 'format'],
 
-  //  ╔═╗╦═╗╔═╗╔═╗╔═╗
-  //  ╠═╝╠╦╝║ ║╠═╝╚═╗
-  //  ╩  ╩╚═╚═╝╩  ╚═╝
-  props: [
-    'at',// « The JS timestamp to format
-    'short',// « Whether to shorten the formatted date by not including the time of day (may only be used with timeago, and even then only applicable in certain situations)
-    'format',// « one of: 'calendar', 'timeago' (defaults to 'timeago'.  Otherwise, the "calendar" format displays data as US-style calendar dates with a four-character year, separated by dashes.  In other words: "MM-DD-YYYY")
-  ],
-
-  //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
-  //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
-  //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: function (){
     return {
       formatType: undefined,
@@ -34,16 +10,10 @@ parasails.registerComponent('jsTimestamp', {
     };
   },
 
-  //  ╦ ╦╔╦╗╔╦╗╦
-  //  ╠═╣ ║ ║║║║
-  //  ╩ ╩ ╩ ╩ ╩╩═╝
   template: `
   <span>{{formattedTimestamp}}</span>
   `,
 
-  //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
-  //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
-  //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
   beforeMount: function() {
     if (this.at === undefined) {
       throw new Error('Incomplete usage of <js-timestamp>:  Please specify `at` as a JS timestamp (i.e. epoch ms, a number).  For example: `<js-timestamp :at="something.createdAt">`');
@@ -98,12 +68,7 @@ parasails.registerComponent('jsTimestamp', {
     }
   },
 
-
-  //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-  //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
-  //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
     _formatTimeago: function() {
       var now = new Date().getTime();
       var timeDifference = Math.abs(now - this.at);
@@ -122,9 +87,6 @@ parasails.registerComponent('jsTimestamp', {
 
         this.formattedTimestamp = moment(this.at).format('MMMM DD'+(includeYear ? ', YYYY' : '')+(includeTime ? ' [at] h:mma' : ''));
       }
-
     }
-
   }
-
 });

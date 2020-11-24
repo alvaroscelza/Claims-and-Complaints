@@ -1,18 +1,8 @@
 module.exports = {
   inputs: {
-    destinatary: {
-      required: true,
-      type: 'string',
-      isEmail: true,
-    },
-    subject: {
-      required: true,
-      type: 'string',
-    },
-    htmlContent: {
-      required: true,
-      type: 'string',
-    },
+    destinatary: { required: true, type: 'string', isEmail: true, },
+    subject: { required: true, type: 'string', },
+    htmlContent: { required: true, type: 'string', },
   },
 
   fn: async function ({destinatary, subject, htmlContent}) {

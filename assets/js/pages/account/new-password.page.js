@@ -1,18 +1,18 @@
-parasails.registerPage('edit-profile', {
+parasails.registerPage('new-password', {
   data: {
     syncing: false,
     formData: {},
     formErrors: {},
+
     formRules: {
-      fullName: {required: true},
-      email: {required: true, isEmail: true},
+      password: {required: true},
+      confirmPassword: {required: true, sameAs: 'password'},
     },
     cloudError: '',
   },
 
-  beforeMount: function() {
-    this.formData.fullName = this.me.fullName;
-    this.formData.email = this.me.email;
+  mounted: async function() {
+    this.formData.token = this.token;
   },
 
   methods: {

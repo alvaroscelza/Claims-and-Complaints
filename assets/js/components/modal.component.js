@@ -1,32 +1,6 @@
-/**
- * <modal>
- * -----------------------------------------------------------------------------
- * A modal dialog pop-up.
- *
- * > Be careful adding other Vue.js lifecycle callbacks in this file!  The
- * > finnicky combination of Vue transitions and bootstrap modal animations used
- * > herein work, and are very well-tested in practical applications.  But any
- * > changes to that specific cocktail could be unpredictable, with unsavory
- * > consequences.
- *
- * @type {Component}
- *
- * @event close   [emitted when the closing process begins]
- * @event opened  [emitted when the opening process is completely done]
- * -----------------------------------------------------------------------------
- */
-
 parasails.registerComponent('modal', {
-  //  ╔═╗╦═╗╔═╗╔═╗╔═╗
-  //  ╠═╝╠╦╝║ ║╠═╝╚═╗
-  //  ╩  ╩╚═╚═╝╩  ╚═╝
-  props: [
-    'hideCloseButton'//« removes the default "x" button
-  ],
+  props: ['hideCloseButton'],
 
-  //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
-  //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
-  //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: function (){
     return {
       // Spinlock used for preventing trying to close the bootstrap modal more than once.
@@ -39,9 +13,6 @@ parasails.registerComponent('modal', {
     };
   },
 
-  //  ╦ ╦╔╦╗╔╦╗╦
-  //  ╠═╣ ║ ║║║║
-  //  ╩ ╩ ╩ ╩ ╩╩═╝
   template: `
   <transition name="modal" v-on:leave="leave" v-bind:css="false">
     <div class="modal fade" tabindex="-1" role="dialog">
@@ -56,9 +27,6 @@ parasails.registerComponent('modal', {
   </transition>
   `,
 
-  //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
-  //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
-  //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
   beforeMount: function() {
     // If this is mobile safari, make note of it.
     this.isMobileSafari = (typeof bowser !== 'undefined') && bowser.mobile && bowser.safari;
@@ -76,10 +44,10 @@ parasails.registerComponent('modal', {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if(this.isMobileSafari) {
-      // Get our original scroll position before opening the modal and save it for later.
       this.originalScrollPosition = $(window).scrollTop();
     }
   },
+
   mounted: function(){
     // ^^ Note that this is not an `async function`.
     // This is just to be safe, since the timing here is a little tricky w/ the
@@ -178,11 +146,7 @@ parasails.registerComponent('modal', {
   // ^Note that there is no `beforeDestroy()` lifecycle callback in this
   // component. This is on purpose, since the timing vs. `leave()` gets tricky.
 
-  //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-  //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
-  //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-
     leave: function (el, done) {
       // > Note: This function signature comes from Vue.js's transition system.
       // > It will likely be replaced with `async function (el){…}` in a future
@@ -219,8 +183,6 @@ parasails.registerComponent('modal', {
         $(this.$el).off('shown.bs.modal');
         done();
       });//_∏_
-
     },
-
   }
 });

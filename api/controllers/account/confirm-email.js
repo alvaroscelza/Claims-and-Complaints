@@ -1,10 +1,5 @@
 module.exports = {
-  inputs: {
-    token: { 
-      type: 'string',
-      required: true,
-    },
-  },
+  inputs: { token: { type: 'string', required: true, }, },
 
   exits: {
     success: { viewTemplatePath: 'pages/entrance/confirmed-email' },
