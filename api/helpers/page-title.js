@@ -1,6 +1,4 @@
 module.exports = {
-  friendlyName: 'Page title',
-  description: 'Infers page title by concatenating app name with current page name.',
   sync: true,
 
   inputs: {
