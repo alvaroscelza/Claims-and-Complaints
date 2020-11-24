@@ -15,7 +15,7 @@ module.exports = {
     let user = await module.exports.getUserByToken(inputs.token);
     await module.exports.checkUserAndTokenExpiration(user, exits);
     await module.exports.confirmUser(user);
-    await module.exports.logUserIn(user, this.req.session);
+    await sails.helpers.logUserIn(user, this.req.session);
     return exits.success({ page_name: 'Confirmed email' });
   },
 
@@ -35,9 +35,5 @@ module.exports = {
       emailConfirmationToken: '',
       emailConfirmationTokenExpiration: 0
     });
-  },
-
-  logUserIn: async function (user, session) {
-    session.userId = user.id;
   },
 };
