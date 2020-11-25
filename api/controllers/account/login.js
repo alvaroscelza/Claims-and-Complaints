@@ -14,7 +14,7 @@ module.exports = {
       await sails.helpers.logUserIn(user, this.req.session);
       return this.res.redirect('/');
     } catch(ex) {
-      return this.res.view('pages/account/login', { page_name: 'Login', me: undefined, syncing: false });
+      return this.res.view('pages/account/login', { page_name: 'Login', me: undefined, syncing: false, cloudError: ex.message });
     }
   },
 
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   checkUser: async function (user) {
-    if(!user) throw 'Invalid user';
+    if(!user) throw 'invalidUser';
   },
 
   checkPassword: async function (password, user) {

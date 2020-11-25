@@ -16,7 +16,7 @@
           <input class="form-check-input" type="checkbox" id="remember" name="rememberMe" v-model="formData.rememberMe"/>
           <label class="form-check-label" for="remember">Remember me</label>
         </div>
-        <cloud-error v-if="cloudError==='badCombo'">The credentials you entered are not associated with an account. Please check your email and/or password and try again.</cloud-error>
+        <cloud-error v-if="cloudError==='invalidUser'">The credentials you entered are not associated with an account. Please check your email and/or password and try again.</cloud-error>
         <cloud-error v-else-if="cloudError"></cloud-error>
         <div class="form-group">
           <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Sign in</ajax-button>
