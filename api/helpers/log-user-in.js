@@ -4,5 +4,7 @@ module.exports = {
     session: { type: 'json', required: true, }
   },
 
-  fn: async function ({ user, session }) { session.userId = user.id; }
+  fn: async function ({ user, session }) { 
+    session.userId = user.id; 
+  }
 };
