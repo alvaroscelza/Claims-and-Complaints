@@ -18,8 +18,6 @@ namespace claims_and_complaints.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
