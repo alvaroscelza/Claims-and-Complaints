@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using claims_and_complaints.Models;
 using Microsoft.AspNetCore.Mvc;
-using claims_and_complaints.Models;
+using System.Diagnostics;
 
 namespace claims_and_complaints.Controllers
 {
@@ -17,8 +13,6 @@ namespace claims_and_complaints.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
