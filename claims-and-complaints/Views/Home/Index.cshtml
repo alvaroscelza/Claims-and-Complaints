@@ -1,94 +1,56 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+<h1>Welcome</h1>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+<h2 class="text-left">Important!</h2>
+This is a Beta version, we are currently gathering requirements and testing those that have already been implemented.
+Design is also up to improvement.
+
+<h2 class="text-left">Claims and Complaints Purpose</h2>
+Claims and complaints was a final project for the course "Software Engineering in Practice",
+coursed on Systems Engineering at Universidad ORT Uruguay by Ing. Alvaro Rodríguez Scelza, Ing. Fernando de la Fuente
+and Ing. Leandro Núñez published on 2017.
+<br>
+<br>
+The entire project documentation can be read at
+<a href="https://docs.google.com/document/d/1Li5d4y4bRv7XXvBKbEl87F0yXxPG962Cakz3i3oXjkU/edit?usp=sharing">
+    Ingeniería de Software en la Práctica Obligatorio 2
+</a>
+<br>
+<br>
+The introduction to that project's documentation can be read below (original spanish text):
+<br>
+<blockquote style="font-size: 1em">
+    Quejas y Reclamos surgió como una idea para un proyecto web basado en la premisa:
+    <br>
+    “¿Qué es lo que más le gusta a los uruguayos? Quejarse.”
+    <br>
+    Con la misma se intenta reflejar de manera cómica un fenómeno que se da en nuestra sociedad respecto a la carencia que se percibe en las empresas en Uruguay y los servicios que ofrecen junto con la disconformidad frecuente de sus clientes.
+    <br>
+    Muchas veces escuchamos comentarios negativos sobre una empresa desde un vecino o amigo, de hecho, está estimado que cuando un cliente queda satisfecho, le comenta positivamente sobre el servicio recibido a dos personas conocidas, pero cuando queda insatisfecho, le comenta su desagrado a ocho personas conocidas, al menos en promedio. Pero no existe una manera oficial de expresar las opiniones sobre las empresas y servicios de una manera general:
+    <ul>
+        <li>Se puede comentar sobre APPs en Play Store o App Store.</li>
+        <li>Se puede comentar sobre una empresa específica entrando a su página web (algunas veces). </li>
+        <li>Se puede comentar en FB, Twitter o cualquier otra red social, pero al no estar éstas especializadas en este tipo de contenido, suele perderse en el tránsito de otras publicaciones que nada tienen que ver.</li>
+    </ul>
+    De nuevo, no existe un solo lugar donde uno pueda ir con la intención de buscar opiniones de cualquier empresa en general, y mucho menos de ir a comentar sus propias experiencias.
+    <br>
+    Si bien la idea original era permitir a los usuarios quejarse y/o reclamar sobre un mal servicio o producto recibido, posteriores revisiones de la misma la extendieron a permitir todo tipo de comentarios, positivos o negativos e incluso la posibilidad de realizar votaciones sobre las empresas.
+</blockquote>
+
+<h2 class="text-left">Disclaimer!</h2>
+<blockquote style="font-size: 1em">
+    Comments on this website are the sole responsibility of their writers and the writers will take full responsibility, liability,
+    and blame for any libel or litigation that result from something written in or as a direct result of something written in a comment.
+    Claims and Complaints does not take any responsibility in any of the comments and/or publications form it's users but
+    reserves the right to delete any comment for any reason whatsoever (abusive, profane, rude, etc).
+    Please keep it polite and relevant.
+</blockquote>
+
+<h2 class="text-left">Use Cases Diagram</h2>
+<iframe style="border:none" width="800" height="800" src="https://viewer.diagrams.net/?highlight=0000ff&layers=1&nav=1&title=Use%20Cases#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1XlqTszYFJLXZbeQvn9P8GNFZQnm8yzGj%26export%3Ddownload"></iframe>
+
+<h2 class="text-left">ER Diagram</h2>
+<iframe style="border:none" width="800" height="800" src="https://viewer.diagrams.net/?highlight=0000ff&layers=1&nav=1&title=Entity%20Relationship%20Model#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1svTWgLBNVWuc8RjwycKx9QLF0hCpi25J%26export%3Ddownload"></iframe>
