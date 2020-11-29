@@ -60,7 +60,7 @@ namespace claims_and_complaints
 
             app.UseAuthentication();
 
-            app.UseMvc(routes => {routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");});
+            app.UseMvc(routes => {routes.MapRoute(name: "Spanish", template: "{languageCode=es}/{controller=Home}/{action=Index}/{id?}");});
         }
     }
 }
