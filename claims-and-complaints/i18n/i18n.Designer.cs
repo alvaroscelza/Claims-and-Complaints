@@ -61,11 +61,47 @@ namespace claims_and_complaints.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Claims and Complaints.
         /// </summary>
         public static string ClaimsAndComplaints {
             get {
                 return ResourceManager.GetString("ClaimsAndComplaints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have any doubts or suggestions, feel free to contact me..
+        /// </summary>
+        public static string SuggestMe {
+            get {
+                return ResourceManager.GetString("SuggestMe", resourceCulture);
             }
         }
     }
