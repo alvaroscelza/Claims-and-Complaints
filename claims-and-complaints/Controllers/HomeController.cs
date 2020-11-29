@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace claims_and_complaints.Controllers
 {
-    public class HomeController : InternationalizationController
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {

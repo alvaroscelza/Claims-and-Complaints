@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,13 +50,17 @@ namespace claims_and_complaints
                 app.UseHsts();
             }
 
+            var cultures = new[] { "en", "es" };
+            var localization = new RequestLocalizationOptions().AddSupportedCultures(cultures).AddSupportedUICultures(cultures);
+            app.UseRequestLocalization(localization);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseAuthentication();
 
-            app.UseMvc(routes => {routes.MapRoute(name: "Spanish", template: "{languageCode=es}/{controller=Home}/{action=Index}/{id?}");});
+            app.UseMvc(routes => {routes.MapRoute(name: "Spanish", template: "{controller=Home}/{action=Index}/{id?}");});
         }
     }
 }

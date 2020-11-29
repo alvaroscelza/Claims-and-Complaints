@@ -61,7 +61,7 @@ namespace claims_and_complaints.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to pedro.
+        ///   Looks up a localized string similar to Claims and Complaints.
         /// </summary>
         public static string ClaimsAndComplaints {
             get {
