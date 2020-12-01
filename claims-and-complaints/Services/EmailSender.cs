@@ -17,7 +17,15 @@ namespace claims_and_complaints.Services
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            SmtpClient client = new SmtpClient
+            SmtpClient client = CreateSmtpClient();
+            string skollarsEmail = "skollars.software.development@gmail.com";
+            MailMessage message = new MailMessage(skollarsEmail, email, subject, htmlMessage){ IsBodyHtml = true };
+            return client.SendMailAsync(message);
+        }
+
+        private SmtpClient CreateSmtpClient()
+        {
+            return new SmtpClient
             {
                 Port = 587,
                 Host = "smtp.gmail.com",
@@ -26,8 +34,6 @@ namespace claims_and_complaints.Services
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential("skollars.software.development@gmail.com", _config["GmailPassword"])
             };
-
-            return client.SendMailAsync("skollars.software.development@gmail.com", email, subject, htmlMessage);
         }
     }
 }
