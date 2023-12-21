@@ -1,0 +1,37 @@
+{% load generic_helper %}
+
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <a id="logo" href="/">{% current_page_title %}</a>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="">First Link</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+          <span style="color: white" class="navbar-text">Hello <strong>{{user.get_username}}</strong>!</span>
+          {% if user.is_superuser %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li><a href="">First Option</a></li>
+                  <li><a href="">Second Option</a></li>
+              </ul>
+            </li>
+          {% endif %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="">Edit profile</a></li>
+                <li class="divider"></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+          </li>
+        {% else %}
+          <li><a href="" class="navbar-link" style="color:white">Sign up</a></li>
+          <li><a href="" class="navbar-link">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>

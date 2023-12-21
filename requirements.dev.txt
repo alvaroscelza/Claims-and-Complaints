@@ -1,0 +1,7 @@
+-r requirements.txt
+
+# Tests and low level design
+pre-commit
+coverage
+factory-boy
+pydeps

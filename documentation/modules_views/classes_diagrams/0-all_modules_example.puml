@@ -1,0 +1,3 @@
+@startuml all_modules
+    !include module_example.puml!0
+@enduml

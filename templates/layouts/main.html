@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static generic_helper %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>{% current_page_title %}</title>
+    {% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'default.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    {% include "layouts/header.html" %}
+    <div class="container">
+      {% for message, message_type in flash_messages %}
+        <div id={{message_type}} class="alert">{{message}}</div>
+      {% endfor %}
+      {% block content %}{% endblock %}
+      {% include "layouts/footer.html" %}
+    </div>
+  </body>
+</html>
