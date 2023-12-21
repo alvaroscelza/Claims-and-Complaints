@@ -1,0 +1,55 @@
+@startuml core
+    package core <<Folder>> {
+        class Species
+        Species --|> UniqueNameMixin
+
+        class Tag
+        Tag --|> UniqueNameMixin
+
+        class Owner
+        Owner : <<unique>>dicose
+        Owner --|> UniqueNameMixin
+
+        class Establishment
+        Establishment --|> UniqueNameMixin
+
+        class Breed
+        Breed --|> UniqueNameMixin
+        Breed --> Species
+
+        class DicoseCategory
+        DicoseCategory : sex
+        DicoseCategory : minimum_age
+        DicoseCategory : maximum_age
+        DicoseCategory --|> UniqueNameMixin
+        DicoseCategory --> Species
+
+        class Paddock
+        Paddock : <<nullable>>hectares
+        Paddock --|> UniqueNameMixin
+        Paddock --> Establishment
+
+        class Animal
+        Animal : <<unique>>earring_number
+        Animal : animal_state
+        Animal : sex
+        Animal : age_in_months
+        Animal : <<readonly>>paddock
+        Animal : <<readonly>>weight
+        Animal --> DicoseCategory : <<readonly>>
+        Animal --> Breed : <<nullable>>
+        Animal --> Tag : <<nullable>>
+        Animal --> Owner
+        Animal --> Species
+
+        class WeightsRegistry
+        WeightsRegistry : date
+        WeightsRegistry : weight
+        WeightsRegistry --> Animal
+
+        class LocationsRegistry
+        LocationsRegistry : date
+        LocationsRegistry --> Animal
+        LocationsRegistry --> Paddock
+    }
+@enduml

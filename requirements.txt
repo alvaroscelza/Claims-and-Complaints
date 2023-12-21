@@ -1,0 +1,23 @@
+# WEB / API
+django
+djangorestframework
+drf-yasg
+djangorestframework-simplejwt
+django-cors-headers
+django-filter
+
+# Database
+django-tenants
+psycopg2-binary
+
+# Excel creation
+openpyxl
+drf-excel
+beautifulsoup4
+xlrd
+
+# Environment
+python-dotenv
+
+# Utils
+python-dateutil
