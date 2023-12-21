@@ -1,23 +1,12 @@
 # WEB / API
-django
-djangorestframework
-drf-yasg
-djangorestframework-simplejwt
-django-cors-headers
-django-filter
+django==5.0
+djangorestframework==3.14.0
 
 # Database
-django-tenants
-psycopg2-binary
-
-# Excel creation
-openpyxl
-drf-excel
-beautifulsoup4
-xlrd
+psycopg2-binary==2.9.9
 
 # Environment
-python-dotenv
+python-dotenv==1.0.0
 
-# Utils
-python-dateutil
+# Image handling
+Pillow==10.1.0
