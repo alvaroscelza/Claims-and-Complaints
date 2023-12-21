@@ -1,6 +1,6 @@
-# <<Project Name>>
+# Claims and Complaints
 
-<<Project description.>>
+This project is a Django application that allows users to create claims and complaints about different companies.
 
 ## Technology Stack
 
