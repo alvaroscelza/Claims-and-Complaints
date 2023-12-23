@@ -19,7 +19,7 @@ This project is a Django application that allows users to create claims and comp
 - Create `.env` file at project root. File .env-example is provided as a guide of this file's content.
 - Generate migration files: `python manage.py makemigrations`
 - Run migrations: `python manage.py migrate`
-- Create superuser: `python manage.py createsuperuser`
+- Create superuser: `python manage.py createsuperuser --no-input`
 - Run using `python manage.py runserver`
 - To see the documentation diagrams you require [Graphviz](https://graphviz.org/).
 - To generate dependencies graph

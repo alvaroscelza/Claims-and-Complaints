@@ -1,0 +1,56 @@
+@startuml core
+    package django.contrib.auth.models <<Folder>> {
+        class User {
+            username : string
+            password : string
+            email : string
+            is_staff : boolean
+            is_active : boolean
+            is_superuser : boolean
+        }
+    }
+
+    package core <<Folder>> {
+        abstract UniqueNameMixin {
+            <<unique>> name
+        }
+
+        class Business
+        Business --|> UniqueNameMixin
+
+        class ClientUser {
+            <<optional>>profile_picture : image
+            <<calculated property>>score : integer
+        }
+        ClientUser --|> User
+        note right of ClientUser::score
+            Sum of all UserScoreModifier.score
+        end note
+
+        class Company {
+            <<optional>>logo : image
+            reputation : integer
+            description : text
+        }
+        Company --|> UniqueNameMixin
+        Company --> Business
+
+        class Judgement {
+            opinion : text
+            vote : boolean
+        }
+        Judgement --> Company
+        Judgement --> ClientUser
+
+        class UserScoreModifierInstance {
+            date_time: datetime
+        }
+        UserScoreModifierInstance --> ClientUser
+        UserScoreModifierInstance --> UserScoreModifierType
+
+        class UserScoreModifierType {
+            score : integer
+        }
+        UserScoreModifierType --|> UniqueNameMixin
+    }
+@enduml
