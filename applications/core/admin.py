@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from applications.core.models import Business, Company, UserScoreModifierType, UserScoreModifierInstance, Judgement
+from applications.core.models import Business, Company, UserScoreModifierType, UserScoreModifierInstance, Judgement, \
+    ClientUser
 
 
 @admin.register(Business)
@@ -25,4 +26,9 @@ class UserScoreModifierInstanceAdmin(admin.ModelAdmin):
 
 @admin.register(Judgement)
 class JudgementAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ClientUser)
+class ClientUserAdmin(admin.ModelAdmin):
     pass
