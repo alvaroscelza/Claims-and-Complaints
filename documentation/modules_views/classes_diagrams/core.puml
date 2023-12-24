@@ -29,18 +29,29 @@
 
         class Company {
             <<optional>>logo : image
-            reputation : integer
+            <<calculated property>>score : integer
             description : text
         }
         Company --|> UniqueNameMixin
         Company --> Business
+        note right of Company::score
+            Sum of all Judgement.vote
+        end note
+
+        enum Vote {
+            VERY_BAD = -2,
+            BAD = -1,
+            NEUTRAL = 0,
+            GOOD = 1,
+            VERY_GOOD = 2
+        }
 
         class Judgement {
             opinion : text
-            vote : boolean
         }
         Judgement --> Company
         Judgement --> ClientUser
+        Judgement --> Vote
 
         class UserScoreModifierInstance {
             date_time: datetime
