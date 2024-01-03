@@ -6,10 +6,11 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 # region Admin configuration
-urlpatterns = i18n_patterns(path('admin/', admin.site.urls), prefix_default_language=False)
-admin.site.site_header = settings.APP_NAME
+urlpatterns = i18n_patterns(
+    path("admin/", admin.site.urls), prefix_default_language=False
+)
+admin.site.site_header = admin.site.site_title = settings.APP_NAME
 admin.site.index_title = settings.APP_DESCRIPTION
-admin.site.site_title = settings.APP_NAME
 # endregion
 
 # # region Core configuration
@@ -23,5 +24,9 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # endregion
 
 # region Templates configuration
-urlpatterns += i18n_patterns(path('', TemplateView.as_view(template_name='index.html')), prefix_default_language=False)
+urlpatterns += i18n_patterns(
+    path("", TemplateView.as_view(template_name="index.html"), name="home"),
+    path("accounts/", include("users.urls", namespace="users")),
+    prefix_default_language=False,
+)
 # endregion
