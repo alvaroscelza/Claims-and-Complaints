@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from applications.core.models import Business, Company, UserScoreModifierType, UserScoreModifierInstance, Judgement, \
-    ClientUser
+from applications.core.models import (
+    Business,
+    Company,
+    Judgement,
+)
 
 
 @admin.register(Business)
@@ -14,21 +17,6 @@ class CompanyAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(UserScoreModifierType)
-class UserScoreModifierTypeAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(UserScoreModifierInstance)
-class UserScoreModifierInstanceAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Judgement)
 class JudgementAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(ClientUser)
-class ClientUserAdmin(admin.ModelAdmin):
     pass

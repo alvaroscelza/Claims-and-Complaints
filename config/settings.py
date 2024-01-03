@@ -3,6 +3,12 @@ from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 import environ
 
+# Meta
+APP_NAME = "Claims and Complaints"
+APP_DESCRIPTION = _(
+    "This project is a Django application that allows users to create claims and complaints about "
+    "different companies."
+)
 
 # Base Settings
 BASE_DIR = Path(__file__).parent.parent
@@ -11,14 +17,13 @@ env = environ.Env(
     IS_PRODUCTION=(bool, True),
     SECRET_KEY=(str),
     ALLOWED_HOSTS=(str),
-    DOMAIN=(str),
-    DATABASE_NAME=(str),
-    DATABASE_USER=(str),
-    DATABASE_PASSWORD=(str),
-    DATABASE_HOST=(str),
-    DATABASE_PORT=(int),
+    DATABASE_NAME=(str, ""),
+    DATABASE_USER=(str, ""),
+    DATABASE_PASSWORD=(str, ""),
+    DATABASE_HOST=(str, ""),
+    DATABASE_PORT=(int, 0),
 )
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Enviroment Variables
