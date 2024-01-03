@@ -16,6 +16,7 @@ BASE_DIR = Path(__file__).parent.parent
 env = environ.Env(
     IS_PRODUCTION=(bool, True),
     SECRET_KEY=(str),
+    LANGUAGE_CODE=(str, "es"),
     ALLOWED_HOSTS=(str),
     DATABASE_NAME=(str, ""),
     DATABASE_USER=(str, ""),
@@ -95,14 +96,18 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 LOCAL_APPS = ["users", "applications.apps.CoreConfig"]
-EXTERNAL_APPS = ["rest_framework"]
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
+EXTERNAL_APPS = [
+    "rest_framework",
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
+INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS
 
 # region Internationalization
-LANGUAGE_CODE = "es"
+LANGUAGE_CODE = env("LANGUAGE_CODE")
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
-LANGUAGES = [("es", _("Spanish"))]
+LANGUAGES = [("es", _("Spanish")), ("en-us", _("English (US)"))]
 TIME_ZONE = "America/Montevideo"
 USE_I18N = True
 USE_L10N = True
@@ -138,3 +143,5 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Auth
 AUTH_USER_MODEL = "users.User"  # Set default user model
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
