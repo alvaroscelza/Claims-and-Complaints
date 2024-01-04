@@ -1,3 +1,33 @@
+/* Layout Styles */
+
 .login-container {
-  max-width: 50rem;
+  max-width: 33rem;
+  margin: 0 auto;
+  box-shadow: 0 2px 0.5rem rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 10px;
 }
+/* End Layout */
+/* Text Styles */
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a9a9a9;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #a9a9a9;
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+/* End Text Styles */

@@ -1,5 +1,10 @@
 {% extends "layouts/main.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    {% crispy form %}
+    <section class="login-container">
+        <h1 class="mb-3">Log In</h1>
+        {% crispy form %}
+        <div class="separator mb-4">Want to join?</div>
+        <a href="{% url 'users:register' %}" class="btn btn-secondary w-100">Register</a>
+    </section>
 {% endblock content %}

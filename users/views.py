@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout as auth_logout
 from django.urls import reverse
 
-from users.forms import LoginForm
+from users.forms import LoginForm, RegisterForm
 
 
 # Create your views here.
@@ -11,7 +11,18 @@ def profile(request):
 
 
 def register(request):
-    pass
+    register_form = None
+    base_form_args = {
+        "request": request,
+        "action": reverse("users:register"),
+    }
+    if request.method == "POST":
+        register_form = RegisterForm(request.POST, **base_form_args)
+        response = register_form.process()
+        if response:
+            return response
+    context = {"form": register_form or RegisterForm(**base_form_args)}
+    return render(request, "users/register.html", context)
 
 
 def login(request):
