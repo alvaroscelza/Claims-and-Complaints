@@ -30,6 +30,14 @@ class User(AbstractUser):
             or 0
         )
 
+    def send_verification_email(self):
+        pass
+
+    def send_forgot_password_email(self):
+        pass
+
+    # todo
+
 
 class UserScoreModifierType(UniqueNameMixin):
     score = models.IntegerField()
