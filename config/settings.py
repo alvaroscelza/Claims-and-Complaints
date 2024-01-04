@@ -143,5 +143,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Auth
 AUTH_USER_MODEL = "users.User"  # Set default user model
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
