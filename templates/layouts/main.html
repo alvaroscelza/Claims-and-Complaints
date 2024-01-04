@@ -16,8 +16,18 @@
   <body>
     {% include "layouts/header.html" %}
     <div class="container">
-      {% for message, message_type in flash_messages %}
+      {% comment %} {% for message, message_type in flash_messages %}
         <div id={{ message_type }} class="alert">{{ message }}
+        </div>
+      {% endfor %} {% endcomment %}
+      {% for message in messages %}
+        <div class="alert fade show alert-dismissable d-flex align-items-center my-1 alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags|default:"info" }}{% endif %}"
+             role="alert">
+          {{ message|safe }}
+          <button type="button"
+                  class="btn-close ms-auto"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"></button>
         </div>
       {% endfor %}
       {% block content %}
