@@ -152,12 +152,68 @@ class RegisterForm(BaseForm):
             username=email,
         )
 
-        if settings.DEBUG:
-            user.email_validated = timezone.now()
+        # if settings.DEBUG:
+        #     user.email_validated = timezone.now()
         user.set_password(cleaned_data["confirm_new_password"])
         user.save()
         messages.success(
             self.request,
             "Account created successfully, Please verify your account from the email we sent!",
+        )
+        return redirect("users:login")
+
+
+class ChangePasswordForm(BaseForm):
+    new_password = forms.CharField(
+        required=False, max_length=100, widget=forms.PasswordInput
+    )
+    confirm_new_password = forms.CharField(
+        required=False, max_length=100, widget=forms.PasswordInput
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, id="forgot-password-form")
+        self.set_next_url()
+        self.create_layout(
+            Layout(
+                FloatingField("new_password", autocomplete="new-password"),
+                FloatingField("confirm_new_password", autocomplete="new-password"),
+                FormActions(
+                    StrictButton(
+                        mark_safe("Update Password"),
+                        type="submit",
+                        name="action",
+                        value="updatepassword",
+                        css_class="btn btn-success w-100 my-3 text-center",
+                    )
+                ),
+            )
+        )
+
+    def clean_confirm_new_password(self):
+        # Verify passwords match
+        password = self.cleaned_data.get("new_password")
+        conf_password = self.cleaned_data["confirm_new_password"]
+        if not password and not conf_password:
+            return None
+        if password != conf_password:
+            self.raise_validation_error(
+                "confirm_new_password",
+                conf_password,
+                mark_safe("Passwords do not match!"),
+            )
+        return password
+
+    def process(self):
+        is_valid = self.is_valid()
+        user = self.request.user
+        if not is_valid or not user.is_authenticated:
+            return None
+        cleaned_data = self.cleaned_data
+        user.set_password(cleaned_data["confirm_new_password"])
+        user.save()
+        messages.success(
+            self.request,
+            "Password updated successfully!",
         )
         return redirect("users:login")
