@@ -45,13 +45,17 @@ class User(AbstractUser):
 
     def get_password_reset_url(self):
         token = account_password_reset_token.make_token(self)
-        return reverse("users:forgot_password", kwargs={"token": token})
+        return reverse(
+            "users:forgot_password", kwargs={"token": token, "user_id": self.id}
+        )
 
     def send_verification_email(self):
-        pass
+        url = self.get_activate_url()
+        print(url)
 
     def send_forgot_password_email(self):
-        pass
+        url = self.get_password_reset_url()
+        print(url)
 
     # todo
 

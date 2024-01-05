@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from crispy_forms.layout import Layout
+from crispy_forms.layout import Layout, HTML
 from crispy_forms.bootstrap import FormActions, StrictButton
 from config.base_forms import BaseForm, auth_next_var
 from crispy_bootstrap5.bootstrap5 import FloatingField
@@ -24,6 +24,11 @@ class LoginForm(BaseForm):
             Layout(
                 FloatingField("username", autocomplete="username"),
                 FloatingField("password", autocomplete="current-password"),
+                HTML(
+                    f'<a href="{reverse("users:forgot_password")}">Forgotten your Password?</a>'
+                )
+                if self.request.method == "POST"
+                else Layout(),
                 FormActions(
                     StrictButton(
                         mark_safe("Login"),
@@ -154,6 +159,7 @@ class RegisterForm(BaseForm):
         #     user.email_validated = timezone.now()
         user.set_password(cleaned_data["confirm_new_password"])
         user.save()
+        user.send_verification_email()
         messages.success(
             self.request,
             "Account created successfully, Please verify your account from the email we sent!",
@@ -202,10 +208,12 @@ class ChangePasswordForm(BaseForm):
             )
         return password
 
-    def process(self):
+    def process(self, user=None):
+        if not user and not self.request.user.is_authenticated:
+            return None
         is_valid = self.is_valid()
-        user = self.request.user
-        if not is_valid or not user.is_authenticated:
+        user = user or self.request.user
+        if not is_valid:
             return None
         cleaned_data = self.cleaned_data
         user.set_password(cleaned_data["confirm_new_password"])
@@ -222,7 +230,6 @@ class ChangeProfilePictureForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, id="change-profilepic-form")
-        self.fields["image"].default = "test..."
         self.set_next_url()
         self.create_layout(
             Layout(
@@ -262,7 +269,6 @@ class ForgotPasswordForm(BaseForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs, id="change-profilepic-form")
-        self.fields["image"].default = "test..."
         self.set_next_url()
         self.create_layout(
             Layout(
@@ -279,15 +285,25 @@ class ForgotPasswordForm(BaseForm):
             )
         )
 
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        user = get_user_model().objects.filter(email=email).first("email")
+        if not user:
+            self.raise_validation_error(
+                "email",
+                email,
+                "No account found",
+            )
+        return
+
     def process(self):
         is_valid = self.is_valid()
-        user = self.request.user
-        if not is_valid or not user.is_authenticated:
+        if not is_valid:
             return None
-        user.profile_picture = self.cleaned_data["image"]
-        user.save()
+        user = self.cleaned_data["email"]
+        user.send_forgot_password_email()
         messages.success(
             self.request,
-            "Profile Picture Updated Successfully!",
+            "We have sent an email. Use the link to reset your password!",
         )
-        return redirect("users:profile")
+        return redirect("users:login")

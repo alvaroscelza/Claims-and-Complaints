@@ -84,21 +84,44 @@ def logout(request):
 
 
 def forgot_password(request, user_id=None, token=None):
-    if request.user.is_authenticated:
+    if (
+        request.user.is_authenticated
+        or (user_id and not token)
+        or (not user_id and token)
+    ):
         return redirect("home")
-    forgot_form = None
+    user = forgot_form = None
+    if user_id:
+        user = get_object_or_404(get_user_model(), id=user_id)
+    is_token_valid = (
+        account_password_reset_token.check_token(user_id, token) if user else False
+    )
     base_form_args = {
         "request": request,
-        "action": reverse("users:forgot_password"),
+        "action": reverse(
+            "users:forgot_password",
+            kwargs={"token": token, "user_id": user_id} if is_token_valid else {},
+        ),
     }
-    # todo process incoming token url and process and show change apssword form
     if request.method == "POST":
-        forgot_form = ForgotPasswordForm(request.POST, **base_form_args)
-        response = forgot_form.process()
+        action = request.POST.get("action")
+        if action == "forgottenpassword":
+            forgot_form = ForgotPasswordForm(request.POST, **base_form_args)
+            response = forgot_form.process()
+        elif action == "updatepassword":
+            if not user or not is_token_valid:
+                messages.error("Invalid Request")
+                return redirect("users:forgot_password")
+            change_form = ChangePasswordForm(request.POST, **base_form_args)
+            response = change_form.process(user=user)
         if response:
             return response
-    context = {"form": forgot_form or ForgotPasswordForm(**base_form_args)}
-    return render(request, "users/login.html", context)
+    context = {
+        "form": (forgot_form or ForgotPasswordForm(**base_form_args))
+        if not is_token_valid
+        else (change_form or ChangePasswordForm(**base_form_args))
+    }
+    return render(request, "users/forgot_password.html", context)
 
 
 def verify_email(request, user_id, token):
