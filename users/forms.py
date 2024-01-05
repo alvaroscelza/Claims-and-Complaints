@@ -214,6 +214,6 @@ class ChangePasswordForm(BaseForm):
         user.save()
         messages.success(
             self.request,
-            "Password updated successfully!",
+            "Password updated successfully! Please login.",
         )
-        return redirect("users:login")
+        return redirect("users:profile")

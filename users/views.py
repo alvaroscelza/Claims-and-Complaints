@@ -3,13 +3,29 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from users.forms import LoginForm, RegisterForm
+from users.forms import LoginForm, RegisterForm, ChangePasswordForm
 
 
 # Create your views here.
 @login_required
 def profile(request):
-    context = {}
+    base_form_args = {
+        "request": request,
+        "action": reverse("users:profile"),
+    }
+    change_password_form = None
+    if request.method == "POST":
+        action = request.POST.get("action")
+        response = None
+        if action == "updatepassword":
+            change_password_form = ChangePasswordForm(request.POST, **base_form_args)
+            response = change_password_form.process()
+        if response:
+            return response
+    context = {
+        "change_password_form": change_password_form
+        or ChangePasswordForm(**base_form_args)
+    }
     return render(request, "users/dashboard/profile.html", context)
 
 
