@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout as auth_logout
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import logout as auth_logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
+from django.utils import timezone
+from django.contrib import messages
+from .token import account_activation_token, account_password_reset_token
 from users.forms import (
     LoginForm,
     RegisterForm,
@@ -78,3 +80,18 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect("home")
+
+
+def forgot_password(request, user_id=None, token=None):
+    pass
+
+
+def verify_email(request, user_id, token):
+    user = get_object_or_404(get_user_model(), id=user_id)
+    is_valid = account_activation_token.check_token(user, token)
+    if is_valid:
+        user.email_validated = timezone.now()
+        messages.success("Welcome! Account Verified Successfully!")
+    else:
+        messages.warning("Invalid Request, Please try again!")
+    return redirect("users:login")
