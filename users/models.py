@@ -1,7 +1,9 @@
 import os
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from applications.utils import UniqueNameMixin
+from .token import account_activation_token, account_password_reset_token
 
 
 # User model inherits from Django's Existing model to retain built in functionality
@@ -36,6 +38,14 @@ class User(AbstractUser):
         if not self.profile_picture:
             return None
         return os.path.basename(self.profile_picture.name)
+
+    def get_activate_url(self):
+        token = account_activation_token.make_token(self)
+        return reverse("users:verify_email", kwargs={"user_id": self.id, token: token})
+
+    def get_password_reset_url(self):
+        token = account_password_reset_token.make_token(self)
+        return reverse("users:forgot_password", kwargs={"token": token})
 
     def send_verification_email(self):
         pass
