@@ -9,7 +9,8 @@ from users.forms import (
     LoginForm,
     RegisterForm,
     ChangePasswordForm,
-    ChangeProfilePicture,
+    ChangeProfilePictureForm,
+    ForgotPasswordForm,
 )
 
 
@@ -28,7 +29,7 @@ def profile(request):
             change_password_form = ChangePasswordForm(request.POST, **base_form_args)
             response = change_password_form.process()
         elif action == "updateprofilepicture":
-            change_profile_picture_form = ChangeProfilePicture(
+            change_profile_picture_form = ChangeProfilePictureForm(
                 request.POST, request.FILES, **base_form_args
             )
             change_profile_picture_form.process()
@@ -38,7 +39,7 @@ def profile(request):
         "change_password_form": change_password_form
         or ChangePasswordForm(**base_form_args),
         "change_profile_picture_form": change_profile_picture_form
-        or ChangeProfilePicture(**base_form_args),
+        or ChangeProfilePictureForm(**base_form_args),
     }
     return render(request, "users/dashboard/profile.html", context)
 
@@ -83,7 +84,21 @@ def logout(request):
 
 
 def forgot_password(request, user_id=None, token=None):
-    pass
+    if request.user.is_authenticated:
+        return redirect("home")
+    forgot_form = None
+    base_form_args = {
+        "request": request,
+        "action": reverse("users:forgot_password"),
+    }
+    # todo process incoming token url and process and show change apssword form
+    if request.method == "POST":
+        forgot_form = ForgotPasswordForm(request.POST, **base_form_args)
+        response = forgot_form.process()
+        if response:
+            return response
+    context = {"form": forgot_form or ForgotPasswordForm(**base_form_args)}
+    return render(request, "users/login.html", context)
 
 
 def verify_email(request, user_id, token):
