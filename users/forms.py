@@ -217,7 +217,7 @@ class ChangePasswordForm(BaseForm):
         return redirect("users:profile")
 
 
-class ChangeProfilePicture(BaseForm):
+class ChangeProfilePictureForm(BaseForm):
     image = forms.ImageField(required=True, label="New Profile Picture")
 
     def __init__(self, *args, **kwargs):
@@ -242,7 +242,46 @@ class ChangeProfilePicture(BaseForm):
     def process(self):
         is_valid = self.is_valid()
         user = self.request.user
-        print(self.cleaned_data["image"])
+        if not is_valid or not user.is_authenticated:
+            return None
+        user.profile_picture = self.cleaned_data["image"]
+        user.save()
+        messages.success(
+            self.request,
+            "Profile Picture Updated Successfully!",
+        )
+        return redirect("users:profile")
+
+
+class ForgotPasswordForm(BaseForm):
+    email = forms.EmailField(
+        required=True,
+        label="Your Email",
+        help_text="If an account exists we will send you a recovery email!",
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, id="change-profilepic-form")
+        self.fields["image"].default = "test..."
+        self.set_next_url()
+        self.create_layout(
+            Layout(
+                "email",
+                FormActions(
+                    StrictButton(
+                        mark_safe("Recover"),
+                        type="submit",
+                        name="action",
+                        value="forgottenpassword",
+                        css_class="btn btn-success w-100 my-3 text-center",
+                    )
+                ),
+            )
+        )
+
+    def process(self):
+        is_valid = self.is_valid()
+        user = self.request.user
         if not is_valid or not user.is_authenticated:
             return None
         user.profile_picture = self.cleaned_data["image"]
