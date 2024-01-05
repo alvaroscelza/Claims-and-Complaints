@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from applications.utils import UniqueNameMixin
@@ -29,6 +30,12 @@ class User(AbstractUser):
             ]
             or 0
         )
+
+    @property
+    def profile_picture_filename(self):
+        if not self.profile_picture:
+            return None
+        return os.path.basename(self.profile_picture.name)
 
     def send_verification_email(self):
         pass

@@ -3,7 +3,12 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from users.forms import LoginForm, RegisterForm, ChangePasswordForm
+from users.forms import (
+    LoginForm,
+    RegisterForm,
+    ChangePasswordForm,
+    ChangeProfilePicture,
+)
 
 
 # Create your views here.
@@ -13,18 +18,25 @@ def profile(request):
         "request": request,
         "action": reverse("users:profile"),
     }
-    change_password_form = None
+    change_password_form = change_profile_picture_form = None
     if request.method == "POST":
         action = request.POST.get("action")
         response = None
         if action == "updatepassword":
             change_password_form = ChangePasswordForm(request.POST, **base_form_args)
             response = change_password_form.process()
+        elif action == "updateprofilepicture":
+            change_profile_picture_form = ChangeProfilePicture(
+                request.POST, request.FILES, **base_form_args
+            )
+            change_profile_picture_form.process()
         if response:
             return response
     context = {
         "change_password_form": change_password_form
-        or ChangePasswordForm(**base_form_args)
+        or ChangePasswordForm(**base_form_args),
+        "change_profile_picture_form": change_profile_picture_form
+        or ChangeProfilePicture(**base_form_args),
     }
     return render(request, "users/dashboard/profile.html", context)
 
