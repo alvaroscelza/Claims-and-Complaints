@@ -77,10 +77,10 @@ class RegisterForm(BaseForm):
     name = forms.CharField(required=True, max_length=100, label="Your Name")
     email = forms.EmailField(required=True, label="Your Email")
     new_password = forms.CharField(
-        required=False, max_length=100, widget=forms.PasswordInput
+        required=True, max_length=100, widget=forms.PasswordInput
     )
     confirm_new_password = forms.CharField(
-        required=False, max_length=100, widget=forms.PasswordInput
+        required=True, max_length=100, widget=forms.PasswordInput
     )
 
     def __init__(self, *args, **kwargs):
@@ -165,10 +165,10 @@ class RegisterForm(BaseForm):
 
 class ChangePasswordForm(BaseForm):
     new_password = forms.CharField(
-        required=False, max_length=100, widget=forms.PasswordInput
+        required=True, max_length=100, widget=forms.PasswordInput
     )
     confirm_new_password = forms.CharField(
-        required=False, max_length=100, widget=forms.PasswordInput
+        required=True, max_length=100, widget=forms.PasswordInput
     )
 
     def __init__(self, *args, **kwargs):
@@ -215,5 +215,42 @@ class ChangePasswordForm(BaseForm):
         messages.success(
             self.request,
             "Password updated successfully! Please login.",
+        )
+        return redirect("users:profile")
+
+
+class ChangeProfilePicture(BaseForm):
+    image = forms.ImageField(required=True, label="New Profile Picture")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, id="change-profilepic-form")
+        self.fields["image"].default = "test..."
+        self.set_next_url()
+        self.create_layout(
+            Layout(
+                "image",
+                FormActions(
+                    StrictButton(
+                        mark_safe("Upload Image"),
+                        type="submit",
+                        name="action",
+                        value="updateprofilepicture",
+                        css_class="btn btn-success w-100 my-3 text-center",
+                    )
+                ),
+            )
+        )
+
+    def process(self):
+        is_valid = self.is_valid()
+        user = self.request.user
+        print(self.cleaned_data["image"])
+        if not is_valid or not user.is_authenticated:
+            return None
+        user.profile_picture = self.cleaned_data["image"]
+        user.save()
+        messages.success(
+            self.request,
+            "Profile Picture Updated Successfully!",
         )
         return redirect("users:profile")

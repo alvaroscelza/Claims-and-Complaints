@@ -78,15 +78,24 @@
                                 aria-controls="profileImageAccordion">
                             <span class="d-block">
                                 <span class="h5 fw-bold d-block">Profile Image</span>
-                                <span class="text-muted">********</span>
+                                {% if request.user.profile_picture %}
+                                    <span class="text-muted d-flex align-items-center">
+                                        <img class="img-fluid me-3"
+                                             width="50"
+                                             height="50"
+                                             src="{{ request.user.profile_picture.url }}" />
+                                    {{ request.user.profile_picture_filename }}</span>
+                                {% else %}
+                                    <span class="text-muted">Expand to add!</span>
+                                {% endif %}
                             </span>
                         </button>
                     </h2>
                     <div id="profileImageAccordion"
-                         class="accordion-collapse collapse{% if request.POST.action == "updatepassword" %} show{% endif %}"
+                         class="accordion-collapse collapse{% if request.POST.action == "updateprofilepicture" %} show{% endif %}"
                          aria-labelledby="headingThree"
                          data-bs-parent="#acciybtsAccirduib">
-                        <div class="accordion-body">{% crispy change_password_form %}</div>
+                        <div class="accordion-body">{% crispy change_profile_picture_form %}</div>
                     </div>
                 </div>
             </div>
