@@ -90,11 +90,11 @@ def forgot_password(request, user_id=None, token=None):
         or (not user_id and token)
     ):
         return redirect("home")
-    user = forgot_form = None
+    user = forgot_form = change_form = None
     if user_id:
         user = get_object_or_404(get_user_model(), id=user_id)
     is_token_valid = (
-        account_password_reset_token.check_token(user_id, token) if user else False
+        account_password_reset_token.check_token(user, token) if user else False
     )
     base_form_args = {
         "request": request,
@@ -116,6 +116,9 @@ def forgot_password(request, user_id=None, token=None):
             response = change_form.process(user=user)
         if response:
             return response
+    elif not is_token_valid and token:
+        messages.error(request, "Invalid Request")
+        return redirect("users:login")
     context = {
         "form": (forgot_form or ForgotPasswordForm(**base_form_args))
         if not is_token_valid

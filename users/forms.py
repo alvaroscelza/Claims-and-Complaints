@@ -287,14 +287,14 @@ class ForgotPasswordForm(BaseForm):
 
     def clean_email(self):
         email = self.cleaned_data["email"]
-        user = get_user_model().objects.filter(email=email).first("email")
+        user = get_user_model().objects.filter(email=email).first()
         if not user:
             self.raise_validation_error(
                 "email",
                 email,
                 "No account found",
             )
-        return
+        return user
 
     def process(self):
         is_valid = self.is_valid()
