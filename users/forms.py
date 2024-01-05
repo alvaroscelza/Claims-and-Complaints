@@ -4,10 +4,8 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from django.utils import timezone
 from crispy_forms.layout import Layout
 from crispy_forms.bootstrap import FormActions, StrictButton
-from django.conf import settings
 from config.base_forms import BaseForm, auth_next_var
 from crispy_bootstrap5.bootstrap5 import FloatingField
 
