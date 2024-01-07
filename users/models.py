@@ -42,7 +42,9 @@ class User(AbstractUser):
 
     def get_activate_url(self):
         token = account_activation_token.make_token(self)
-        return reverse("users:verify_email", kwargs={"user_id": self.id, token: token})
+        return reverse(
+            "users:verify_email", kwargs={"user_id": self.id, "token": token}
+        )
 
     def get_password_reset_url(self):
         token = account_password_reset_token.make_token(self)
