@@ -14,16 +14,14 @@
                       background-color:#ffffff;
                       border-radius:10px">
             <tbody style="color:black;line-height:225%;font-size:14px;">
-                {% comment %} {#    <tr style="height:10px;">#}
-                      {#      <td style="padding:10px;
-                 border-bottom:1px solid rgb(47, 47, 47);
-                 border-radius:5px;
-                 width:100%">#}
-                      {#        <img src="{{ absolute_domain }}{% static 'img/logo/mca.png'%}"
-             style="max-height:60px;
-                    vertical-align:middle">#}
-                      {#      </td>#}
-                {#    </tr>#} {% endcomment %}
+                <tr style="height:10px;">
+                    <td style="padding:10px;
+                               border-bottom:1px solid rgb(47, 47, 47);
+                               border-radius:5px;
+                               width:100%">
+                        <h3>{{ brand_name }}</h3>
+                    </td>
+                </tr>
                 {% block content %}{% endblock %}
                 <tr>
                     <td style="padding-top:10px;
@@ -34,25 +32,6 @@
                 </tr>
                 <tr>
                     <td style="padding-bottom:10px;background-color:#ffffff">
-                        {% comment %} {#        <ul style="text-align:center;list-style-type:none;padding-left:0">#}
-                                  {#            <li style="display:inline-block;margin:0 10px;font-weight:600"><strong style="color:rgb(0, 153, 255);">ADAM</strong><span style="color:rgb(45, 45, 45);">Munir</span></li>#}
-                                  {#            <li style="color:grey;display:inline-block;margin:0 10px"><a target="_blank" href="{{ absolute_domain }}" style="color:rgb(45, 45, 45);font-weight:600"><strong style="color:rgb(0, 153, 255);">HALAL</strong><span>Online</span><strong style="color:rgb(0, 153, 255);">INCOME</strong>.com</a></li>#}{#        </ul>#}
-                        {% endcomment %}
-                        <p style="font-size:13px;
-                                  text-align:center;
-                                  width:100%;
-                                  margin:5px 0;
-                                  color:grey;
-                                  line-height:36px">
-                            Sent to:
-                            {{ to }}
-                            {% if unsubscribe_link %}
-                                <br>
-                                <a href="{{ unsubscribe_link }}">Unsubscribe</a>
-                            {% endif %}
-                            <br>
-                            Adam Munir, Unit 35992, PO Box 6945, London, W1A 6US, United Kingdom
-                        </p>
                         {% if open_track_url %}<img src="{{ open_track_url }}" height="0px" width="0px" />{% endif %}
                     </td>
                 </tr>
