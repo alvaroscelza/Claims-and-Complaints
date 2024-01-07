@@ -23,6 +23,8 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 0),
+    EMAIL_USERNAME=(str),
+    EMAIL_PASSWORD=(str),
 )
 environ.Env.read_env(BASE_DIR / ".env")
 
@@ -153,7 +155,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-
+EMAIL_HOST_USER = env("EMAIL_USERNAME")
+EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 EMAIL_FROM_NAME = "Claims & Complaints"  # The name users will see in their inbox
 
 # Branding
