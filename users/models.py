@@ -57,6 +57,7 @@ class User(AbstractUser):
             context={"url": url, "user": self},
             subject="Verify your Account",
             recipient=self.email,
+            request=request,
         )
 
     def send_forgot_password_email(self, request=None):
@@ -66,6 +67,7 @@ class User(AbstractUser):
             context={"url": url, "user": self},
             subject="Verify your Account",
             recipient=self.email,
+            request=request,
         )
 
 
