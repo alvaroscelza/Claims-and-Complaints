@@ -58,7 +58,7 @@ class LoginForm(BaseForm):
             err = "Incorrect Username or Password!"
         elif not user.email_validated:
             err = mark_safe(
-                'Please Validate your account from the email we sent, <a href="\#">Resend Email</a>'
+                f'Please Validate your account from the email we sent, <a href="{reverse("users:login_resend",kwargs={"resend_user_id":user.id})}">Resend Email</a>'
             )
         if err:
             self.raise_validation_error("password", password, err)
