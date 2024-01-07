@@ -159,3 +159,4 @@ EMAIL_FROM_NAME = "Claims & Complaints"  # The name users will see in their inbo
 
 # Branding
 BRAND_NAME = "Claims & Complaints"
+SITE_URL = "http://127.0.0.1"
