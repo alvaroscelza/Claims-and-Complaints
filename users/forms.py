@@ -159,7 +159,7 @@ class RegisterForm(BaseForm):
         #     user.email_validated = timezone.now()
         user.set_password(cleaned_data["confirm_new_password"])
         user.save()
-        user.send_verification_email()
+        user.send_verification_email(request=self.request)
         messages.success(
             self.request,
             "Account created successfully, Please verify your account from the email we sent!",
@@ -301,7 +301,7 @@ class ForgotPasswordForm(BaseForm):
         if not is_valid:
             return None
         user = self.cleaned_data["email"]
-        user.send_forgot_password_email()
+        user.send_forgot_password_email(request=self.request)
         messages.success(
             self.request,
             "We have sent an email. Use the link to reset your password!",
