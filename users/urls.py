@@ -6,6 +6,7 @@ app_name = "users"
 urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("signup/", views.register, name="register"),
+    path("login/resend/<int:resend_user_id>/", views.login, name="login_resend"),
     path("login/", views.login, name="login"),
     path("logout/", views.logout, name="logout"),
     path(

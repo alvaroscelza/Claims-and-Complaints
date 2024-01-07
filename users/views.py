@@ -61,7 +61,10 @@ def register(request):
     return render(request, "users/register.html", context)
 
 
-def login(request):
+def login(request, resend_user_id=None):
+    if resend_user_id:
+        user = get_object_or_404(get_user_model(), id=resend_user_id)
+        user.send_verify_email(request=request)
     if request.user.is_authenticated:
         return redirect("home")
     login_form = None
