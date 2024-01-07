@@ -7,6 +7,17 @@ psycopg2-binary==2.9.9
 
 # Environment
 python-dotenv==1.0.0
+django-environ==0.11.2
 
 # Image handling
 Pillow==10.1.0
+
+#Emails
+certifi==2023.11.17 # Used for allowing gmail
+
+# Token
+six==1.16.0
+
+# Forms
+django-crispy-forms==2.1
+crispy-bootstrap5==2023.10
