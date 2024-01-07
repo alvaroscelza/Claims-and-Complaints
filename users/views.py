@@ -139,12 +139,18 @@ def verify_email(request, user_id, token):
     user = get_object_or_404(get_user_model(), id=user_id)
     is_valid = account_activation_token.check_token(user, token)
     if is_valid:
+        if request.user.is_authenticated:
+            auth_logout(request)
         if not user.email_validated:
             user.email_validated = timezone.now()
             user.save()
-            messages.success(request, "Welcome! Account Verified Successfully!")
+            messages.success(
+                request,
+                "Welcome, Your Account has been Verified Successfully!<br/> Please Log In",
+            )
         else:
             messages.success(request, "Your email has already been verified!")
+
     else:
         messages.warning(request, "Invalid Request, Please try again!")
     return redirect("users:login")
