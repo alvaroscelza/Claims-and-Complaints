@@ -156,3 +156,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD  # Gmail App Password
 EMAIL_FROM_NAME = "Claims & Complaints"  # The name users will see in their inbox
+
+# Branding
+BRAND_NAME = "Claims & Complaints"
