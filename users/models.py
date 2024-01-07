@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from applications.utils import UniqueNameMixin
+from config.utils import send_html_email
 from .token import account_activation_token, account_password_reset_token
 
 
@@ -49,15 +50,23 @@ class User(AbstractUser):
             "users:forgot_password", kwargs={"token": token, "user_id": self.id}
         )
 
-    def send_verification_email(self):
+    def send_verification_email(self, request=None):
         url = self.get_activate_url()
-        print(url)
+        send_html_email(
+            html_template="users/emails/register_verification.html",
+            context={"url": url, "user": self},
+            subject="Verify your Account",
+            recipient=self.email,
+        )
 
-    def send_forgot_password_email(self):
+    def send_forgot_password_email(self, request=None):
         url = self.get_password_reset_url()
-        print(url)
-
-    # todo
+        send_html_email(
+            html_template="users/emails/forgot_password.html",
+            context={"url": url, "user": self},
+            subject="Verify your Account",
+            recipient=self.email,
+        )
 
 
 class UserScoreModifierType(UniqueNameMixin):
