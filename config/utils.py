@@ -18,7 +18,13 @@ def send_html_email(
     if not recipient_list:
         raise Exception("No Recipients found")
     # Base context values set incase of no request
-    html_context = {"brand_name": settings.BRAND_NAME, "absolute_domain": "", **context}
+    html_context = {
+        "brand_name": settings.BRAND_NAME,
+        "absolute_domain": request.build_absolute_uri("/")[:-1]
+        if request
+        else settings.SITE_URL,
+        **context,
+    }
     html = (
         render_to_string(html_template, request=request, context=html_context)
         if html_template
