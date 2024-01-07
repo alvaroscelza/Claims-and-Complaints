@@ -64,7 +64,12 @@ def register(request):
 def login(request, resend_user_id=None):
     if resend_user_id:
         user = get_object_or_404(get_user_model(), id=resend_user_id)
-        user.send_verify_email(request=request)
+        user.send_verification_email(request=request)
+        messages.success(
+            request,
+            "Verification Email Resent successfully, Please check your spam folder!",
+        )
+        return redirect("users:login")
     if request.user.is_authenticated:
         return redirect("home")
     login_form = None
@@ -113,7 +118,7 @@ def forgot_password(request, user_id=None, token=None):
             response = forgot_form.process()
         elif action == "updatepassword":
             if not user or not is_token_valid:
-                messages.error("Invalid Request")
+                messages.error(request, "Invalid Request")
                 return redirect("users:forgot_password")
             change_form = ChangePasswordForm(request.POST, **base_form_args)
             response = change_form.process(user=user)
@@ -134,8 +139,12 @@ def verify_email(request, user_id, token):
     user = get_object_or_404(get_user_model(), id=user_id)
     is_valid = account_activation_token.check_token(user, token)
     if is_valid:
-        user.email_validated = timezone.now()
-        messages.success("Welcome! Account Verified Successfully!")
+        if not user.email_validated:
+            user.email_validated = timezone.now()
+            user.save()
+            messages.success(request, "Welcome! Account Verified Successfully!")
+        else:
+            messages.success(request, "Your email has already been verified!")
     else:
-        messages.warning("Invalid Request, Please try again!")
+        messages.warning(request, "Invalid Request, Please try again!")
     return redirect("users:login")
