@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 # region Admin configuration
 urlpatterns = i18n_patterns(
-    path("admin/", admin.site.urls), prefix_default_language=False
+    path('admin/', admin.site.urls), prefix_default_language=False
 )
 admin.site.site_header = admin.site.site_title = settings.APP_NAME
 admin.site.index_title = settings.APP_DESCRIPTION
@@ -25,8 +25,8 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # region Templates configuration
 urlpatterns += i18n_patterns(
-    path("", TemplateView.as_view(template_name="index.html"), name="home"),
-    path("accounts/", include("users.urls", namespace="users")),
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('accounts/', include('users.urls', namespace='users')),
     prefix_default_language=False,
 )
 # endregion
