@@ -11,8 +11,8 @@ from crispy_bootstrap5.bootstrap5 import FloatingField
 
 
 class LoginForm(BaseForm):
-    username = forms.CharField(required=True)
-    # username = forms.EmailField(required=True,label="Email")
+    # username = forms.CharField(required=True)
+    username = forms.EmailField(required=True, label="Email")
     password = forms.CharField(
         required=True, max_length=100, widget=forms.PasswordInput
     )
@@ -77,7 +77,7 @@ class LoginForm(BaseForm):
 
 
 class RegisterForm(BaseForm):
-    name = forms.CharField(required=True, max_length=100, label="Your Name")
+    # name = forms.CharField(required=True, max_length=100, label="Your Name")
     email = forms.EmailField(required=True, label="Your Email")
     new_password = forms.CharField(
         required=True, max_length=100, widget=forms.PasswordInput
@@ -146,7 +146,7 @@ class RegisterForm(BaseForm):
             return None
         cleaned_data = self.cleaned_data
         email = cleaned_data["email"]
-        name = cleaned_data["name"].split(" ")
+        name = cleaned_data["name"].split(" ") if "name" in cleaned_data else ["", ""]
 
         user = get_user_model().objects.create(
             email=email,
