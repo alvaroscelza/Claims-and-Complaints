@@ -81,7 +81,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
-LOCAL_APPS = ["users", "applications.apps.CoreConfig"]
+LOCAL_APPS = ["applications.apps.UsersConfig", "applications.apps.CoreConfig"]
 EXTERNAL_APPS = [
     "rest_framework",
     "crispy_forms",
