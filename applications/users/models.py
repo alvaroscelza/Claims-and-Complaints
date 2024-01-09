@@ -23,6 +23,9 @@ class User(AbstractUser):
     # User Tracking
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        app_label = "users"
+
     @property
     def score(self) -> int:
         # noinspection PyUnresolvedReferences

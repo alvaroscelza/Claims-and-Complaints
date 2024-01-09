@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import User, UserScoreModifierInstance, UserScoreModifierType
+from .models import User, UserScoreModifierInstance, UserScoreModifierType
 from django.contrib.auth.admin import UserAdmin
 
 

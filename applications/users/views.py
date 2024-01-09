@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
 from .token import account_activation_token, account_password_reset_token
-from users.forms import (
+from .forms import (
     LoginForm,
     RegisterForm,
     ChangePasswordForm,
