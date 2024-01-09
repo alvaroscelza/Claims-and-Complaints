@@ -92,7 +92,9 @@ class RegisterForm(BaseForm):
 
         self.create_layout(
             Layout(
-                FloatingField("name", autocomplete="name"),
+                FloatingField("name", autocomplete="name")
+                if "name" in self.fields
+                else Layout(),
                 FloatingField("email", autocomplete="email"),
                 FloatingField("new_password", autocomplete="new-password"),
                 FloatingField("confirm_new_password", autocomplete="new-password"),
