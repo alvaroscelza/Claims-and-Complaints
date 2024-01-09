@@ -14,12 +14,17 @@ BASE_DIR = Path(__file__).parent.parent
 
 
 # Enviroment Variables
-IS_PRODUCTION = os.getenv("IS_PRODUCTION")
+IS_PRODUCTION = os.getenv("IS_PRODUCTION") != "False"
 SECRET_KEY = os.getenv("SECRET_KEY")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",") if IS_PRODUCTION else ["*"]
+allowed_hosts_env = os.getenv("ALLOWED_HOSTS")
+if IS_PRODUCTION and not allowed_hosts_env:
+    raise Exception("Allowed hosts must be defined in env")
+ALLOWED_HOSTS = (
+    allowed_hosts_env.split(",") if IS_PRODUCTION or allowed_hosts_env else ["*"]
+)
 
 # Configured Values
-DEBUG = not IS_PRODUCTION
+DEBUG = os.getenv("DEBUG") == "True" or not IS_PRODUCTION
 
 
 # Django Base Configurations
@@ -128,6 +133,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Auth
+
 AUTH_USER_MODEL = "users.User"  # Set default user model
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
