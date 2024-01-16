@@ -20,7 +20,7 @@ DATABASES = {
         'PORT': os.getenv('DATABASE_PORT'),
     }
 }
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG', True)
 # region INSTALLED_APPS
 DJANGO_APPS = [
     'django.contrib.admin',

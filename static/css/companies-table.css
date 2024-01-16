@@ -1,0 +1,59 @@
+*{box-sizing: border-box;}
+
+.company-table{
+width: 100%;
+border-collapse: collapse;
+margin:25px 0;
+font-size: 0.9em;
+min-width: 400px;
+border-radius: 5px;
+overflow: hidden;
+box-shadow: 0 0 20px rgba(0,0,0,0.15);
+white-space: nowrap;
+
+}
+thead tr{
+    background-color: #009879;
+    color:#ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+th,
+td{
+    padding:1rem;
+   
+}
+tbody tr:hover {
+    background-color: #ddddddef; 
+    transition: background-color 0.3s ease;
+  }
+  
+tbody tr{
+    border-bottom: 1px solid #ffffff;
+    margin: auto;
+}
+caption, th{
+    text-align: left;
+    
+}
+caption{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color:black
+    
+}
+tr:nth-of-type(2n){
+    background-color: #f3f3f3;
+}
+tbody tr:last-of-type{
+    border-bottom: 2px solid #009879;
+}
+.company-table .company-logo{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border:1px solid black;
+    
+}

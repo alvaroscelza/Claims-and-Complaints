@@ -10,4 +10,6 @@ class CompaniesController(GenericViewSet):
 
     def list(self, _):
         companies = self.get_queryset()
+    
         return Response({'companies': companies}, template_name='companies/list.html')
+ 

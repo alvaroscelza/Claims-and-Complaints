@@ -2,6 +2,6 @@ appmap_dir: tmp\appmap
 language: python
 name: Claims-and-Complaints
 packages:
-- path: applications
 - path: templatetags
+- path: applications
 - path: config
