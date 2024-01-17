@@ -30,7 +30,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles'
 ]
-LOCAL_APPS = ['applications.apps.CoreConfig']
+LOCAL_APPS = ['applications.apps.CoreConfig', 'applications.button']
 EXTERNAL_APPS = ['rest_framework']
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
 # endregion INSTALLED_APPS
