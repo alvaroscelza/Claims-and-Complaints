@@ -1,10 +1,13 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.core.mail import send_mail
 from django.db import models
+from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.html import strip_tags
 
 from applications.utils import UniqueNameMixin
-from config.utils import send_html_email
 
 
 class User(AbstractUser):
@@ -22,7 +25,7 @@ class User(AbstractUser):
         token_generator = PasswordResetTokenGenerator()
         token = token_generator.make_token(self)
         url = reverse('users:verify_email', kwargs={'user_id': self.pk, 'token': token})
-        send_html_email(
+        self._send_html_email(
             html_template='users/emails/register_verification.html',
             context={'url': url, 'user': self},
             subject='Verify your Account',
@@ -30,11 +33,42 @@ class User(AbstractUser):
             request=request,
         )
 
+    @staticmethod
+    def _send_html_email(subject, html_template, context, recipient, recipients=[], request=None, plaintext=None):
+        # Set Recipient List
+        recipient_list = recipients + [recipient] if recipient else []
+        if not recipient_list:
+            raise Exception('No Recipients found')
+        # Base context values set incase of no request
+        html_context = {
+            'brand_name': settings.BRAND_NAME,
+            'absolute_domain': request.build_absolute_uri('/')[:-1]
+            if request
+            else settings.SITE_URL,
+            **context,
+        }
+        html = (
+            render_to_string(html_template, request=request, context=html_context)
+            if html_template
+            else None
+        )
+        # Send Email
+        send_mail(
+            subject,
+            plaintext or strip_tags(html),
+            f'{settings.EMAIL_FROM_NAME}<{settings.EMAIL_HOST_USER}>',
+            recipient_list,
+            fail_silently=settings.IS_PRODUCTION,
+            html_message=html,
+        )
+        # Return true if successful
+        return True
+
     def send_forgot_password_email(self, request=None):
         token_generator = PasswordResetTokenGenerator()
         token = token_generator.make_token(self)
         url = reverse('users:forgot_password', kwargs={'token': token, 'user_id': self.pk})
-        send_html_email(
+        self._send_html_email(
             html_template='users/emails/forgot_password.html',
             context={'url': url, 'user': self},
             subject='Verify your Account',
