@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="px-3">
+        <h1 class="text-center mb-3">Your Account</h1>
+        <div class="col-md-8 col-sm-10 mx-auto">
+            <div class="accordion" id="acciybtsAccirduib">
+                {% comment %} <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <span class="d-block">
+                                <span class="h5 fw-bold d-block">Name</span>
+                                <span class="text-muted">{{ request.user.get_full_name }}</span>
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#acciybtsAccirduib">
+                        <div class="accordion-body"></div>
+                    </div>
+                </div> {% endcomment %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo"
+                                aria-expanded="false"
+                                aria-controls="collapseTwo">
+                            <span class="d-block">
+                                <span class="h5 fw-bold d-block">Email</span>
+                                <span class="text-muted">{{ request.user.email }}</span>
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingTwo"
+                         data-bs-parent="#acciybtsAccirduib">
+                        <div class="accordion-body"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree"
+                                aria-expanded="false"
+                                aria-controls="collapseThree">
+                            <span class="d-block">
+                                <span class="h5 fw-bold d-block">Pasword</span>
+                                <span class="text-muted">********</span>
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseThree"
+                         class="accordion-collapse collapse{% if request.POST.action == "updatepassword" %} show{% endif %}"
+                         aria-labelledby="headingThree"
+                         data-bs-parent="#acciybtsAccirduib">
+                        <div class="accordion-body">{% crispy change_password_form %}</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="profileImageAccordionHeader">
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#profileImageAccordion"
+                                aria-expanded="false"
+                                aria-controls="profileImageAccordion">
+                            <span class="d-block">
+                                <span class="h5 fw-bold d-block">Profile Image</span>
+                                {% if request.user.profile_picture %}
+                                    <span class="text-muted d-flex align-items-center">
+                                        <img class="img-fluid me-3"
+                                             width="50"
+                                             height="50"
+                                             src="{{ request.user.profile_picture.url }}" />
+                                    {{ request.user.profile_picture_filename }}</span>
+                                {% else %}
+                                    <span class="text-muted">Expand to add!</span>
+                                {% endif %}
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="profileImageAccordion"
+                         class="accordion-collapse collapse{% if request.POST.action == "updateprofilepicture" %} show{% endif %}"
+                         aria-labelledby="headingThree"
+                         data-bs-parent="#acciybtsAccirduib">
+                        <div class="accordion-body">{% crispy change_profile_picture_form %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
