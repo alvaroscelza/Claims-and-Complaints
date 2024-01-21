@@ -9,9 +9,6 @@
   padding-bottom: 5px;
   font-weight: bold;
   text-decoration: none;
-  &:visited {
-    color: #fff;
-  }
 }
 
 body {
@@ -34,10 +31,6 @@ pre {
 
 a {
   color: #000;
-}
-
-a:visited {
-  color: #666;
 }
 
 a:hover {
