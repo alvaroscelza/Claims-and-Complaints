@@ -2,7 +2,7 @@
 <header>
   <nav class="navbar navbar-dark navbar-expand-md bg-dark fixed-top py-0">
     <div class="container">
-      <a class="navbar-brand" id="logo" href="{% url "home" %}">{% current_page_title %}</a>
+      <a class="logo" href="{% url 'home' %}">{% current_page_title %}</a>
       <button class="navbar-toggler"
               type="button"
               data-bs-toggle="offcanvas"
@@ -15,7 +15,7 @@
            id="offcanvasDarkNavbar"
            aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="logo">{% current_page_title %}</h5>
+          <h5 class="offcanvas-title logo">{% current_page_title %}</h5>
           <button type="button"
                   class="btn-close btn-close-white"
                   data-bs-dismiss="offcanvas"
