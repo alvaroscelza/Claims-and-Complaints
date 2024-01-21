@@ -7,6 +7,7 @@ APP_NAME = 'Claims and Complaints'
 APP_DESCRIPTION = _('This project is a Django application that allows users to create claims and complaints about '
                     'different companies.')
 AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'}]
+AUTH_USER_MODEL = 'users.User'
 BASE_DIR = Path(__file__).parent.parent
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost').split(',')
@@ -30,9 +31,9 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles'
 ]
-LOCAL_APPS = ['applications.apps.CoreConfig']
-EXTERNAL_APPS = ['rest_framework']
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
+LOCAL_APPS = ['applications.apps.UsersConfig', 'applications.apps.CoreConfig']
+EXTERNAL_APPS = ['rest_framework', 'crispy_forms', 'crispy_bootstrap5']
+INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS
 # region Internationalization
 LANGUAGE_CODE = 'es'
