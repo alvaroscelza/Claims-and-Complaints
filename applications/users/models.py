@@ -41,7 +41,7 @@ class User(AbstractUser):
             raise Exception('No Recipients found')
         # Base context values set incase of no request
         html_context = {
-            'brand_name': settings.BRAND_NAME,
+            'app_name': settings.APP_NAME,
             'absolute_domain': request.build_absolute_uri('/')[:-1]
             if request
             else settings.SITE_URL,
