@@ -56,9 +56,9 @@ class User(AbstractUser):
         send_mail(
             subject,
             plaintext or strip_tags(html),
-            f'{settings.EMAIL_FROM_NAME}<{settings.EMAIL_HOST_USER}>',
+            f'{settings.APP_NAME}<{settings.EMAIL_HOST_USER}>',
             recipient_list,
-            fail_silently=settings.IS_PRODUCTION,
+            fail_silently=not settings.DEBUG,
             html_message=html,
         )
         # Return true if successful

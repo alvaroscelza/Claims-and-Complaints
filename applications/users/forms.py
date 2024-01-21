@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import dateparse
+from django.utils.safestring import mark_safe
 
 auth_next_var = 'next'
 
@@ -205,7 +206,7 @@ class RegisterForm(BaseForm):
         if user_exists:
             login_anchor = f'<a href="{reverse("users:login")}">Log In</a>'
             error_message = f'An account already exists with this email, Please {login_anchor}'
-            self.raise_validation_error('email', email, error_message)
+            self.raise_validation_error('email', email, mark_safe(error_message))  # nosec
         return email
 
     def clean_confirm_new_password(self):
