@@ -58,13 +58,13 @@
                    aria-expanded="false">Account</a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li>
-                    <a class="dropdown-item" href="{% url "users:profile" %}">Edit Profile</a>
+                    <a class="dropdown-item" href="{% url 'users:profile' %}">Edit Profile</a>
                   </li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
                   <li>
-                    <a class="dropdown-item" href="{% url "users:logout" %}">Logout</a>
+                    <a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a>
                   </li>
                 </ul>
               </li>
@@ -72,12 +72,12 @@
               <li class="nav-item">
                 <a class="nav-link active h-100"
                    aria-current="page"
-                   href="{% url "users:register" %}">Sign Up</a>
+                   href="{% url 'users:register' %}">Sign Up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active h-100"
                    aria-current="page"
-                   href="{% url "users:login" %}">Login</a>
+                   href="{% url 'users:login' %}">Login</a>
               </li>
             {% endif %}
           </ul>
