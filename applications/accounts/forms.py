@@ -137,7 +137,7 @@ class LoginForm(BaseForm):
             Layout(
                 FloatingField('username', autocomplete='username'),
                 FloatingField('password', autocomplete='current-password'),
-                HTML(f'<a href="{reverse("accounts-forgot_password")}">Forgotten your Password?</a>')
+                HTML(f'<a href="{reverse("accounts:forgot_password")}">Forgotten your Password?</a>')
                 if self.request.method == 'POST'
                 else Layout(),
                 FormActions(
@@ -158,9 +158,9 @@ class LoginForm(BaseForm):
         if not user:
             error = 'Incorrect Username or Password!'
         elif not user.email_validated:
-            resend_verification_email_link = reverse('accounts-login_resend', kwargs={'resend_user_id': user.id})
+            resend_verification_email_link = reverse('accounts:login_resend', kwargs={'resend_user_id': user.id})
             anchor = f'<a href="{resend_verification_email_link}">Resend Email</a>'
-            error = f'Please Validate your account from the email we sent, {anchor}'
+            error = mark_safe(f'Please Validate your account from the email we sent, {anchor}')  # nosec
         if error:
             self.raise_validation_error('password', password, error)
         return user
@@ -204,7 +204,7 @@ class RegisterForm(BaseForm):
         email = self.cleaned_data['email'].lower()
         user_exists = get_user_model().objects.filter(email=email).exists()
         if user_exists:
-            login_anchor = f'<a href="{reverse("accounts-login")}">Log In</a>'
+            login_anchor = f'<a href="{reverse("accounts:login")}">Log In</a>'
             error_message = f'An account already exists with this email, Please {login_anchor}'
             self.raise_validation_error('email', email, mark_safe(error_message))  # nosec
         return email
@@ -231,7 +231,7 @@ class RegisterForm(BaseForm):
         user.send_verification_email(request=self.request)
         success_message = 'Account created successfully, Please verify your account from the email we sent!'
         messages.success(self.request, success_message)
-        return redirect('accounts-login')
+        return redirect('accounts:login')
 
 
 class ChangePasswordForm(BaseForm):
@@ -272,7 +272,7 @@ class ChangePasswordForm(BaseForm):
         user.set_password(cleaned_data['confirm_new_password'])
         user.save()
         messages.success(self.request, 'Password updated successfully! Please login.')
-        return redirect('accounts-profile')
+        return redirect('accounts:profile')
 
 
 class ChangeProfilePictureForm(BaseForm):
@@ -299,7 +299,7 @@ class ChangeProfilePictureForm(BaseForm):
         user.profile_picture = self.cleaned_data['image']
         user.save()
         messages.success(self.request, 'Profile Picture Updated Successfully!')
-        return redirect('accounts-profile')
+        return redirect('accounts:profile')
 
 
 class ForgotPasswordForm(BaseForm):
@@ -336,4 +336,4 @@ class ForgotPasswordForm(BaseForm):
         user = self.cleaned_data['email']
         user.send_forgot_password_email(request=self.request)
         messages.success(self.request, 'We have sent an email. Use the link to reset your password!')
-        return redirect('accounts-login')
+        return redirect('accounts:login')

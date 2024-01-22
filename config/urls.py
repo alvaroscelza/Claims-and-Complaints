@@ -17,7 +17,7 @@ urlpatterns += i18n_patterns(core_path, prefix_default_language=False)
 # endregion
 
 # region Users configuration
-accounts_path = path('', include('applications.accounts.urls'))
+accounts_path = path('accounts/', include('applications.accounts.urls', 'accounts'))
 urlpatterns += i18n_patterns(accounts_path, prefix_default_language=False)
 # endregion
 
