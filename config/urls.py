@@ -17,8 +17,8 @@ urlpatterns += i18n_patterns(core_path, prefix_default_language=False)
 # endregion
 
 # region Users configuration
-users_path = path('users/', include('applications.users.urls'))
-urlpatterns += i18n_patterns(users_path, prefix_default_language=False)
+accounts_path = path('', include('applications.accounts.urls'))
+urlpatterns += i18n_patterns(accounts_path, prefix_default_language=False)
 # endregion
 
 # region Media configuration

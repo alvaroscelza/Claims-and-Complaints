@@ -24,9 +24,9 @@ class User(AbstractUser):
     def send_verification_email(self, request=None):
         token_generator = PasswordResetTokenGenerator()
         token = token_generator.make_token(self)
-        url = reverse('users:verify_email', kwargs={'user_id': self.pk, 'token': token})
+        url = reverse('accounts-verify_email', kwargs={'user_id': self.pk, 'token': token})
         self._send_html_email(
-            html_template='users/emails/register_verification.html',
+            html_template='accounts/emails/register_verification.html',
             context={'url': url, 'user': self},
             subject='Verify your Account',
             recipient=self.email,
@@ -67,9 +67,9 @@ class User(AbstractUser):
     def send_forgot_password_email(self, request=None):
         token_generator = PasswordResetTokenGenerator()
         token = token_generator.make_token(self)
-        url = reverse('users:forgot_password', kwargs={'token': token, 'user_id': self.pk})
+        url = reverse('accounts-forgot_password', kwargs={'token': token, 'user_id': self.pk})
         self._send_html_email(
-            html_template='users/emails/forgot_password.html',
+            html_template='accounts/emails/forgot_password.html',
             context={'url': url, 'user': self},
             subject='Verify your Account',
             recipient=self.email,
