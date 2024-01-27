@@ -31,8 +31,8 @@ DJANGO_APPS = [
     'django.contrib.staticfiles'
 ]
 LOCAL_APPS = ['applications.apps.CoreConfig', 'applications.button']
-EXTERNAL_APPS = ['rest_framework']
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
+EXTERNAL_APPS = ['rest_framework', 'crispy_forms', 'crispy_bootstrap5']
+INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS
 # region Internationalization
 LANGUAGE_CODE = 'es'
