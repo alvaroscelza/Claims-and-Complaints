@@ -12,33 +12,10 @@ body, html {
 }
 
 .contenido {
-    /* Estilos para tu contenido */
-    width: 50%; /* O el ancho que desees */
+
+    width: 50%;
     text-align: center;
     border:solid 0.3px grey;
     border-radius: 3%;
 
-}
-a{
-    text-decoration: none;
-    color:#666;
-}
-.button{
-    background-color: #0d6efd;
-    border-color:#0d6efd;
-    color:#666;
-    text-decoration: none;
-    border-radius: 5%;
-    padding: 7px;
-}
-
-.button:hover{
-    color: white;
-    background-color: #095bd6;
-    border-color: #095bd6;
-
-}
-
-a:hover{
-    color: white;
 }

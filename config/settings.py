@@ -30,7 +30,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles'
 ]
-LOCAL_APPS = ['applications.apps.CoreConfig', 'applications.button']
+LOCAL_APPS = ['applications.apps.CoreConfig']
 EXTERNAL_APPS = ['rest_framework', 'crispy_forms', 'crispy_bootstrap5']
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS
