@@ -16,4 +16,4 @@ django-crispy-forms==2.1
 crispy-bootstrap5==2023.10
 
 # Image handling
-Pillow==10.1.0
+Pillow==10.2.0
