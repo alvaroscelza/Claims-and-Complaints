@@ -7,8 +7,11 @@ APP_NAME = 'Claims and Complaints'
 APP_DESCRIPTION = _('This project is a Django application that allows users to create claims and complaints about '
                     'different companies.')
 AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'}]
+AUTH_USER_MODEL = 'accounts.User'
 BASE_DIR = Path(__file__).parent.parent
 CORS_ALLOW_ALL_ORIGINS = True
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost').split(',')
 DATABASES = {
     'default': {
@@ -21,6 +24,14 @@ DATABASES = {
     }
 }
 DEBUG = os.getenv('DEBUG', False)
+# region Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.getenv('EMAIL_USERNAME')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# endregion Email
 # region INSTALLED_APPS
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -30,7 +41,9 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles'
 ]
-LOCAL_APPS = ['applications.apps.CoreConfig']
+
+LOCAL_APPS = ['applications.apps.AccountsConfig', 'applications.apps.CoreConfig']
+
 EXTERNAL_APPS = ['rest_framework', 'crispy_forms', 'crispy_bootstrap5']
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS

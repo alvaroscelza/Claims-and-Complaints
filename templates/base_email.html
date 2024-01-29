@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <style>
+    :root {
+      color-scheme: light only;
+    }
+        </style>
+    </head>
+    <body>
+        <table style="width:100%;
+                      margin:0 auto;
+                      table-layout: fixed;
+                      background-color:#ffffff;
+                      border-radius:10px">
+            <tbody style="color:black;line-height:225%;font-size:14px;">
+                <tr style="height:10px;">
+                    <td style="padding:10px;
+                               border-bottom:1px solid rgb(47, 47, 47);
+                               border-radius:5px;
+                               width:100%">
+                        <h3>{{ app_name }}</h3>
+                    </td>
+                </tr>
+                {% block content %}{% endblock %}
+                <tr>
+                    <td style="padding-top:10px;
+                               border-bottom:1px solid #dddddd;
+                               width:70%;
+                               margin:0 auto;
+                               background-color:#ffffff"></td>
+                </tr>
+                <tr>
+                    <td style="padding-bottom:10px;background-color:#ffffff">
+                        {% if open_track_url %}<img src="{{ open_track_url }}" height="0px" width="0px" />{% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

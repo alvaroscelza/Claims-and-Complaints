@@ -5,8 +5,15 @@ djangorestframework==3.14.0
 # Database
 psycopg2-binary==2.9.9
 
+#Emails
+certifi==2023.11.17 # Used for allowing gmail
+
 # Environment
 python-dotenv==1.0.0
 
+# Forms
+django-crispy-forms==2.1
+crispy-bootstrap5==2023.10
+
 # Image handling
-Pillow==10.1.0
+Pillow==10.2.0

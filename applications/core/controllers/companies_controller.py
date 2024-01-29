@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+from django.shortcuts import render
 
 from applications.core.serializers.companies_serializer import CompanySerializer
 
@@ -11,3 +12,7 @@ class CompaniesController(GenericViewSet):
     def list(self, _):
         companies = self.get_queryset()
         return Response({'companies': companies}, template_name='companies/list.html')
+
+
+def contact(request):
+    return render(request, 'contact.html')
