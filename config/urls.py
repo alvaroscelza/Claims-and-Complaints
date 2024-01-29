@@ -11,10 +11,15 @@ admin.site.index_title = settings.APP_DESCRIPTION
 admin.site.site_title = settings.APP_NAME
 # endregion
 
-# # region Core configuration
+# region Core configuration
 core_path = path('', include('applications.core.urls'))
 urlpatterns += i18n_patterns(core_path, prefix_default_language=False)
-# # endregion
+# endregion
+
+# region Users configuration
+accounts_path = path('accounts/', include('applications.accounts.urls', 'accounts'))
+urlpatterns += i18n_patterns(accounts_path, prefix_default_language=False)
+# endregion
 
 # region Media configuration
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

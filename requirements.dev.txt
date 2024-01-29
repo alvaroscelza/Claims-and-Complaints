@@ -1,7 +1,6 @@
 -r requirements.txt
 
 # Tests and low level design
-appmap==1.18.1
 coverage==7.3.4
 factory-boy==3.3.0
 pre-commit==3.6.0
