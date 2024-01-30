@@ -3,10 +3,9 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static '/css/companies-table.css' %}">
-    
     <div class="company-list">
+        <caption>Latest reviews</caption>
         <table class="company-table">
-            <caption>Latest reviews</caption>
             <thead>
                 <tr>
                     <th>Logo</th>
@@ -21,7 +20,6 @@
                         <td>
                             {% if company.logo %}
                                 <div class="img-container"><img src="{{ company.logo.url }}" alt="{{ company.name }} Logo" class="company-logo"></div>
-                                
                             {% else %}
                                 <p></p>
                             {% endif %}
