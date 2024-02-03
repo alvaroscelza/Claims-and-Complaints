@@ -33,17 +33,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # endregion Email
 # region INSTALLED_APPS
-DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles'
-]
-
+DJANGO_APPS = ['django.contrib.admin',
+               'django.contrib.auth',
+               'django.contrib.contenttypes',
+               'django.contrib.sessions',
+               'django.contrib.messages',
+               'django.contrib.staticfiles']
 LOCAL_APPS = ['applications.apps.AccountsConfig', 'applications.apps.CoreConfig']
-
 EXTERNAL_APPS = ['rest_framework', 'crispy_forms', 'crispy_bootstrap5']
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 # endregion INSTALLED_APPS

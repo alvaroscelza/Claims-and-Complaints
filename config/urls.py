@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from applications.core.controllers import companies_controller
+from django.views.generic import TemplateView
+
 
 # region Admin configuration
 urlpatterns = i18n_patterns(path('admin/', admin.site.urls), prefix_default_language=False)
@@ -29,7 +31,7 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 # region Generic Templates configuration
-contact_template = path('contact/', companies_controller.contact, name='contact')
+contact_template = path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact')
 urlpatterns += i18n_patterns(contact_template, prefix_default_language=False)
 # contact_template = TemplateView.as_view(template_name='contact.html')
 # urlpatterns += i18n_patterns(path(r'contact/', contact_template), prefix_default_language=False)
