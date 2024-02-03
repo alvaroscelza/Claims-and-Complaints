@@ -6,7 +6,6 @@ from django.urls import include, path
 from applications.core.controllers import companies_controller
 from django.views.generic import TemplateView
 
-
 # region Admin configuration
 urlpatterns = i18n_patterns(path('admin/', admin.site.urls), prefix_default_language=False)
 admin.site.site_header = settings.APP_NAME
