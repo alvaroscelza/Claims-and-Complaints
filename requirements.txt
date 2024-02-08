@@ -1,5 +1,5 @@
 # WEB / API
-django==5.0
+django==5.0.2
 djangorestframework==3.14.0
 
 # Database
