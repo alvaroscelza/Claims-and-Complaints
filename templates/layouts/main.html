@@ -21,8 +21,8 @@
   <body>
     {% include "layouts/header.html" %}
     <main class="container pt-4">
-      <div>
-      <button class="button"><a class="button" href="/contact">Sugerencias</a></button>
+      <div class="fixed-buttons-container">
+        <a class="btn btn-primary" href="/contact">Tengo una Sugerencia!</a>
       </div>
       {% comment %} {% for message, message_type in flash_messages %}
         <div id={{ message_type }} class="alert">{{ message }}

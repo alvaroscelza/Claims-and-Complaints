@@ -1,3 +1,17 @@
+.fixed-buttons-container{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+}
+
+.fixed-buttons-container a{
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    margin:2px;
+}
+
 .logo {
   float: left;
   margin-right: 10px;
