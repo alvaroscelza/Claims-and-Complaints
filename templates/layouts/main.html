@@ -7,6 +7,8 @@
     {% block title %}
       <title>{% current_page_title %}</title>
     {% endblock title %}
+    {%load static %}
+    <link rel="stylesheet"href="{% static 'css/button.css'  %}">
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/default.css' %}">
@@ -19,6 +21,9 @@
   <body>
     {% include "layouts/header.html" %}
     <main class="container pt-4">
+      <div class="fixed-buttons-container">
+        <a class="btn btn-primary" href="/contact">Tengo una Sugerencia!</a>
+      </div>
       {% comment %} {% for message, message_type in flash_messages %}
         <div id={{ message_type }} class="alert">{{ message }}
         </div>
