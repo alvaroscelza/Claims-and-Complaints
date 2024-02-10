@@ -4,10 +4,10 @@ from django.utils.translation import gettext as _
 from applications.utils import UniqueNameMixin
 
 
-class Business(UniqueNameMixin):
+class Industry(UniqueNameMixin):
     class Meta(UniqueNameMixin.Meta):
-        verbose_name = _('business')
-        verbose_name_plural = _('businesses')
+        verbose_name = _('industry')
+        verbose_name_plural = _('industries')
 
 
 class Company(UniqueNameMixin):
@@ -15,7 +15,7 @@ class Company(UniqueNameMixin):
         verbose_name = _('company')
         verbose_name_plural = _('companies')
 
-    business = models.ForeignKey(Business, models.PROTECT)
+    industry = models.ForeignKey(Industry, models.PROTECT)
     logo = models.ImageField(upload_to='company/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 

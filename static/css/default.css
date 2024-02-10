@@ -1,6 +1,4 @@
 .logo {
-  float: left;
-  margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
@@ -9,12 +7,6 @@
   padding-bottom: 5px;
   font-weight: bold;
   text-decoration: none;
-}
-
-body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px;
 }
 
 body, p, ol, ul, td {
@@ -29,21 +21,10 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #000;
-}
-
 a:hover {
   color: #fff;
   background-color: #000;
 }
-
-th {
-  padding-bottom: 5px;
-}
-
-td {
-  padding: 0 5px 7px; }
 
 div.field,
 div.actions {

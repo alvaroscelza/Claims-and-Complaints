@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from applications.core.models import Business, Company, Judgement
+from applications.core.models import Industry, Company, Judgement
 
 
-@admin.register(Business)
+@admin.register(Industry)
 class BusinessAdmin(admin.ModelAdmin):
     pass
 

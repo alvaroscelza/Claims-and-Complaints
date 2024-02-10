@@ -1,6 +1,6 @@
 # Claims and Complaints
 
-This project is a Django application that allows users to create claims and complaints about different companies.
+A Django application that allows users to create claims and complaints about different companies.
 
 ## Technology Stack
 

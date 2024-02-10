@@ -4,8 +4,7 @@ from pathlib import Path
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 APP_NAME = 'Claims and Complaints'
-APP_DESCRIPTION = _('This project is a Django application that allows users to create claims and complaints about '
-                    'different companies.')
+APP_DESCRIPTION = _('A Django application that allows users to create claims and complaints about different companies.')
 AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'}]
 AUTH_USER_MODEL = 'accounts.User'
 BASE_DIR = Path(__file__).parent.parent

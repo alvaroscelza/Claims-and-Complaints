@@ -1,0 +1,30 @@
+.company-table{
+    margin:25px 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.company-table .company-logo{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+thead tr{
+    background-color:black;
+    color:#ffffff;
+    text-align: center;
+}
+
+tbody tr{
+    border-bottom: 1px solid black;
+}
+
+tbody tr:last-of-type{
+    border-bottom: 2px solid black;
+}
+
+th, td{
+    padding:1rem;
+}
