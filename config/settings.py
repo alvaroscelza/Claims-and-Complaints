@@ -3,8 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
-APP_NAME = 'Claims and Complaints'
-APP_DESCRIPTION = _('This project is a Django application that allows users to create claims and complaints about '
+APP_NAME = 'Puntúa'
+APP_DESCRIPTION = _('This project is a Django application that allows users to create Puntúa about '
                     'different companies.')
 AUTH_PASSWORD_VALIDATORS = [{'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'}]
 AUTH_USER_MODEL = 'accounts.User'
