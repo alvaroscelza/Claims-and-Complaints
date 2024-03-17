@@ -3,34 +3,34 @@
     {% load static %}
 
     <link rel="stylesheet" href="{% static '/css/companies-table.css' %}">
-    <div class="company-list">
-        <table class="company-table">
-            <thead>
+    <table class="company-table">
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Nombre</th>
+                <th>Industria</th>
+                <th>Descripción</th>
+                <th>Puntuación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
                 <tr>
-                    <th>Logo</th>
-                    <th>Nombre</th>
-                    <th>Industria</th>
-                    <th>Descripción</th>
+                    <td>
+                        {% if company.logo %}
+                            <div class="img-container">
+                                <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo" class="company-logo">
+                            </div>
+                        {% else %}
+                            <p></p>
+                        {% endif %}
+                    </td>
+                    <td>{{ company.name }}</td>
+                    <td>{{ company.industry }}</td>
+                    <td class="table-description">{{ company.description }}</td>
+                    <td>{{ company.score }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for company in companies %}
-                    <tr>
-                        <td>
-                            {% if company.logo %}
-                                <div class="img-container">
-                                    <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo" class="company-logo">
-                                </div>
-                            {% else %}
-                                <p></p>
-                            {% endif %}
-                        </td>
-                        <td>{{ company.name }}</td>
-                        <td>{{ company.industry }}</td>
-                        <td>{{ company.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

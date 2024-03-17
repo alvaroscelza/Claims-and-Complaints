@@ -1,8 +1,9 @@
 .company-table{
-    margin:25px 0;
     border-radius: 5px;
-    overflow: hidden;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    margin:25px 0;
+    overflow: hidden;
+    text-align: center;
 }
 
 .company-table .company-logo{
@@ -10,10 +11,13 @@
     height: 60px;
 }
 
+.table-description {
+    text-align: justify;
+}
+
 thead tr{
     background-color:black;
     color:#ffffff;
-    text-align: center;
 }
 
 tbody tr{
