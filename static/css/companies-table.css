@@ -8,7 +8,6 @@
 .company-table .company-logo{
     width: 60px;
     height: 60px;
-    object-fit: cover;
 }
 
 thead tr{
