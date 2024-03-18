@@ -70,18 +70,11 @@ textarea {
   resize: vertical;
 }
 
-/* typography */
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
+  margin-top: 0.5em !important;
 }
 
 h2 {
