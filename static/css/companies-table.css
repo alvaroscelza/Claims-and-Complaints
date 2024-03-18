@@ -16,6 +16,15 @@
     flex-direction: column;
 }
 
+.score-voter {
+    color: black;
+}
+
+.score-voter:hover {
+    background-color: hsl(27,90%,68%);
+    cursor: pointer;
+}
+
 .table-description {
     text-align: justify;
 }
