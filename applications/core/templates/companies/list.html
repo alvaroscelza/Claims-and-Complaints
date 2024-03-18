@@ -28,7 +28,15 @@
                     <td>{{ company.name }}</td>
                     <td>{{ company.industry }}</td>
                     <td class="table-description">{{ company.description }}</td>
-                    <td>{{ company.score }}</td>
+                    <td>
+                        <div class="score-elements-container">
+                            <a><i class="fa fa-angle-double-up"></i></a>
+                            <a><i class="fas fa-angle-up"></i></a>
+                            {{ company.score }}
+                            <a><i class="fas fa-angle-down"></i></a>
+                            <a><i class="fa fa-angle-double-down"></i></a>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

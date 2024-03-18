@@ -8,15 +8,13 @@
       <title>{% current_page_title %}</title>
     {% endblock title %}
     {%load static %}
-    <link rel="stylesheet"href="{% static 'css/button.css'  %}">
-    <link rel="stylesheet"
-          type="text/css"
-          href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/accounts.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   </head>
   <body>
     {% include "layouts/header.html" %}
@@ -24,28 +22,13 @@
       <div class="fixed-buttons-container">
         <a class="btn btn-primary" href="/contact">Tengo una Sugerencia!</a>
       </div>
-      {% comment %} {% for message, message_type in flash_messages %}
-        <div id={{ message_type }} class="alert">{{ message }}
-        </div>
-      {% endfor %} {% endcomment %}
-      {% if messages %}
-        <section class="py-2">
-          {% for message in messages %}
-            <div class="alert fade show alert-dismissable d-flex align-items-center my-1 alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags|default:"info" }}{% endif %}"
-                 role="alert">
-              {{ message|safe }}
-              <button type="button"
-                      class="btn-close ms-auto"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"></button>
-            </div>
-          {% endfor %}
-        </section>
-      {% endif %}
+
       {% block content %}
       {% endblock content %}
     </main>
+
     {% include "layouts/footer.html" %}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
