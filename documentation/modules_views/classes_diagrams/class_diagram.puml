@@ -1,6 +1,6 @@
-@startuml core
+@startuml class_diagram
     package django.contrib.auth.models <<Folder>> {
-        class User {
+        class AbstractUser{
             username : string
             password : string
             email : string
@@ -8,6 +8,16 @@
             is_active : boolean
             is_superuser : boolean
         }
+    }
+
+    package accounts <<Folder>> {
+        class User {
+            profile_picture: Image
+            email_validated: DateTime
+            updated_at: DateTime
+            <<Property>>Score: int
+        }
+        User --|> AbstractUser
     }
 
     package core <<Folder>> {
