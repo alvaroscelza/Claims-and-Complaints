@@ -142,7 +142,7 @@ class LoginForm(BaseForm):
                 else Layout(),
                 FormActions(
                     StrictButton('Login', type='submit', name='action', value='login',
-                                 css_class='btn btn-success w-100 my-3 text-center')
+                                 css_class='btn btn-primary w-100 my-3 text-center')
                 ),
             )
         )
@@ -192,7 +192,7 @@ class RegisterForm(BaseForm):
                 FloatingField('confirm_new_password', autocomplete='new-password'),
                 FormActions(
                     StrictButton('Sign Up', type='submit', name='action', value='register',
-                                 css_class='btn btn-success w-100 my-3 text-center')
+                                 css_class='btn btn-primary w-100 my-3 text-center')
                 ),
             )
         )
