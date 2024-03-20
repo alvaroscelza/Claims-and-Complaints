@@ -1,7 +1,7 @@
+from django.conf import settings
 from django.db import models
 
-from applications.core.models.companies import Company
-from django.conf import settings
+from applications.core.models.companies import CompanyBranch
 
 
 class Votes(models.IntegerChoices):
@@ -15,4 +15,4 @@ class Judgement(models.Model):
     opinion = models.TextField()
     vote = models.IntegerField(choices=Votes.choices)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE)
-    company = models.ForeignKey(Company, models.CASCADE)
+    company_branch = models.ForeignKey(CompanyBranch, models.CASCADE)

@@ -21,5 +21,23 @@ class Company(UniqueNameMixin):
 
     @property
     def score(self) -> int:
+        score = 0
+        # noinspection PyUnresolvedReferences
+        for branch in self.companybranch_set.all():
+            for judgement in branch.judgement_set.all():
+                score += judgement.vote
+        return score
+
+
+class CompanyBranch(UniqueNameMixin):
+    class Meta(UniqueNameMixin.Meta):
+        verbose_name = _('company branch')
+        verbose_name_plural = _('companies branches')
+
+    address = models.TextField(blank=True, null=True)
+    company = models.ForeignKey(Company, models.CASCADE)
+
+    @property
+    def score(self) -> int:
         # noinspection PyUnresolvedReferences
         return sum(j.vote for j in self.judgement_set.all()) or 0

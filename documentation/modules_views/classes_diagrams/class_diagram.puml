@@ -45,7 +45,7 @@
         Company --|> UniqueNameMixin
         Company --> Business
         note right of Company::score
-            Sum of all Judgement.vote
+            Sum of all CompanyBranch.Judgement.vote
         end note
 
         enum Vote {
@@ -55,10 +55,20 @@
             VERY_GOOD = 2
         }
 
+        class CompanyBranch {
+            <<optional>> address : text
+            <<calculated property>>score : integer
+        }
+        CompanyBranch --|> UniqueNameMixin
+        CompanyBranch --> Company
+        note right of CompanyBranch::score
+            Sum of all Judgement.vote
+        end note
+
         class Judgement {
             opinion : text
         }
-        Judgement --> Company
+        Judgement --> CompanyBranch
         Judgement --> ClientUser
         Judgement --> Vote
 
